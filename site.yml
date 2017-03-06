@@ -1,0 +1,21 @@
+---
+# This Playbook will setup maxamillion.sh from scratch
+
+# MAKE SURE TO ENABLE PIPELINING IN /etc/ansible/ansible.cfg
+# pipelining = True
+
+- hosts: site
+  user: root
+  roles:
+   - role: common
+   - role: docker
+   - role: keybase
+   - role: users
+   - role: tuned
+   - role: iptables
+   - role: resume
+     tags:
+       - resume
+
+
+# vim:ft=ansible:

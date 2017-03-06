@@ -1,0 +1,21 @@
+---
+#
+
+- name: Install httpd for keybase verification file hosting
+  dnf: pkg="{{item}}" state=installed
+  with_items:
+    - httpd
+
+- name: Upload keybase.txt verifcation file
+  copy:
+    src: keybase.txt
+    dest: /var/www/html/keybase.txt
+
+- name: Start and enable httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+
+# vim:ft=ansible:

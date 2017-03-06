@@ -1,0 +1,25 @@
+---
+#
+
+- name: Install httpd for resume hosting
+  dnf: pkg="{{item}}" state=installed
+  with_items:
+    - httpd
+    - mod_ssl
+    - python-certbot-apache
+
+- name: Start and enable httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Upload resume
+  copy:
+    src: resume
+    dest: /var/www/html/resume
+  notify: restart httpd
+
+
+
+# vim:ft=ansible:

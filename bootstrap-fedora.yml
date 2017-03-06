@@ -1,0 +1,7 @@
+- hosts: workstation
+  gather_facts: false
+  tasks:
+    - name: install python and deps for ansible modules
+      raw: dnf install -y python2 python2-dnf libselinux-python libsemanage-python python2-firewall
+
+# vim:ft=ansible:

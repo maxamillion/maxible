@@ -1,0 +1,10 @@
+---
+# main.yml - configure firewalld
+
+- name: Start and Enable firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: 
+
+
+# vim:ft=ansible:

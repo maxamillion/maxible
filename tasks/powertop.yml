@@ -1,0 +1,13 @@
+- name: Verify powertop is installed
+  dnf: name={{item}} state=installed
+  with_items:
+    - powertop
+
+- name: Start and enable powertop.service
+  service:
+    name: powertop
+    state: started
+    enabled: yes
+
+
+# vim:ft=ansible:

@@ -1,0 +1,13 @@
+- name: Verify User created
+  user:
+    name: "{{non_root_user}}"
+    home: /home/{{non_root_user}}
+    append: yes
+    groups: mock,dialout,lock
+
+- name: Allow non-root user access to libvirt via polkit
+  template:
+    src: templates/non_root_user_libvirt_polkit.j2
+    dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+
+# vim:ft=ansible:

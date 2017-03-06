@@ -1,0 +1,9 @@
+---
+
+- name: restart tuned
+  service:
+    name: tuned
+    state: restarted
+
+
+# vim:ft=ansible:

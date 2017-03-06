@@ -1,0 +1,77 @@
+==================================================================
+https://keybase.io/maxamillion
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://maxamillion.sh
+  * I am maxamillion (https://keybase.io/maxamillion) on keybase.
+  * I have a public key with fingerprint 057A 09D9 E5B1 F1E8 19DC  0B49 3911 1BEF 655D DEDD
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.8.20"
+        },
+        "key": {
+            "eldest_kid": "0101fd641725d5bf09f3086ae8989c2f67510c77456fbb01427fa3d85b7f753027000a",
+            "fingerprint": "057a09d9e5b1f1e819dc0b4939111bef655ddedd",
+            "host": "keybase.io",
+            "key_id": "39111bef655ddedd",
+            "kid": "0101fd641725d5bf09f3086ae8989c2f67510c77456fbb01427fa3d85b7f753027000a",
+            "uid": "7a7f8abee2a422b0129d8febf7f3a900",
+            "username": "maxamillion"
+        },
+        "service": {
+            "hostname": "maxamillion.sh",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1444338823,
+    "expire_in": 157680000,
+    "prev": "9417bfe31ee9ecac60fa72c070260c7c1ddb908ea9d8b20a281f9536d9e9308d",
+    "seqno": 20,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owGtkn9QFGUYx+8A0xIG9BA0iYNlwEI63t27/QVqIsioEDTJgI1Dx7677x4Ld7vX
+3cmPgKmIFMeEtCYcTeBijJkywcwfzEROmg5SEjKE4AgWIsmIduDYGKa2y9A0Tf3Z
+f+/M83m+7/N83ve9IH/dAj27aPmvKH9kWP/dBNTlhl3dUYFBRSjHkiow3i4h2aOd
+ZM6BsCSsGJVDzo1MkhIlKwIyFbmj5pgErAS53JIiqxQwMSYCYFUJGq91I7uA3B5r
+sSRoVRzgokBZcJogBRKKgBXNgKE4xLAMyxMiRZM44GnaQlIihAC3ELTImQWGhLRI
+k2ZA0AAATr1QlGQbcjldkjYiBkiaA6zAIhLiIo4YnBV4AC2smcVxHCKRIklBQIKg
+NhYqbs8/lsFmJ7XOjvcf/P8897bZOJqjRYaDCBGchSBUnmAFRkRQpEUzxwKggW7k
+mhPv4Mo4h2S3a4JVr2qhROKR5lZb5t+QyV2oBjhdikfhFbtaK/R4nElaq6fcqbGl
+CFrnUqxQkgXVJZZw8O9HxFWU90haLm6xWMxmhiHMCRgqc0ouZJU0gqQpRl0JaPeg
+EjWTVd1AEZlxhFjEczwFRI4meEADglLN8LggQBYwiFM3hQTgCAYXWdJMqY/Gqio1
+1W70mqxgSYQa6uFsaqZbssmcZ5sLYVU7/SICdPoFuifm+WnfVPfUkyF//d2Q48GP
+HY/gqdHLFw/F3vDSd7MmBkG7eTSg1l/XRx4oN6R9+bBj/kdsos+9cLB+z/rjPxgG
+RhwtLwXnH4m801h5rC1c7rw1tDk0N4OpSulbDq/tqEmp6y4bXhnx1c2Gd7dUPsqu
+vnfe+dadJQ/i025PxHyiHF4VXfD9hsnkpedLXzw0GDG2M3E6/XPD/T2JAzbXy7nP
+d4/npG8fn7TgCcyB0uRhY9e++G/CqMSZXtfFqWX9WzP001uOdWx9s7m58Irz/ezc
+X4iaFRm/fxy20NsftDcS5t0aPXuixG9/a3R7Ze9kg3H8iP76qZ9/uvr4qD3rpFfX
+bapgc/RNfl84YqKDFk8+WG/MXjdan2ofmDh9Lt/Rk2R4riwuqvecbrd3d1Zhy/Z1
+/NDKNQpetr3t05uZZ4pSqRxZv3qs7tqS60qDj8ing3m6KY2bqs80+lZ3fr2p61lm
+0YmjV0o2FsTdL05ZEbV0X0dmK4wZuhyEiYc/2PtC2DPETLPhzKUfQy+M1LR8mD+e
+HB8X2Jrmd/auz4ZnOdbk1dr6DN531j79+me2VKntRnBy7qrFKXG1eIBXdkAovtHU
+6Gs4OPpqbU/kvO6ZmM16X2Prpv6xbzcOzq+UCyr881wXYvW2FuPpuv2mh6FNjtj2
+9JB7y8KLqnfZT0prO2/X9Fg3TBn/aAwPjPot7G3HdOClriZQ/UqV808=
+=SzjN
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/maxamillion
+
+==================================================================

@@ -1,0 +1,12 @@
+---
+# main.yml - Common Tasks for maxamillion.sh
+#
+
+- include: prereqs.yml
+- include: selinux.yml
+- include: pkginstall.yml
+- include: timedatectl.yml
+- include: sshd.yml
+
+
+# vim:ft=ansible:

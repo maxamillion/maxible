@@ -1,0 +1,38 @@
+- name: Install package list - i3
+  dnf: name={{item}} state=installed
+  with_items:
+    - i3
+    - i3-ipc
+    - i3lock
+    - i3status
+    - dmenu
+    - dunst
+    - nitrogen
+    - sakura
+    - terminology
+    - roxterm
+    - st
+    - termit
+    - eom
+    - arandr
+    - scrot
+    - ranger
+    - pidgin
+    - geany
+    - geany-plugins-markdown
+    - geany-plugins-autoclose
+    - geany-plugins-defineformat
+    - geany-plugins-scope
+    - pulseaudio-module-bluetooth
+    - paman
+    - blueman
+    - xorg-x11-apps
+
+- name: Install MATE for use with i3
+  dnf: name="@mate-desktop" state=installed
+
+- name: Install MATE Applications for use with i3
+  dnf: name="@mate-applications" state=installed
+
+
+# vim:ft=ansible:

@@ -1,0 +1,22 @@
+---
+# timedatectl.yml - configure time/ntp
+
+- name: Install Chrony
+  dnf: pkg={{ item }} state=installed
+  with_items:
+    - chrony
+
+- name: Enable chronyd
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
+
+- name: Set TimeZone in /etc/localtime
+  command: /usr/bin/timedatectl set-timezone America/Chicago
+
+- name: Set ntp enabled
+  command: /usr/bin/timedatectl set-ntp true
+
+
+# vim:ft=ansible:

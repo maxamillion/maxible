@@ -1,0 +1,128 @@
+Adam J. Miller
+9140 Ripley Street
+Fort Worth, TX 76244
+
+Cell: (817) 205-3226
+Email: maxamillion@fedoraproject.org            Website: https://maxamillion.sh
+
+Experience:
+  Red Hat Inc. - Fedora Engineering
+  Fort Worth, TX (Remote)
+  Position: Principal Software Engineer
+  November 2016 - Current
+    - Release Engineering Tooling
+    - Fedora Project Atomic, Fedora Docker
+    - Release Automation for Fedora: .Next, Modularity, Atomic
+
+  Red Hat Inc. - Fedora Engineering
+  Fort Worth, TX (Remote)
+  Position: Senior Software Engineer
+  April 2015 - November 2016
+    - Release Engineering
+    - Project Atomic Fedora, Fedora Docker
+    - Release Automation for Fedora.Next and Atomic
+
+  Red Hat Inc. - OpenShift Team
+  Fort Worth, TX (Remote)
+  Position: Senior Software Engineer - OpenShift Release Engineer
+  April 2012 - April 2015
+    - Release Engineering
+    - Build, testing, and verification automation.
+    - RPM Packaging, Docker build, CI and Production Release Automation
+    - Continuous Integration Support
+
+  Dell Inc. - Enterprise Solutions Engineering
+  Austin, TX
+  Position: Systems Engineer
+  November 2010 - March 2012
+    - Profile performance of hardware configurations in order to create
+      Tested and Validation configurations for Oracle Database solutions
+      based on Red Hat Enterprise Linux.
+    - Develop automated utilities to make setup, configuration, assessment
+      and maintenance of Oracle Database solutions on Red Hat Enterprise
+      Linux easier for customers.
+    - Research performance tuning solutions among an array of different
+      server and storage configurations as well as next generation
+      technologies that can be used in Dell Enterprise Solutions offerings.
+
+  University Computer Services - Sam Houston State University
+  Huntsville, TX
+  Position: System Analyst I
+  February 2008 - November 2010
+    - Design, implement, manage and maintain server solutions based on Red
+      Hat Enterprise Linux in various configurations providing many
+      different services for campus usage by staff, faculty and students
+    - Perform packaging of RPM formatted software packages for use at work
+      as well as contributions to Fedora Extra Packages for Enterprise Linux
+
+Education:
+  Sam Houston State University - M.S. - Information Assurance and Security
+    - Relevant coursework includes: Operating System Security, Database
+      Security, Organization System Security, Risk Assessment and
+      Financial System Security, Disaster Recovery, Malware, Digital
+      Forensics Investigation
+
+  Sam Houston State University - B.S. - Computer Science
+    - ABET Accredited Degree Plan
+    - Relevant coursework includes: Compiler Theory, Operating Systems,
+      Programming Languages, Databases, Data Structures, Software
+      Engineering, Cryptography
+
+  RHCE
+    - With additional Certificates of Expertise in:
+      - Server Hardening
+      - Systems Administrator in Red Hat OpenStack
+    - Certificate Number: 110-008-810
+
+  Qualifications:
+    - Comfortable programming in Python, Ruby, and scripting in Bash.
+    - Experience using Ansible and Puppet configuration management systems.
+    - Experience Packaging RPMs and working with Docker containers.
+    - GNU/Linux user since Red Hat Linux 7.0
+
+Affiliations:
+  - Fedora QA community member
+  - Fedora Packager (Proven Packager and Packager Sponsor)
+  - Fedora Engineering Stearing Committee elected member (Fedora 24/25)
+  - Fedora SIGs: EPEL, XFCE, KDE, Cloud, Spins, Ruby, Go
+  - Fedora Ambassador
+  - CentOS SIGs: Cloud, Atomic, PaaS
+  - Red Hat Shadowman Tattoo on left forearm
+
+Conference Presentations:
+  - Red Hat Summit 2017
+    - Birds of a Feather: Fedora Friends
+    - Lab: From source to RPM in 120 Minutes
+    - Ansible All The Things
+  - SCaLE 15x
+    Creating a Reproducible Build System for Docker Images
+  - DevConf.cz 2017
+    - Fedora Layered Image Build System: Lessons Learned
+    - Fedora Atomic Host Two-Week Release: Past and Future
+    - The Story of Three Distros: Better Together (co-presenter)
+  - Flock to Fedora 2016
+    Introducing Fedora Docker Layered Image Builds
+  - Texas Linux Fest 2016
+    Creating a Reproducible Build System for Docker Images
+  - Red Hat Summit 2016
+    From source to RPM in 120 minutes (Lab Session)
+  - DevConf.cz 2016
+    The Magical Future (Immutable Infra, Containers, and Microservices)
+  - Flock to Fedora 2015
+    Next-generation Fedora release tooling
+  - Texas Linux Fest 2015
+    Immutable Infrastructure, Containers, and the future of Microservices
+  - Red Hat Summit 2015
+    Immutable Infrastructure, Containers, and the future of Microservices
+  - Red Hat Summit 2014
+    Software collections: Keeping pace without sacrificing platform stability
+  - AnsibleFest San Francisco 2013
+    Interstellar Communications: Deploying OpenShift Origin with Ansible
+  - Red Hat Summit 2013
+    Implementing a Distributed Private PaaS with OpenShift Enterprise
+  - Red Hat Summit 2012
+    Oracle RAC 11gR2 on Red Hat Enterprise Linux 6
+
+Publications:
+  - Implementing OpenShift
+    Published by PacktPub: ISBN13 9781782164722

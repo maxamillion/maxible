@@ -1,0 +1,26 @@
+---
+# setupepel.yml - setup EPEL 
+- name: Check for epel
+  shell: rpm -q epel-release
+  register: epel_check
+  ignore_errors: true
+  changed_when: "epel_check.rc != 0"
+
+- name: Copy RPM to machine
+  copy: src=epel-release-6-8.noarch.rpm
+        dest=/tmp/epel-release-6-8.noarch.rpm
+  when: epel_check.rc != 0
+- name: Copy EPEL GPG Key
+  copy: src=RPM-GPG-KEY-EPEL-6
+        dest=/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+        owner=root group=root mode=0644
+  when: epel_check.rc != 0
+- name: Import EPEL GPG Key
+  shell: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+  when: epel_check.rc != 0
+- name: Install EPEL RPM
+  shell: rpm -Uvh /tmp/epel-release-6-8.noarch.rpm
+  when: epel_check.rc != 0
+
+
+# vim:ft=ansible:

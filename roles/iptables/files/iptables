@@ -1,0 +1,24 @@
+# Firewall configuration written by system-config-firewall
+# # Manual customization of this file is not recommended.
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:SSH_CHECK - [0:0]
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -m state --state NEW -j SSH_CHECK
+# Mosh
+-A INPUT -p udp -m multiport --dports 60000:61000 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 5099 -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+-A SSH_CHECK -m recent --set --name SSH
+-A SSH_CHECK -m recent --update --seconds 90 --hitcount 5 --name SSH -j LOG --log-level info --log-prefix "SSH_CHECK blocked: "
+-A SSH_CHECK -m recent --update --seconds 90 --hitcount 5 --name SSH -j DROP
+-A SSH_CHECK -j ACCEPT
+COMMIT
+

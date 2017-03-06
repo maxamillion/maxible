@@ -1,0 +1,18 @@
+---
+# main.yml - configure docker
+#
+
+- name: Install dnf packages
+  dnf: pkg={{ item }} state=installed
+  with_items:
+    - tuned
+    - tuned-utils-systemtap
+
+- name: Start and Enable tuned
+  service:
+    name: tuned
+    state: started
+    enabled: yes
+
+
+# vim:ft=ansible:

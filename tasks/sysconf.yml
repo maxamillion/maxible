@@ -1,0 +1,72 @@
+- name: enable journald persistent storage
+  file:
+    path: /var/log/journal
+    state: directory
+- name: enable tuned
+  service:
+    name: tuned
+    state: started
+    enabled: yes
+- name: set tuned profiles
+  command: /usr/sbin/tuned-adm profile balanced
+- name: Config krb5 - RHT
+  copy:
+    src: files/sys_conf/krb5-rht.conf
+    dest: /etc/krb5.conf
+- name: Config krb5 - Fedora
+  copy:
+    src: files/sys_conf/krb5-fedora.conf
+    dest: /etc/krb5.conf.d/fedoraproject_org
+- name: Config krb5 - Fedora Stage
+  copy:
+    src: files/sys_conf/krb5-fedora-stg.conf
+    dest: /etc/krb5.conf.d/stg_fedoraproject_org
+- name: Set perms mock cache
+  file:
+    path: /var/cache/mock
+    owner: root
+    group: mock
+    mode: 0775
+    state: directory
+- name: Set perms mash cache
+  file:
+    path: /var/cache/mash
+    owner: root
+    group: mock
+    mode: 0775
+    state: directory
+- name: disable sshd
+  service:
+    name: sshd
+    state: stopped
+    enabled: no
+- name: disable firewalld ssh service - permanent
+  firewalld:
+    service: ssh
+    permanent: yes
+    state: disabled
+- name: disable firewalld ssh service - running
+  firewalld:
+    service: ssh
+    permanent: no
+    state: disabled
+- name: enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+- name: Make sure NetworkManager no-auto-default=*
+  lineinfile:
+    dest: /etc/NetworkManager/NetworkManager.conf
+    line: 'no-auto-default=*'
+- name: Make sure NetworkManager dns=dnsmasq
+  lineinfile:
+    dest: /etc/NetworkManager/NetworkManager.conf
+    line: 'dns=dnsmasq'
+- name: Start/enable powertop autotune service
+  service:
+    name: powertop
+    state: started
+    enabled: yes
+
+# vim:ft=ansible:

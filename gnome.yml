@@ -1,0 +1,23 @@
+# gnome.yml
+#
+# Ansible playbook for configuring a laptop the way I like it and a little for
+# work.
+#
+#
+
+- name: Fedora Package Install - GNOME
+  hosts: workstation
+  user: root
+  vars_files:
+    - varfiles/workstation_vars.yml
+  tasks:
+    - include: tasks/pkginstall-generic.yml
+    - include: tasks/pkginstall-GNOME.yml
+    - include: tasks/groupinstall.yml
+    - include: tasks/sysconf.yml
+      tags: sysconf
+    - include: tasks/userconf.yml
+      tags:
+        - userconf
+
+# vim:ft=ansible:

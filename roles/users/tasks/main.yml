@@ -1,0 +1,33 @@
+---
+#
+
+- name: Setup User account for admiller
+  user:
+    name: admiller
+    state: present
+    uid: 1000
+    groups: mock,docker
+    append: yes
+
+- name: Ensure admiller ~/.ssh dir exists
+  file:
+    path: /home/admiller/.ssh
+    state: directory
+    owner: admiller
+    group: admiller
+    mode: 0700
+
+- name: Ensure authorized_keys installed for admiller
+  copy:
+    src: admiller_authorized_keys
+    dest: /home/admiller/.ssh/authorized_keys
+
+- name: Ensure file permissions for admiller authorized keys
+  file:
+    path: /home/admiller/.ssh/authorized_keys 
+    owner: admiller
+    group: admiller
+    mode: 0644
+
+
+# vim:ft=ansible:

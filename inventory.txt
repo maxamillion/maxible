@@ -1,0 +1,5 @@
+[workstation]
+localhost              ansible_connection=local
+
+[site]
+maxamillion.sh

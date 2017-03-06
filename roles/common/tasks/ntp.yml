@@ -1,0 +1,15 @@
+---
+# ntp.yml - configure ntp
+- name: Set TimeZone in sysconfig
+  copy: src=clock dest=/etc/sysconfig/clock
+
+- name: Set TimeZone in /etc/localtime
+  script: set_tz.sh
+  register: command_result
+  changed_when: "'CHANGED' in command_result.stdout"
+
+- name: Start and Enable ntpd 
+  service: name=ntpd state=started enabled=yes
+
+
+# vim:ft=ansible:

@@ -1,0 +1,14 @@
+---
+# prereqs.yml 
+# - install packages for other functionality not in minimal 
+#   RHEL/CentOS/Fedora installs
+- name: Install Packages
+  dnf: pkg={{ item }} state=installed
+  with_items:
+    - python-keyczar
+    - yum-utils
+    - python-simplejson
+    - libselinux-python
+
+
+# vim:ft=ansible:
