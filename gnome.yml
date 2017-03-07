@@ -12,7 +12,8 @@
     - varfiles/workstation_vars.yml
   tasks:
     - include: tasks/pkginstall-generic.yml
-    - include: tasks/pkginstall-GNOME.yml
+    - include: tasks/pkginstall-desktop-generic.yml
+    - include: tasks/pkginstall-gnome.yml
     - include: tasks/groupinstall.yml
     - include: tasks/sysconf.yml
       tags: sysconf

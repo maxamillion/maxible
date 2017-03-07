@@ -12,8 +12,6 @@
     - libyubikey
     - gnupg
     - gnupg2-smime
-    - pcse-lite
-    - pcse-lite-ccid
 
 # Packages that should always be installed on a Fedora machine
 - name: Package install - Generic
@@ -30,7 +28,6 @@
     - bash
     - bash-doc
     - bash-completion
-    - bashdb
     - mosh
     - NetworkManager
     - NetworkManager-tui
@@ -165,7 +162,7 @@
     - lshw
     - ranger
     - percol
-    - fsad
+    - fasd
     - inotify-tools
     - lm_sensors
     - inxi
@@ -234,12 +231,9 @@
     - python-requests
     - python-pygments
     - pyside-tools
-    - python-nikola-docs
     - python3
     - python3-mypy
     - python3-straight-plugin
-    - python3-nikola
-    - python3-nikola-extras
     - python3-pandas
     - python3-django
     - python3-celery
@@ -247,8 +241,6 @@
     - python3-virtualenv
     - python3-kickstart
     - python3-productmd
-#    - python3-nikola
-#    - python3-nikola-extras
     - python3-bottle
     - python3-click
     - python3-flask
@@ -373,7 +365,6 @@
     - psad
     - aide
     - spin-kickstarts
-    - polipo
     - aspell
     - aspell-en
     - qiv
@@ -427,7 +418,7 @@
     - openscap-daemon
     - speedtest-cli
     - transmission-cli
-    - dejangu
+    - dejagnu
     - tcllib
     - asciinema
     - rust

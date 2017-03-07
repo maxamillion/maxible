@@ -25,7 +25,6 @@
     - transmission
     - transmission-gtk
     - arduino
-    - ino
     - hplip-gui
     - hplip-common
     - hplip-libs

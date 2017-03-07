@@ -1,0 +1,5 @@
+#- name: Install package list - GNOME
+#  dnf: name={{item}} state=installed
+#  with_items:
+
+# vim:ft=ansible:
