@@ -27,6 +27,8 @@
     - paman
     - blueman
     - xorg-x11-apps
+    - camorama
+    - parole
 
 - name: Install MATE for use with i3
   dnf: name="@mate-desktop" state=installed
