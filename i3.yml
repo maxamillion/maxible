@@ -12,6 +12,7 @@
     - varfiles/workstation_vars.yml
   tasks:
     - include: tasks/pkginstall-generic.yml
+    - include: tasks/pkginstall-desktop-generic.yml
     - include: tasks/pkginstall-i3.yml
     - include: tasks/groupinstall.yml
     - include: tasks/sysconf.yml
