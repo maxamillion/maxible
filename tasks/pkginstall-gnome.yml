@@ -1,5 +1,6 @@
-#- name: Install package list - GNOME
-#  dnf: name={{item}} state=installed
-#  with_items:
+- name: Install package list - GNOME
+  dnf: name={{item}} state=installed
+  with_items:
+    - gnome-tweak-tool
 
 # vim:ft=ansible:
