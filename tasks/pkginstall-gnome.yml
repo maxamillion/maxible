@@ -2,5 +2,6 @@
   dnf: name={{item}} state=installed
   with_items:
     - gnome-tweak-tool
+    - weston
 
 # vim:ft=ansible:
