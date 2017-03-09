@@ -2,6 +2,14 @@
   file:
     path: /var/log/journal
     state: directory
+- name: enable GSSAPI for Chrome
+  file:
+    path: /etc/opt/chrome/policies/managed
+    state: directory
+- name: config RHT SSO GSSAPI for Chrome
+  copy:
+    src: files/chrome_rht_gssapi_sso.json
+    dest: /etc/opt/chrome/policies/managed/redhat-corp.json
 - name: enable tuned
   service:
     name: tuned
