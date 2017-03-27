@@ -208,6 +208,7 @@
     - python-flake8
     - python-autopep8
     - python-epdb
+    - python-pudb
     - ptpython2
     - python-ipython
     - python-ipython-gui
@@ -256,6 +257,7 @@
     - python3-pep8
     - python3-flake8
     - python3-autopep8
+    - python3-pudb
     - python3-sphinx
     - python3-sphinx_rtd_theme
     - ptpython3
