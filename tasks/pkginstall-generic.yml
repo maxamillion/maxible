@@ -152,6 +152,7 @@
     - ltrace
     - euca2ools
     - ansible
+    - loopabull
     - puppet
     - sbcl
     - rubygem-yard

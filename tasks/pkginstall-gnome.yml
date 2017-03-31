@@ -4,5 +4,6 @@
     - gnome-tweak-tool
     - weston
     - gnome-photos
+    - gnome-builder
 
 # vim:ft=ansible:
