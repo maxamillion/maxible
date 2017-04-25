@@ -26,8 +26,8 @@ running Fedora 23 or later).
     # Run this if you have Fedora 23+ (Hope you do, but nobody is perfect)
     ansible-playbook bootstrap-fedora.yml -i inventory.txt
 
-Usage - GNOME
--------------
+Usage - Desktop/Workstation/Laptop GNOME
+----------------------------------------
 
 Run the following playbook:
 
@@ -35,8 +35,8 @@ Run the following playbook:
 
     ansible-playbook gnome.yml -i inventory.txt
 
-Usage - i3
-----------
+Usage - Desktop/Workstation/Laptop i3
+-------------------------------------
 
 Run the following playbook:
 
@@ -44,8 +44,8 @@ Run the following playbook:
 
     ansible-playbook i3.yml -i inventory.txt
 
-Usage - maxamillion.sh
-----------------------
+Usage - https://maxamillion.sh
+------------------------------
 
 Run the following playbook:
 
@@ -69,5 +69,5 @@ References
 .. _i3: https://i3wm.org/
 .. _GNOME: https://www.gnome.org/
 .. _Ansible: http://www.ansible.com/
-.. _Ansible Doc: http://docs.ansible.com/ansible/index.html
+.. _Ansible Docs: http://docs.ansible.com/ansible/index.html
 .. _Fedora netinstall: https://download.fedoraproject.org/pub/fedora/linux/releases/24/Everything/x86_64/iso/
