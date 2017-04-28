@@ -284,6 +284,7 @@
     - automake
     - cmake
     - make
+    - pkgconf
     - gcc
     - gcc-c++
     - gcc-go
