@@ -6,5 +6,6 @@
     - gnome-photos
     - gnome-builder
     - gnome-shell-extension-background-logo
+    - gnome-shell-extension-activities-configurator
 
 # vim:ft=ansible:
