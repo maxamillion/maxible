@@ -7,5 +7,6 @@
     - gnome-builder
     - gnome-shell-extension-background-logo
     - gnome-shell-extension-activities-configurator
+    - gnome-shell-extension-alternate-tab
 
 # vim:ft=ansible:
