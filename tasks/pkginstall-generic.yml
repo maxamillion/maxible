@@ -153,6 +153,10 @@
     - ltrace
     - euca2ools
     - ansible
+    - ansible-doc
+    - ansible-review
+    - ansible-lint
+    - ansible-inventory-grapher
     - loopabull
     - puppet
     - sbcl
@@ -187,7 +191,6 @@
     - scapy
     - pyp2rpm
     - pykickstart
-    - pytest
     - python-straight-plugin
     - python-rope
     - python-ropemode
@@ -311,6 +314,8 @@
     - runc
     - docker
     - docker-vim
+    - buildah
+    - skopeo
     - atomic
     - atomic-reactor
     - system-storage-manager
