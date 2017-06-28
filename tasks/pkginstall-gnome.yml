@@ -8,5 +8,6 @@
     - gnome-shell-extension-background-logo
     - gnome-shell-extension-activities-configurator
     - gnome-shell-extension-alternate-tab
+    - arc-theme
 
 # vim:ft=ansible:
