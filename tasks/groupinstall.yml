@@ -2,6 +2,5 @@
   dnf: name={{item}} state=installed
   with_items:
     - "@fedora-packager"
-    - "@virtualization"
 
 # vim:ft=ansible:
