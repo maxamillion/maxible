@@ -335,7 +335,6 @@
     - httpie
     - jq
     - authconfig
-    - authconfig-gtk
     - rfkill
     - acpi
     - rpm-ostree
