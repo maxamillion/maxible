@@ -18,13 +18,6 @@
   dnf: name={{ item }} state=installed
   with_items:
     - dnf-plugins-core
-    - dnf-plugins-extras
-    - dnf-plugins-extras-common
-    - dnf-plugins-extras-tracer
-    - dnf-plugins-extras-repoclosure
-    - dnf-plugins-extras-repograph
-    - dnf-plugins-extras-kickstart
-    - dnf-plugins-extras-show-leaves
     - tracer
     - bash
     - bash-doc
