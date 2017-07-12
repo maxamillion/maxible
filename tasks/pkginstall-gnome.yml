@@ -13,5 +13,6 @@
     - gnome-shell-extension-user-theme
     - gnome-shell-extension-sustmi-windowoverlay-icons
     - arc-theme
+    - dconf-editor
 
 # vim:ft=ansible:
