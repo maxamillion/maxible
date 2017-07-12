@@ -1,3 +1,4 @@
 {
-    "AuthServerWhitelist": "*.redhat.com"
+    "AuthServerWhitelist": "*.redhat.com",
+    "EnableSha1ForLocalAnchors": true
 }
