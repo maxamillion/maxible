@@ -406,6 +406,5 @@
     - firewalld-filesystem
     - scl-utils-build
     - nodejs-packaging
-    - devassistant-devel
 
 # vim:ft=ansible:
