@@ -156,7 +156,6 @@
     - scala
     - sbt
     - pypy
-    - pyrasite
     - Cython
     - python3-Cython
     - python2-devel
