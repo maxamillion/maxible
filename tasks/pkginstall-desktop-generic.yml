@@ -28,6 +28,8 @@
     - hplip-gui
     - hplip-common
     - hplip-libs
+    - terminus-fonts
+    - terminus-fonts-console
     - levien-inconsolata-fonts
     - terminus-fonts
     - liberation-fonts-common
