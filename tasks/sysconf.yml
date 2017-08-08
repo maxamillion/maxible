@@ -20,7 +20,7 @@
 - name: Config krb5 - RHT
   copy:
     src: files/sys_conf/krb5-rht.conf
-    dest: /etc/krb5.conf
+    dest: /etc/krb5.conf.d/rht.conf
 - name: Config krb5 - Fedora
   copy:
     src: files/sys_conf/krb5-fedora.conf
