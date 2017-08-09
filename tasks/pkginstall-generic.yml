@@ -107,6 +107,9 @@
     - kernel-devel
     - kernel-headers
     - kernel-rpm-macros
+    - bcc
+    - bcc-tools
+    - bcc-doc
     - perf
     - ngrep
     - mash
