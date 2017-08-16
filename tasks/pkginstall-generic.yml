@@ -184,6 +184,7 @@
     - python-autopep8
     - python-epdb
     - python-pudb
+    - ptpython2
     - python-ipython
     - python-ipython-gui
     - python-ipython-sphinx
