@@ -115,11 +115,6 @@
     - cryptsetup
     - goaccess
     - fpaste
-    - openscap
-    - openscap-scanner
-    - openscap-utils
-    - openscap-containers
-    - openscap-daemon
 
   tags:
     - pkginstall
