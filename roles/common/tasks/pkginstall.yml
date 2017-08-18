@@ -92,7 +92,7 @@
     - python2
     - ptpython2
     - python2-pip
-    - python2-pep8
+    - python-pep8
     - python2-epdb
     - python2-ipython
     - python2-virtualenv
