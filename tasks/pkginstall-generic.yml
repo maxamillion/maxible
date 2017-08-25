@@ -303,6 +303,7 @@
     - pavumeter
     - fuse-python
     - httpie
+    - curl
     - jq
     - authconfig
     - rfkill

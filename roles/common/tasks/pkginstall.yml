@@ -72,6 +72,8 @@
     - testdisk
     - tcpdump
     - httpd-tools
+    - curl
+    - httpie
     - lsscsi
     - irssi
     - policycoreutils-python
