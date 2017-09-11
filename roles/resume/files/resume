@@ -11,7 +11,7 @@ Experience:
   Position: Principal Software Engineer
   November 2016 - Current
     - Release Engineering Tooling
-    - Fedora Project Atomic, Fedora Docker
+    - Fedora Atomic Host and Fedora Container Build Pipeline
     - Release Automation for Fedora: .Next, Modularity, Atomic
 
   Red Hat Inc. - Fedora Engineering
@@ -81,10 +81,11 @@ Education:
     - GNU/Linux user since Red Hat Linux 7.0
 
 Affiliations:
-  - Fedora QA community member
+  - Ansible upstream contributor
+  - openshift-ansible upstream contributor
   - Fedora Packager (Proven Packager and Packager Sponsor)
-  - Fedora Engineering Stearing Committee elected member (Fedora 24/25)
-  - Fedora SIGs: EPEL, XFCE, KDE, Cloud, Spins, Ruby, Go
+  - Fedora Engineering Stearing Committee elected member
+  - Fedora SIGs: EPEL, Cloud, Spins, Atomic, Python, Ruby, Go
   - Fedora Ambassador
   - CentOS SIGs: Cloud, Atomic, PaaS
   - Red Hat Shadowman Tattoo on left forearm
@@ -92,6 +93,8 @@ Affiliations:
 Conference Presentations:
   - RAX.io 2017 (Keynote/General-Session Speaker)
     Community: Accomplishing More Through Open Collaboration
+  - AnsibleFest SF 2017
+    Ansible Everything
   - Flock to Fedora 2017
     - Multi-Arch Container Layered Image Build System
     - Become a Container Maintainer (Workshop)
