@@ -17,18 +17,6 @@
     enabled: yes
 - name: set tuned profiles
   command: /usr/sbin/tuned-adm profile balanced
-- name: Config krb5 - RHT
-  copy:
-    src: files/sys_conf/krb5-rht.conf
-    dest: /etc/krb5.conf.d/rht.conf
-- name: Config krb5 - Fedora
-  copy:
-    src: files/sys_conf/krb5-fedora.conf
-    dest: /etc/krb5.conf.d/fedoraproject_org
-- name: Config krb5 - Fedora Stage
-  copy:
-    src: files/sys_conf/krb5-fedora-stg.conf
-    dest: /etc/krb5.conf.d/stg_fedoraproject_org
 - name: Set perms mock cache
   file:
     path: /var/cache/mock
