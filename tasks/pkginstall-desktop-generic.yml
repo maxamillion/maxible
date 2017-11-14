@@ -3,6 +3,7 @@
   with_items:
     - gnome-terminal
     - firefox
+    - chromium
     - icecat
     - midori
     - qutebrowser
