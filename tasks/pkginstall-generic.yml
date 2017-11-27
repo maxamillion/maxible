@@ -268,7 +268,7 @@
     - docker-vim
     - buildah
     - skopeo
-    - atomic-reactor
+    #- atomic-reactor
     - system-storage-manager
     - libmtp
     - libmtp-examples

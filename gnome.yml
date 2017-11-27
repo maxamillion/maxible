@@ -11,13 +11,13 @@
   vars_files:
     - varfiles/workstation_vars.yml
   tasks:
-    - include: tasks/pkginstall-generic.yml
-    - include: tasks/pkginstall-desktop-generic.yml
-    - include: tasks/pkginstall-gnome.yml
-    - include: tasks/groupinstall.yml
-    - include: tasks/sysconf.yml
+    - import_tasks: tasks/pkginstall-generic.yml
+    - import_tasks: tasks/pkginstall-desktop-generic.yml
+    - import_tasks: tasks/pkginstall-gnome.yml
+    - import_tasks: tasks/groupinstall.yml
+    - import_tasks: tasks/sysconf.yml
       tags: sysconf
-    - include: tasks/userconf.yml
+    - import_tasks: tasks/userconf.yml
       tags:
         - userconf
 

@@ -2,11 +2,11 @@
 # main.yml - Common Tasks for maxamillion.sh
 #
 
-- include: prereqs.yml
-- include: selinux.yml
-- include: pkginstall.yml
-- include: timedatectl.yml
-- include: sshd.yml
+- import_tasks: prereqs.yml
+- import_tasks: selinux.yml
+- import_tasks: pkginstall.yml
+- import_tasks: timedatectl.yml
+- import_tasks: sshd.yml
 
 
 # vim:ft=ansible:
