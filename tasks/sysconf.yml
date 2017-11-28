@@ -63,14 +63,11 @@
   lineinfile:
     dest: /etc/default/tlp
     line: 'USB_BLACKLIST="046d:c52b 05ac:0204 05f3:0081"'
-- name: Make sure /etc/sudoers.d/docker exists
-  file:
-    path: /etc/sudoers.d/docker
-    state: touch
-- name: Enable non root user to run sudo docker
-  lineinfile:
+- name: Apply docker sudo template
+  template:
+    src: templates/sudo_docker.j2
     dest: /etc/sudoers.d/docker
-    line: '{{non_root_user}}        ALL=(ALL)       NOPASSWD: /usr/bin/docker'
+    validate: 'visudo -cf %s'
 - name: Start/enable powertop autotune service
   service:
     name: powertop
