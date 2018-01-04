@@ -32,6 +32,7 @@
     - chrony
     - mutt
     - nmap
+    - ack
     - sysstat
     - vim-enhanced
     - mosh

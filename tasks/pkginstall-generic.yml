@@ -112,6 +112,7 @@
     - bcc-doc
     - perf
     - ngrep
+    - ack
     - mash
     - rsync
     - wget
