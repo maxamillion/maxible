@@ -3,7 +3,6 @@
   with_items:
     - gnome-tweak-tool
     - weston
-    - polari
     - gnome-photos
     - gnome-builder
     - gnome-shell-extension-background-logo
