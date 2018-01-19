@@ -3,6 +3,7 @@
   with_items:
     - gnome-tweak-tool
     - weston
+    - hexchat
     - gnome-photos
     - gnome-builder
     - gnome-shell-extension-background-logo
