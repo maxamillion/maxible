@@ -13,6 +13,7 @@
     - gnome-shell-extension-windowsNavigator
     - gnome-shell-extension-user-theme
     - gnome-shell-extension-sustmi-windowoverlay-icons
+    - gnome-shell-extension-system-monitor-applet
     - dconf-editor
 
 # vim:ft=ansible:
