@@ -65,6 +65,7 @@
     - screenfetch
     - hub
     - git
+    - gitk
     - tig
     - subversion
     - mercurial
