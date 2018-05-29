@@ -18,7 +18,6 @@
   copy:
     src: resume
     dest: /var/www/html/resume
-  notify: restart httpd
 
 
 
