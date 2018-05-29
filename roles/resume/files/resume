@@ -6,10 +6,18 @@ Cell: (817) 205-3226
 Email: maxamillion@fedoraproject.org            Website: https://maxamillion.sh
 
 Experience:
+  Red Hat Inc. - Ansible Core Engineering
+  Fort Worth, TX (Remote)
+  Position: Principal Software Engineer
+  December 2017 - Current
+    - Ansible Engine Runtime Core Developer
+    - Ansible Engine and Community Module Developer
+    - Support/Develop Cross-Product Ansible Automation Integrations
+
   Red Hat Inc. - Fedora Engineering
   Fort Worth, TX (Remote)
   Position: Principal Software Engineer
-  November 2016 - Current
+  November 2016 - December 2017
     - Release Engineering Tooling
     - Fedora Atomic Host and Fedora Container Build Pipeline
     - Release Automation for Fedora: .Next, Modularity, Atomic
