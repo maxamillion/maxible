@@ -10,4 +10,8 @@
     src: templates/non_root_user_libvirt_polkit.j2
     dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
 
+- name: Allow non-root user access to NetworkManager
+  template:
+    src: templates/network_manager_polkit.j2
+    dest: /etc/polkit-1/rules.d/10-network-manager.pkla
 # vim:ft=ansible:

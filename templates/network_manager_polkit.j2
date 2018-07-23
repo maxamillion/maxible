@@ -1,0 +1,7 @@
+[Let {{non_root_user}} modify system settings for network]
+Identity=unix-user:{{non_root_user}}
+Action=org.freedesktop.NetworkManager.*
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes
+
