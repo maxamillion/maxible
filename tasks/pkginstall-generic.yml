@@ -269,6 +269,7 @@
     - docker-vim
     - buildah
     - skopeo
+    - podmad
     #- atomic-reactor
     - system-storage-manager
     - libmtp
