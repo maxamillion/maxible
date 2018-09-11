@@ -1,19 +1,20 @@
 - name: Install package list - GNOME
-  dnf: name={{item}} state=installed
-  with_items:
-    - gnome-tweak-tool
-    - weston
-    - hexchat
-    - gnome-photos
-    - gnome-builder
-    - gnome-shell-extension-background-logo
-    - gnome-shell-extension-activities-configurator
-    - gnome-shell-extension-alternate-tab
-    - gnome-shell-extension-topicons-plus
-    - gnome-shell-extension-windowsNavigator
-    - gnome-shell-extension-user-theme
-    - gnome-shell-extension-sustmi-windowoverlay-icons
-    - gnome-shell-extension-system-monitor-applet
-    - dconf-editor
+  dnf:
+    state: installed
+    name:
+      - gnome-tweak-tool
+      - weston
+      - hexchat
+      - gnome-photos
+      - gnome-builder
+      - gnome-shell-extension-background-logo
+      - gnome-shell-extension-activities-configurator
+      - gnome-shell-extension-alternate-tab
+      - gnome-shell-extension-topicons-plus
+      - gnome-shell-extension-windowsNavigator
+      - gnome-shell-extension-user-theme
+      - gnome-shell-extension-sustmi-windowoverlay-icons
+      - gnome-shell-extension-system-monitor-applet
+      - dconf-editor
 
 # vim:ft=ansible:

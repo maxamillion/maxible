@@ -1,32 +1,33 @@
 - name: Install package list - i3
-  dnf: name={{item}} state=installed
-  with_items:
-    - i3
-    - i3-ipc
-    - i3lock
-    - i3status
-    - dmenu
-    - dunst
-    - nitrogen
-    - sakura
-    - terminology
-    - xfce4-terminal
-    - roxterm
-    - st
-    - termit
-    - eom
-    - arandr
-    - scrot
-    - ranger
-    - geany
-    - geany-plugins-autoclose
-    - geany-plugins-defineformat
-    - pulseaudio-module-bluetooth
-    - paman
-    - blueman
-    - xorg-x11-apps
-    - camorama
-    - parole
+  dnf:
+    state: installed
+    name:
+      - i3
+      - i3-ipc
+      - i3lock
+      - i3status
+      - dmenu
+      - dunst
+      - nitrogen
+      - sakura
+      - terminology
+      - xfce4-terminal
+      - roxterm
+      - st
+      - termit
+      - eom
+      - arandr
+      - scrot
+      - ranger
+      - geany
+      - geany-plugins-autoclose
+      - geany-plugins-defineformat
+      - pulseaudio-module-bluetooth
+      - paman
+      - blueman
+      - xorg-x11-apps
+      - camorama
+      - parole
 
 - name: Install MATE for use with i3
   dnf: name="@mate-desktop" state=installed
