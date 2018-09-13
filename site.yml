@@ -8,7 +8,6 @@
   user: root
   roles:
    - role: common
-   - role: docker
    - role: keybase
    - role: users
    - role: tuned

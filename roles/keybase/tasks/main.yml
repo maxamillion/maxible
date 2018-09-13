@@ -2,9 +2,9 @@
 #
 
 - name: Install httpd for keybase verification file hosting
-  dnf: pkg="{{item}}" state=installed
-  with_items:
-    - httpd
+  dnf:
+    state: installed
+    name: httpd
 
 - name: Upload keybase.txt verifcation file
   copy:

@@ -6,7 +6,7 @@
     name: admiller
     state: present
     uid: 1000
-    groups: mock,docker
+    groups: mock
     append: yes
 
 - name: Ensure admiller ~/.ssh dir exists
@@ -24,7 +24,7 @@
 
 - name: Ensure file permissions for admiller authorized keys
   file:
-    path: /home/admiller/.ssh/authorized_keys 
+    path: /home/admiller/.ssh/authorized_keys
     owner: admiller
     group: admiller
     mode: 0644

@@ -1,12 +1,13 @@
 ---
-# main.yml - configure docker
+# main.yml - configure tuned
 #
 
 - name: Install dnf packages
-  dnf: pkg={{ item }} state=installed
-  with_items:
-    - tuned
-    - tuned-utils-systemtap
+  dnf:
+    state: installed
+    name:
+      - tuned
+      - tuned-utils-systemtap
 
 - name: Start and Enable tuned
   service:

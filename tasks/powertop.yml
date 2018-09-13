@@ -1,7 +1,7 @@
 - name: Verify powertop is installed
-  dnf: name={{item}} state=installed
-  with_items:
-    - powertop
+  dnf:
+    state: installed
+    name: powertop
 
 - name: Start and enable powertop.service
   service:

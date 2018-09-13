@@ -2,11 +2,12 @@
 #
 
 - name: Install httpd for resume hosting
-  dnf: pkg="{{item}}" state=installed
-  with_items:
-    - httpd
-    - mod_ssl
-    - python-certbot-apache
+  dnf:
+    state: installed
+    name:
+      - httpd
+      - mod_ssl
+      - python-certbot-apache
 
 - name: Start and enable httpd
   service:

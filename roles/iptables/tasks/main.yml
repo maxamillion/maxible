@@ -9,11 +9,12 @@
     enabled: no
 
 - name: Install iptables Packages
-  dnf: pkg={{ item }} state=installed
-  with_items:
-    - iptables
-    - iptables-services
-    - iptables-utils
+  dnf:
+    state: installed
+    name:
+      - iptables
+      - iptables-services
+      - iptables-utils
 
 - name: Copy iptables rules
   copy: src=iptables dest=/etc/sysconfig/iptables

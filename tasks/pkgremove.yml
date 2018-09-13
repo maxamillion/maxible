@@ -1,7 +1,7 @@
 - name: Install package list
-  dnf: name=$item state=removed
-  with_items:
-    - rhythmbox
+  dnf:
+    state: removed
+    name: rhythmbox
 
 
 # vim:ft=ansible:

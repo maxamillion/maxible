@@ -267,11 +267,11 @@
       - libsemanage-devel
       - lsscsi
       - runc
+      - podman
       - docker
       - docker-vim
       - buildah
       - skopeo
-      - podmad
       #- atomic-reactor
       - system-storage-manager
       - libmtp

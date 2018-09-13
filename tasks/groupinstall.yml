@@ -1,7 +1,8 @@
 - name: Install package list
-  dnf: name={{item}} state=installed
-  with_items:
-    - "@fedora-packager"
-    - "@virtualization"
+  dnf:
+    state: installed
+    name:
+      - "@fedora-packager"
+      - "@virtualization"
 
 # vim:ft=ansible:

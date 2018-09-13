@@ -46,11 +46,6 @@
     service: ssh
     permanent: no
     state: disabled
-- name: enable docker
-  service:
-    name: docker
-    state: started
-    enabled: yes
 - name: Make sure NetworkManager no-auto-default=*
   lineinfile:
     dest: /etc/NetworkManager/NetworkManager.conf
@@ -63,11 +58,6 @@
   lineinfile:
     dest: /etc/default/tlp
     line: 'USB_BLACKLIST="046d:c52b 05ac:0204 05f3:0081"'
-- name: Apply docker sudo template
-  template:
-    src: templates/sudo_docker.j2
-    dest: /etc/sudoers.d/docker
-    validate: 'visudo -cf %s'
 - name: Start/enable powertop autotune service
   service:
     name: powertop

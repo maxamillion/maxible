@@ -2,9 +2,9 @@
 # timedatectl.yml - configure time/ntp
 
 - name: Install Chrony
-  dnf: pkg={{ item }} state=installed
-  with_items:
-    - chrony
+  dnf:
+    state: installed
+    name: chrony
 
 - name: Enable chronyd
   service:
