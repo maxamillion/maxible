@@ -18,5 +18,6 @@
     - import_tasks: tasks/userconf.yml
       tags:
         - userconf
+    - import_role: fail2ban
 
 # vim:ft=ansible:

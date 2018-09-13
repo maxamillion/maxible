@@ -13,6 +13,7 @@
    - role: users
    - role: tuned
    - role: iptables
+   - role: fail2ban
    - role: resume
      tags:
        - resume
