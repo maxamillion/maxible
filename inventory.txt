@@ -1,5 +1,8 @@
 [workstation]
 localhost              ansible_connection=local ansible_python_interpreter=/usr/bin/python3
 
+[mobileworkstation]
+localhost              ansible_connection=local become=true ansible_python_interpreter=/usr/bin/python3
+
 [site]
 maxamillion.sh ansible_python_interpreter=/usr/bin/python3

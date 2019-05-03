@@ -3,6 +3,5 @@
     state: installed
     name:
       - "@fedora-packager"
-      - "@virtualization"
 
 # vim:ft=ansible:

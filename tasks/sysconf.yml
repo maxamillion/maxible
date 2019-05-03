@@ -54,10 +54,10 @@
   lineinfile:
     dest: /etc/NetworkManager/NetworkManager.conf
     line: 'dns=dnsmasq'
-- name: Set tlp to blacklist USB devices plugged into docking station from autosuspend
-  lineinfile:
-    dest: /etc/default/tlp
-    line: 'USB_BLACKLIST="046d:c52b 05ac:0204 05f3:0081"'
+#- name: Set tlp to blacklist USB devices plugged into docking station from autosuspend
+#  lineinfile:
+#    dest: /etc/default/tlp
+#    line: 'USB_BLACKLIST="046d:c52b 05ac:0204 05f3:0081"'
 - name: Start/enable powertop autotune service
   service:
     name: powertop

@@ -4,11 +4,9 @@
   dnf:
     state: installed
     name:
-      - python-keyczar
-      - yum-utils
-      - python-simplejson
-      - libselinux-python
-      - python-libcloud
+      - python3-simplejson
+      - python3-libselinux
+      - python3-libcloud
       - ykpers
       - libyubikey
       - gnupg
@@ -36,7 +34,8 @@
       - dnsmasq
       - d-feet
       - evtest
-      - policycoreutils-python
+      - policycoreutils
+      - python3-policycoreutils
       - selinux-policy-doc
       - selinux-policy-devel
       - selinux-policy-sandbox
@@ -48,7 +47,6 @@
       - fedora-review
       - fedora-review-tests
       - fedmsg
-      - python-fedmsg-meta-fedora-infrastructure
       - readline-devel
       - nmap
       - nmap-ncat
@@ -60,7 +58,6 @@
       - libvirt-sandbox
       - vim-enhanced
       - vim-jedi
-      - python-jedi
       - tmux
       - tmuxinator
       - screen
@@ -85,10 +82,6 @@
       - ShellCheck
       - mock
       - golang
-      - gofed
-      - gofed-scan
-      - gofed-build
-      - gotags
       - golang-gotype
       - golang-godoc
       - perl
@@ -101,9 +94,6 @@
       - rubygems-devel
       - rubygem-pry
       - rubygem-pry-doc
-      - rubygem-rspec
-      - rubygem-thor
-      - rubygem-puppet-lint
       - man-db
       - man-pages
       - txt2man
@@ -143,62 +133,26 @@
       - ansible-review
       - ansible-lint
       - ansible-inventory-grapher
-      - loopabull
-      - puppet
       - sbcl
-      - rubygem-yard
-      - rubygem-yard-doc
       - createrepo
       - createrepo_c
       - createrepo_c-devel
       - lshw
       - ranger
       - percol
-      - fasd
       - inotify-tools
       - lm_sensors
       - inxi
       - pssh
       - pv
-      - scala
       - sbt
       - pypy
-      - Cython
-      - python3-Cython
-      - python2-devel
-      - python2-argcomplete
-      - python3-devel
-      - pylint
-      - pyflakes
-      - python-mccabe
-      - bpython
       - jython
       - scapy
       - pyp2rpm
-      - pykickstart
-      - python-kickstart
-      - python-docs
-      - python-docs-info
-      - python-cffi
-      - python-cffi-doc
-      - python-createrepo_c
-      - python-pip
-      - python-pep8
-      - python-flake8
-      - python-autopep8
-      - python-epdb
-      - python-pudb
-      - ptpython2
-      - python-ipython
-      - python-ipython-gui
-      - python-ipython-sphinx
-      - python-virtualenv
-      - python-virtualenvwrapper
-      - python-sphinx
-      - python-sphinx_rtd_theme
-      - python-sphinx-doc
-      - python-requests
       - python3
+      - python3-Cython
+      - python3-devel
       - python3-argcomplete
       - python3-mypy
       - python3-straight-plugin
@@ -237,7 +191,6 @@
       - libguestfs-tools
       - libguestfs-tools-c
       - libguestfs-xfs
-      - pkgwat
       - fedfind
       - autoconf
       - automake
@@ -266,13 +219,10 @@
       - httpd-tools
       - libsemanage-devel
       - lsscsi
-      - runc
       - podman
-      - docker
-      - docker-vim
+      - podman-docker
       - buildah
       - skopeo
-      #- atomic-reactor
       - system-storage-manager
       - libmtp
       - libmtp-examples
@@ -281,7 +231,6 @@
       - pass
       - doge
       - appliance-tools
-      - xbacklight
       - pinfo
       - tuned
       - tuned-utils
@@ -293,8 +242,6 @@
       - npm
       - tcl
       - tpp
-      - copr-cli
-      - copr-cli-doc
       - psacct
       - units
       - binutils
@@ -310,17 +257,14 @@
       - httpie
       - curl
       - jq
-      - authconfig
+      - authselect
       - rfkill
       - acpi
-      - rpm-ostree
-      - rpm-ostree-toolbox
       - lorax
       - pungi
       - xz
       - libicns-utils
       - task
-      - bugwarrior
       - groovy
       - elixir
       - airsnort
@@ -335,7 +279,6 @@
       - aspell-en
       - qiv
       - lynx
-      - rolekit
       - conntrack-tools
       - tunir
       - sigul
@@ -349,20 +292,9 @@
       - fwupdate
       - libsmbios
       - rng-tools
-      - kobo
-      - kobo-admin
-      - kobo-client
-      - kobo-django
-      - kobo-hub
-      - kobo-rpmlib
-      - kobo-worker
       - kbd
       - pandoc
       - binwalk
-      - imagefactory
-      - imagefactory-plugins-Docker
-      - imagefactory-plugins-IndirectionCloud
-      - duplicity
       - ncftp
       - lftp
       - letsencrypt
@@ -373,14 +305,6 @@
       - surl
       - picocom
       - redis
-      - libtaskotron
-      - testcloud
-      - scap-workbench
-      - openscap
-      - openscap-scanner
-      - openscap-utils
-      - openscap-containers
-      - openscap-daemon
       - speedtest-cli
       - transmission-cli
       - dejagnu
