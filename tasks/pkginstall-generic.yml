@@ -282,8 +282,6 @@
       - conntrack-tools
       - tunir
       - sigul
-      - tlp
-      - tlp-rdw
       - smartmontools
       - swig
       - swig-doc
