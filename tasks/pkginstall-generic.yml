@@ -314,6 +314,7 @@
       - cargo
       - tor
       - tor-arm
+      - WoeUSB
 
 # Packages that should always be installed on a Fedora machine
 - name: Package install - rpmmacros
