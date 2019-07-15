@@ -1,0 +1,46 @@
+---
+- name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever
+  hosts: localhost
+  tasks:
+    - name: Package Install
+      yum:
+        state: installed
+        name:
+          - tmux
+          - git
+          - python36
+          - python3-virtualenv
+          - ruby
+          - gcc
+          - gcc-c++
+          - setools-console
+          - policycoreutils-python-utils
+          - gnome-tweaks
+          - '@rpm-development-tools'
+          - '@go-toolset:rhel8'
+          - '@container-tools:rhel8'
+
+    - name: U2F Token udev rules
+      copy:
+        src: files/70-u2f.rules
+        dest: /etc/udev/rules.d/70-u2f.rules
+      notify:
+        - reload udev
+
+    - name: Get tuned profile
+      slurp:
+        src: /etc/tuned/active_profile
+      register: tuned_active_profile
+
+    - debug:
+        msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+    - name: tuned-adm set powersave
+      shell: /usr/sbin/tuned-adm profile powersave
+      when: "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
+
+
+  handlers:
+    - name: reload udev
+      shell: /usr/sbin/udevadm control --reload
+
