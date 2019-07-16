@@ -11,11 +11,14 @@
           - python36
           - python3-virtualenv
           - ruby
+          - nodejs
           - gcc
           - gcc-c++
           - setools-console
           - policycoreutils-python-utils
           - gnome-tweaks
+          - krb5-workstation
+          - pcp-system-tools
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
