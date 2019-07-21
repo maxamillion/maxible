@@ -14,11 +14,16 @@
           - nodejs
           - gcc
           - gcc-c++
+          - automake
+          - autoconf
+          - make
           - setools-console
           - policycoreutils-python-utils
           - gnome-tweaks
           - krb5-workstation
           - pcp-system-tools
+          - lm_sensors
+          - tuned-utils
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
