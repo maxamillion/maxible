@@ -35,6 +35,11 @@
       notify:
         - reload udev
 
+    - name: Create powertop2tuned tuned profile
+      shell: powertop2tuned powertop2tuned
+      args:
+        creates: /etc/tuned/powertop2tuned/tuned.conf
+
     - name: Get tuned profile
       slurp:
         src: /etc/tuned/active_profile
@@ -43,9 +48,9 @@
     - debug:
         msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
 
-    - name: tuned-adm set powersave
-      shell: /usr/sbin/tuned-adm profile powersave
-      when: "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
+    - name: tuned-adm set powertop2tuned
+      shell: /usr/sbin/tuned-adm profile powertop2tuned
+      when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
 
 
   handlers:
