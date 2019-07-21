@@ -52,6 +52,10 @@
       shell: /usr/sbin/tuned-adm profile powertop2tuned
       when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
 
+    - name: Apply iwlwifi settings
+      copy:
+        src: files/iwlwifi.conf
+        dest: /etc/modprobe.d/iwlwifi.conf
 
   handlers:
     - name: reload udev
