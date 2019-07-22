@@ -36,7 +36,7 @@
         - reload udev
 
     - name: Create powertop2tuned tuned profile
-      shell: powertop2tuned powertop2tuned
+      shell: powertop2tuned --enable powertop2tuned
       args:
         creates: /etc/tuned/powertop2tuned/tuned.conf
 
