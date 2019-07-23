@@ -28,6 +28,10 @@
           - powertop
           - crypto-policies
           - aide
+          - podman
+          - podman-docker
+          - buildah
+          - skopeo
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
