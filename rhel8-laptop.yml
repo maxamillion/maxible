@@ -25,6 +25,7 @@
           - lm_sensors
           - tuned
           - tuned-utils
+          - powertop
           - crypto-policies
           - aide
           - '@rpm-development-tools'
