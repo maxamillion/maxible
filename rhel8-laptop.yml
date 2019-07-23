@@ -23,7 +23,10 @@
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
+          - tuned
           - tuned-utils
+          - crypto-policies
+          - aide
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
@@ -34,6 +37,44 @@
         dest: /etc/udev/rules.d/70-u2f.rules
       notify:
         - reload udev
+
+    - name: Check crypto policies
+      shell: update-crypto-policies --show
+      changed_when: false
+      register: crypto_policies
+
+    # should upgrade to FUTURE, but then RHN doesn't work because metadata
+    # checksum is too weak
+    - name: Set crypto policies to DEFAULT
+      shell: update-crypto-policies --set DEFAULT
+      when: "crypto_policies['stdout'] != 'DEFAULT'"
+
+    # This is a mild lie, we're going to move the file and the check will pass
+    # on subsequent runs
+    - name: Setup AIDE
+      shell: aide --init
+      args:
+        creates: /var/lib/aide/aide.db.gz
+
+    - name: Check for new AIDE database
+      stat:
+        path: /var/lib/aide/aide.db.new.gz
+      register: new_aidedb_stat
+      changed_when: false
+
+    - name: Move new AIDE database if necessary
+      copy:
+        src: /var/lib/aide/aide.db.new.gz
+        dest: /var/lib/aide/aide.db.gz
+        remote_src: true
+      when: "new_aidedb_stat['stat']['exists'] is defined and new_aidedb_stat['stat']['exists']"
+
+    - name: Set AIDE cronjob
+      cron:
+        name: 'aide_check'
+        hour: '4'
+        user: 'root'
+        job: "/usr/sbin/aide --check"
 
     - name: Create powertop2tuned tuned profile
       shell: powertop2tuned --enable powertop2tuned
