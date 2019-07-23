@@ -103,6 +103,11 @@
         src: files/iwlwifi.conf
         dest: /etc/modprobe.d/iwlwifi.conf
 
+    - name: Set container registry settings
+      copy:
+        src: files/registries.conf
+        dest: /etc/containers/registries.conf
+
   handlers:
     - name: reload udev
       shell: /usr/sbin/udevadm control --reload
