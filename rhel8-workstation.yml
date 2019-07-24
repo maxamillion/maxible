@@ -33,6 +33,7 @@
           - podman-docker
           - buildah
           - skopeo
+          - virt-manager
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
