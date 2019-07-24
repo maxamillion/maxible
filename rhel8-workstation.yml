@@ -19,6 +19,7 @@
           - make
           - setools-console
           - policycoreutils-python-utils
+          - setroubleshoot-server
           - gnome-tweaks
           - krb5-workstation
           - pcp-system-tools
