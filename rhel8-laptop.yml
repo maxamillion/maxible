@@ -108,6 +108,12 @@
         src: files/registries.conf
         dest: /etc/containers/registries.conf
 
+    - name: Disable ssh because reasons
+      service:
+        name: sshd
+        state: stopped
+        enabled: false
+
   handlers:
     - name: reload udev
       shell: /usr/sbin/udevadm control --reload
