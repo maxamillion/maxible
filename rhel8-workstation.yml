@@ -38,6 +38,17 @@
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
 
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
     - name: U2F Token udev rules
       copy:
         src: files/70-u2f.rules
