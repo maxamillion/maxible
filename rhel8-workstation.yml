@@ -28,6 +28,8 @@
           - tuned-utils
           - powertop
           - crypto-policies
+          - firewalld
+          - python3-firewall
           - aide
           - podman
           - podman-docker
@@ -126,6 +128,16 @@
         name: sshd
         state: stopped
         enabled: false
+
+    - name: Ensure various ports are not open
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
 
   handlers:
     - name: reload udev
