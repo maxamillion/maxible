@@ -8,6 +8,7 @@
         name:
           - tmux
           - git
+          - vim-enhanced
           - python36
           - python3-virtualenv
           - ruby
