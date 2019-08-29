@@ -9,6 +9,7 @@
           - tmux
           - git
           - vim-enhanced
+          - jq
           - python36
           - python3-virtualenv
           - ruby
@@ -18,6 +19,7 @@
           - automake
           - autoconf
           - make
+          - libtool
           - setools-console
           - policycoreutils-python-utils
           - setroubleshoot-server
@@ -144,3 +146,27 @@
     - name: reload udev
       shell: /usr/sbin/udevadm control --reload
 
+- name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever - User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: yes
+  tasks:
+    - name: pip user install some stuff
+      pip:
+        state: present
+        name:
+          - ptpython
+          - virtualenvwrapper
+          - httpie
+          - flake8
+          - pep8
+          - pyflakes
+          - pylint
+          - q
+        executable: 'pip3'
+        extra_args: '--user'
+    - name: gem user install tmuxinator
+      gem:
+        state: present
+        name: tmuxinator
+        user_install: yes
