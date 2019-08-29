@@ -162,6 +162,7 @@
           - pep8
           - pyflakes
           - pylint
+          - black
           - q
         executable: 'pip3'
         extra_args: '--user'
