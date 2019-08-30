@@ -126,6 +126,11 @@
         src: files/registries.conf
         dest: /etc/containers/registries.conf
 
+    - name: force Xorg, Wayland still has a ways to go :(
+      copy:
+        src: files/etc_gdm_custom.conf
+        dest: /etc/gdm/custom.conf
+
     - name: Disable ssh because reasons
       service:
         name: sshd
