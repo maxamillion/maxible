@@ -2,10 +2,15 @@
 - name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever
   hosts: localhost
   tasks:
+    - name: Install EPEL8
+      import_role:
+        name: 'geerlingguy.repo-epel'
+
     - name: Package Install
       yum:
         state: installed
         name:
+          - mock
           - tmux
           - git
           - vim-enhanced
@@ -146,6 +151,12 @@
       loop:
         - cockpit
         - ssh
+
+    - name: Make sure admiller user is in mock
+      user:
+        name: admiller
+        groups: mock
+        append: yes
 
   handlers:
     - name: reload udev
