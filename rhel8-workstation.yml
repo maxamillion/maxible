@@ -2,11 +2,7 @@
 - name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever
   hosts: localhost
   tasks:
-    - name: Install EPEL8
-      import_role:
-        name: 'geerlingguy.repo-epel'
-
-    - name: Package Install
+    - name: Package Install - From RHEL8
       yum:
         state: installed
         name:
@@ -47,6 +43,19 @@
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
+
+    - name: Install EPEL8
+      import_role:
+        name: 'geerlingguy.repo-epel'
+
+    - name: Package Install - From EPEL8
+      yum:
+        state: installed
+        name:
+          - mock
+          - htop
+          - NetworkManager-openvpn
+          - NetworkManager-openvpn-gnome
 
     - name: Ensure SELinux Enforcing
       selinux:
