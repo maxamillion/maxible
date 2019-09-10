@@ -189,6 +189,7 @@
           - pylint
           - black
           - q
+          - sncli
         executable: 'pip3'
         extra_args: '--user'
     - name: gem user install tmuxinator
