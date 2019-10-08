@@ -182,6 +182,7 @@
         name:
           - ptpython
           - virtualenvwrapper
+          - tox
           - httpie
           - flake8
           - pep8
