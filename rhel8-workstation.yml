@@ -1,6 +1,8 @@
 ---
 - name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever
   hosts: localhost
+  vars:
+    non_root_user: admiller
   tasks:
     - name: Install EPEL8
       import_role:
@@ -167,9 +169,27 @@
         groups: mock
         append: yes
 
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
   handlers:
     - name: reload udev
       shell: /usr/sbin/udevadm control --reload
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
 
 - name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever - User Stuff
   hosts: localhost
