@@ -4,6 +4,7 @@
   vars:
     non_root_user: admiller
   tasks:
+    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8
       import_role:
         name: 'geerlingguy.repo-epel'
@@ -12,7 +13,6 @@
       yum:
         state: installed
         name:
-          - mock
           - tmux
           - git
           - vim-enhanced
@@ -58,6 +58,7 @@
           - htop
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
+          - fedpkg
 
     - name: Ensure SELinux Enforcing
       selinux:
