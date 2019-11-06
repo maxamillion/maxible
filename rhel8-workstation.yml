@@ -46,6 +46,7 @@
           - buildah
           - skopeo
           - virt-manager
+          - virt-viewer
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
