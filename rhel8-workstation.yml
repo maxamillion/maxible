@@ -61,6 +61,7 @@
           - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
+          - mosh
 
     - name: Ensure SELinux Enforcing
       selinux:
