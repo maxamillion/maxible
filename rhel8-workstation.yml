@@ -60,6 +60,7 @@
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
           - fedpkg
+          - fpaste
 
     - name: Ensure SELinux Enforcing
       selinux:
