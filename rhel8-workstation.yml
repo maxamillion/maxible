@@ -37,6 +37,8 @@
           - tuned
           - tuned-utils
           - powertop
+          - iotop
+          - top
           - crypto-policies
           - firewalld
           - python3-firewall
