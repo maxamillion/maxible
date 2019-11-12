@@ -49,6 +49,7 @@
           - skopeo
           - virt-manager
           - virt-viewer
+          - fuse-overlayfs
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
