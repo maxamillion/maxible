@@ -1,0 +1,26 @@
+---
+# Meant to be used with import_tasks
+#
+- name: pip user install some stuff
+  pip:
+    state: present
+    name:
+      - ptpython
+      - virtualenvwrapper
+      - tox
+      - httpie
+      - flake8
+      - pep8
+      - pyflakes
+      - pylint
+      - black
+      - q
+      - sncli
+    executable: 'pip3'
+    extra_args: '--user'
+
+- name: gem user install tmuxinator
+  gem:
+    state: present
+    name: tmuxinator
+    user_install: yes

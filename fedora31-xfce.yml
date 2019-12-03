@@ -1,15 +1,10 @@
 ---
-- name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever
-  hosts: localhost
+- name: Fedora 31 XFCE Spin - System Stuff
+  hosts: workstation
   vars:
     non_root_user: admiller
   tasks:
-    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
-    - name: Install EPEL8
-      import_role:
-        name: 'geerlingguy.repo-epel'
-
-    - name: Package Install - From RHEL8
+    - name: Package Install
       yum:
         state: installed
         name:
@@ -19,7 +14,7 @@
           - git
           - vim-enhanced
           - jq
-          - python36
+          - python3
           - python3-virtualenv
           - bpftrace
           - bpftool
@@ -28,6 +23,7 @@
           - python3-bcc
           - ruby
           - nodejs
+          - golang
           - gcc
           - gcc-c++
           - automake
@@ -37,7 +33,6 @@
           - setools-console
           - policycoreutils-python-utils
           - setroubleshoot-server
-          - gnome-tweaks
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
@@ -46,7 +41,6 @@
           - powertop
           - iotop
           - procps-ng
-          - crypto-policies
           - firewalld
           - python3-firewall
           - aide
@@ -57,21 +51,18 @@
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
-          - '@rpm-development-tools'
-          - '@go-toolset:rhel8'
-          - '@container-tools:rhel8'
-
-    - name: Package Install - From EPEL8
-      yum:
-        state: installed
-        name:
           - mock
           - htop
           - NetworkManager-openvpn
-          - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
           - mosh
+          - flamegraph
+          - podman
+          - podman-docker
+          - buildah
+          - skopeo
+          - '@rpm-development-tools'
 
     - name: Ensure SELinux Enforcing
       selinux:
@@ -90,17 +81,6 @@
         dest: /etc/udev/rules.d/70-u2f.rules
       notify:
         - reload udev
-
-    - name: Check crypto policies
-      shell: update-crypto-policies --show
-      changed_when: false
-      register: crypto_policies
-
-    # should upgrade to FUTURE, but then RHN doesn't work because metadata
-    # checksum is too weak
-    - name: Set crypto policies to DEFAULT
-      shell: update-crypto-policies --set DEFAULT
-      when: "crypto_policies['stdout'] != 'DEFAULT'"
 
     # This is a mild lie, we're going to move the file and the check will pass
     # on subsequent runs
@@ -155,11 +135,6 @@
       copy:
         src: files/registries.conf
         dest: /etc/containers/registries.conf
-
-    - name: force Xorg, Wayland still has a ways to go :(
-      copy:
-        src: files/etc_gdm_custom.conf
-        dest: /etc/gdm/custom.conf
 
     - name: Disable ssh because reasons
       service:
@@ -220,8 +195,8 @@
         name: polkit
         state: restarted
 
-- name: RHEL8 Workstation / Server w/ GUI Setup / Laptop / Whatever - User Stuff
-  hosts: localhost
+- name: Fedora 31 XFCE Spin - User Stuff
+  hosts: workstation
   become_user: admiller
   become: yes
   tasks:
