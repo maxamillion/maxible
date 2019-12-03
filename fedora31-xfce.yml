@@ -9,9 +9,11 @@
         state: installed
         name:
           - tmux
+          - xsel
           - irssi
           - mutt
           - git
+          - tig
           - vim-enhanced
           - jq
           - python3
