@@ -45,7 +45,7 @@
           - tuned-utils
           - powertop
           - iotop
-          - top
+          - procps-ng
           - crypto-policies
           - firewalld
           - python3-firewall
