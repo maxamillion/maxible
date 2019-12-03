@@ -1,6 +1,6 @@
 ---
 - name: Fedora 31 XFCE Spin - System Stuff
-  hosts: workstation
+  hosts: localhost
   vars:
     non_root_user: admiller
   tasks:
@@ -196,7 +196,7 @@
         state: restarted
 
 - name: Fedora 31 XFCE Spin - User Stuff
-  hosts: workstation
+  hosts: localhost
   become_user: admiller
   become: yes
   tasks:
