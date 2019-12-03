@@ -14,11 +14,18 @@
         state: installed
         name:
           - tmux
+          - irssi
+          - mutt
           - git
           - vim-enhanced
           - jq
           - python36
           - python3-virtualenv
+          - bpftrace
+          - bpftool
+          - bcc
+          - bcc-tools
+          - python3-bcc
           - ruby
           - nodejs
           - gcc
@@ -217,6 +224,8 @@
   hosts: localhost
   become_user: admiller
   become: yes
+  vars:
+    homedir: '/home/admiller/'
   tasks:
     - name: pip user install some stuff
       pip:
@@ -235,6 +244,7 @@
           - sncli
         executable: 'pip3'
         extra_args: '--user'
+
     - name: gem user install tmuxinator
       gem:
         state: present
