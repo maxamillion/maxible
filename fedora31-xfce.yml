@@ -17,6 +17,7 @@
           - vim-enhanced
           - jq
           - python3
+          - python3-devel
           - python3-virtualenv
           - bpftrace
           - bpftool
@@ -64,6 +65,9 @@
           - podman-docker
           - buildah
           - skopeo
+          - fwupd
+          - f31-backgrounds-xfce
+          - f31-backgrounds-extras-xfce
           - '@rpm-development-tools'
 
     - name: Ensure SELinux Enforcing
@@ -204,4 +208,10 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
+
+    - name: set xflock4 to xscreensaver
+      shell: xfconf-query -c xfce4-session -p /general/LockCommand -s 'xscreensaver-command --lock'
+
+    - name: don't hand over control of laptop lid to logind
+      shell: xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -s false
 
