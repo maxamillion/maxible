@@ -69,6 +69,7 @@
           - fwupd
           - f31-backgrounds-xfce
           - f31-backgrounds-extras-xfce
+          - cheese
           - '@rpm-development-tools'
 
     - name: Ensure SELinux Enforcing
