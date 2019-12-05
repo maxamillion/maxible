@@ -6,7 +6,7 @@
   tasks:
     - name: Package Install
       yum:
-        state: installed
+        state: present
         name:
           - tmux
           - xsel
@@ -71,8 +71,14 @@
           - fwupd
           - f31-backgrounds-xfce
           - f31-backgrounds-extras-xfce
-          - cheese
+          - xfce4-screensaver
           - '@rpm-development-tools'
+
+    - name: Package Removal
+      yum:
+        state: absent
+        name:
+          - xscreensaver*
 
     - name: Ensure SELinux Enforcing
       selinux:
@@ -214,7 +220,7 @@
       import_tasks: include_tasks/user_stuff.yml
 
     - name: set xflock4 to xscreensaver
-      shell: xfconf-query -c xfce4-session -p /general/LockCommand -s 'xscreensaver-command --lock'
+      shell: xfconf-query -c xfce4-session -p /general/LockCommand -s 'xfce4-screensaver-command -l'
 
     - name: don't hand over control of laptop lid to logind
       shell: xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -s false
