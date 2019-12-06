@@ -72,6 +72,7 @@
           - f31-backgrounds-xfce
           - f31-backgrounds-extras-xfce
           - xfce4-screensaver
+          - xfce4-panel-profiles
           - '@rpm-development-tools'
 
     - name: Package Removal
@@ -215,9 +216,20 @@
   hosts: localhost
   become_user: admiller
   become: yes
+  vars:
+    xfce4_panel_profile: admiller_xfce4_4.14_panel_profile.tar.bz2
+    xfce4_panel_profile_dest: "/home/{{ ansible_user_id }}/{{ xfce4_panel_profile }}"
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
+
+    - name: copy xfce4-panel-profile backup
+      copy:
+        src: "files/{{ xfce4_panel_profile }}"
+        dest: "{{ xfce4_panel_profile_dest }}"
+
+    - name: load xfce4-panel-profile
+      shell: xfce4-panel-profiles load "{{ xfce4_panel_profile_dest }}"
 
     - name: xfconf settings
       block:
