@@ -228,27 +228,9 @@
         src: "files/{{ xfce4_panel_profile }}"
         dest: "{{ xfce4_panel_profile_dest }}"
 
-    - name: load xfce4-panel-profile
-      shell: xfce4-panel-profiles load "{{ xfce4_panel_profile_dest }}"
-
-    - name: xfconf settings
-      block:
-
-        - name: set xflock4 to xscreensaver
-          shell: xfconf-query -c xfce4-session -p /general/LockCommand -t string -s 'xfce4-screensaver-command -l'
-
-        - name: don't hand over control of laptop lid to logind
-          shell: xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/logind-handle-lid-switch -s false
-
-        - name: set background
-          shell: xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "/usr/share/backgrounds/f31/extras/galactic-mountains.jpg"
-
-        - name: set Greybird theme
-          shell: xfconf-query -c xfwm4 -p /general/theme -s "Greybird"
-
-        - name: disable user switching in xfce4-screensaver
-          shell: xfconf-query -c xfce4-screensaver -p /lock/user-switching/enabled -s false
-
-        - name: set cursor theme to Adwaita
-          shell: xfconf-query -c xsettings -p /Gtk/CursorThemeName -s Adwaita
+    - name: copy xfconf settings script over
+      copy:
+        src: files/xfconf-settings.sh
+        dest: "/home/{{ ansible_user_id }}/xfconf-settings.sh"
+        mode: "u+rwx"
 
