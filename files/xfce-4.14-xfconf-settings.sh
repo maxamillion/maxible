@@ -32,6 +32,7 @@ xfconf-query -c 'xfce4-power-manager' -p '/xfce4-power-manager/logind-handle-lid
 xfconf-query -c 'xfce4-power-manager' -p '/xfce4-power-manager/power-button-action' -t int -s 0 -n
 xfconf-query -c 'xfce4-power-manager' -p '/xfce4-power-manager/show-tray-icon' -t bool -s false -n
 xfconf-query -c 'xfce4-power-manager' -p '/xfce4-power-manager/sleep-button-action' -t int -s 0 -n
+xfce4-power-manager --restart
 
 # xfce4-desktop settings
 readarray xfconf_query_xfd < <(xfconf-query -c xfce4-desktop -l)
