@@ -83,7 +83,12 @@
       yum:
         state: absent
         name:
-          - xscreensaver*
+          - xscreensaver
+          - xscreensaver-base
+          - xscreensaver-extras
+          - xscreensaver-extras-base
+          - xscreensaver-gl-base
+          - xscreensaver-gl-extras
 
     - name: Ensure SELinux Enforcing
       selinux:
@@ -146,6 +151,12 @@
     - name: tuned-adm set powertop2tuned
       shell: /usr/sbin/tuned-adm profile powertop2tuned
       when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
+
+    - name: start and enable tuned
+      service:
+        name: tuned
+        state: started
+        enabled: true
 
     - name: Apply iwlwifi settings
       copy:
