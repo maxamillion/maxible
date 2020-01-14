@@ -39,6 +39,8 @@
           - setools-console
           - policycoreutils-python-utils
           - setroubleshoot-server
+          - flatpak
+          - flatpak-spawn
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
