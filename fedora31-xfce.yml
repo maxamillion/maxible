@@ -39,6 +39,7 @@
           - setools-console
           - policycoreutils-python-utils
           - setroubleshoot-server
+          - selinux-policy-sandbox
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
