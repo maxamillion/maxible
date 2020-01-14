@@ -38,9 +38,6 @@
           - libtool
           - setools-console
           - policycoreutils-python-utils
-          - policycoreutils-sandbox
-          - selinux-policy-sandbox
-          - matchbox-window-manager
           - setroubleshoot-server
           - krb5-workstation
           - pcp-system-tools
