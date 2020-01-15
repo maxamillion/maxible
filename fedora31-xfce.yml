@@ -237,6 +237,7 @@
   vars:
     xfce4_panel_profile: admiller_xfce4_4.14_panel_profile.tar.bz2
     xfce4_panel_profile_dest: "/home/{{ ansible_user_id }}/{{ xfce4_panel_profile }}"
+    xfce4_terminal_conf_dir: "/home/{{ ansible_user_id }}/.config/xfce4/terminal/"
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
@@ -251,4 +252,14 @@
         src: files/xfce-4.14-xfconf-settings.sh
         dest: "/home/{{ ansible_user_id }}/xfconf-settings.sh"
         mode: "u+rwx"
+
+    - name: ensure xfce4-terminal config dir exists
+      file:
+        path: "{{ xfce4_terminal_conf_dir }}"
+        state: directory
+
+    - name: copy xfce4-terminal terminalrc into homedir
+      copy:
+        src: files/terminalrc
+        dest: "{{ xfce4_terminal_conf_dir }}/terminalrc"
 
