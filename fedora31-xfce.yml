@@ -75,6 +75,7 @@
           - buildah
           - skopeo
           - fwupd
+          - ibm-plex-mono-fonts
           - f31-backgrounds-xfce
           - f31-backgrounds-extras-xfce
           - xfce4-screensaver
