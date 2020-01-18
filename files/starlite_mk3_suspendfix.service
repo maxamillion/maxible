@@ -1,0 +1,10 @@
+[Unit]
+Description=Workaround preventing Starlabs Starlite MKIII laptop from waking immediately after suspend
+
+[Service]
+ExecStart=/bin/bash -c '/bin/echo XHC > /proc/acpi/wakeup'
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

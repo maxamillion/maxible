@@ -222,6 +222,20 @@
         src: files/chrome_rht_gssapi_sso.json
         dest: /etc/opt/chrome/policies/managed/redhat-corp.json
 
+    - name: workaround suspend issue on starlite mk3 laptop
+      block:
+        - name: install workaroundsuspend.service
+          copy:
+            src: files/starlite_mk3_suspendfix.service
+            dest: /etc/systemd/system/workaroundsuspend.service
+        - name: enable custom systemd unit
+          systemd:
+            name: workaroundsuspend.service
+            daemon_reload: true
+            enabled: true
+            state: started
+      when: ansible_hostname == 'starlite'
+
   handlers:
     - name: reload udev
       shell: /usr/sbin/udevadm control --reload
