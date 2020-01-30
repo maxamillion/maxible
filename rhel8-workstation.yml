@@ -67,11 +67,12 @@
         name:
           - mock
           - htop
+          - mosh
+          - tig
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
-          - mosh
 
     - name: Ensure SELinux Enforcing
       selinux:
