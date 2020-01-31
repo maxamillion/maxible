@@ -49,7 +49,6 @@
           - crypto-policies
           - firewalld
           - python3-firewall
-          - aide
           - podman
           - podman-docker
           - buildah
@@ -102,33 +101,6 @@
     - name: Set crypto policies to DEFAULT
       shell: update-crypto-policies --set DEFAULT
       when: "crypto_policies['stdout'] != 'DEFAULT'"
-
-    # This is a mild lie, we're going to move the file and the check will pass
-    # on subsequent runs
-    - name: Setup AIDE
-      shell: aide --init
-      args:
-        creates: /var/lib/aide/aide.db.gz
-
-    - name: Check for new AIDE database
-      stat:
-        path: /var/lib/aide/aide.db.new.gz
-      register: new_aidedb_stat
-      changed_when: false
-
-    - name: Move new AIDE database if necessary
-      copy:
-        src: /var/lib/aide/aide.db.new.gz
-        dest: /var/lib/aide/aide.db.gz
-        remote_src: true
-      when: "new_aidedb_stat['stat']['exists'] is defined and new_aidedb_stat['stat']['exists']"
-
-    - name: Set AIDE cronjob
-      cron:
-        name: 'aide_check'
-        hour: '4'
-        user: 'root'
-        job: "/usr/sbin/aide --check"
 
     - name: Create powertop2tuned tuned profile
       shell: powertop2tuned --enable powertop2tuned
@@ -202,16 +174,6 @@
       file:
         path: /var/log/journal
         state: directory
-
-    - name: enable GSSAPI for Chrome
-      file:
-        path: /etc/opt/chrome/policies/managed
-        state: directory
-
-    - name: config RHT SSO GSSAPI for Chrome
-      copy:
-        src: files/chrome_rht_gssapi_sso.json
-        dest: /etc/opt/chrome/policies/managed/redhat-corp.json
 
   handlers:
     - name: reload udev
