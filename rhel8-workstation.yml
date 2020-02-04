@@ -9,7 +9,12 @@
       import_role:
         name: 'geerlingguy.repo-epel'
 
-    - name: Package Install - From RHEL8
+    - name: Setup CSB Repo
+      copy:
+        src: files/rhel8-csb.repo
+        dest: /etc/yum.repos.d/rhel8-csb.repo
+
+    - name: Package Install - RHEL8
       yum:
         state: installed
         name:
@@ -61,7 +66,7 @@
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
 
-    - name: Package Install - From EPEL8
+    - name: Package Install - EPEL8
       yum:
         state: installed
         name:
@@ -73,6 +78,18 @@
           - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
+
+    - name: Package Install - CSB RHEL8
+      yum:
+        state: installed
+        name:
+          - oneplay-gstreamer-codecs-pack
+          - redhat-internal-flash-plugin
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
 
     - name: Ensure SELinux Enforcing
       selinux:
