@@ -62,6 +62,10 @@
           - virt-viewer
           - fuse-overlayfs
           - vinagre
+          - hplip
+          - hplip-gui
+          - hplip-libs
+          - hplip-common
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
