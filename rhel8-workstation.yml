@@ -82,6 +82,8 @@
           - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
+          - bluejeans-v2
+          - bluejeans-events
 
     - name: Package Install - CSB RHEL8
       yum:
