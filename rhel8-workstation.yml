@@ -54,10 +54,6 @@
           - crypto-policies
           - firewalld
           - python3-firewall
-          - podman
-          - podman-docker
-          - buildah
-          - skopeo
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
@@ -66,6 +62,7 @@
           - hplip-gui
           - hplip-libs
           - hplip-common
+          - toolbox
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
