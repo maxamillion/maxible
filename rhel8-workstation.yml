@@ -79,8 +79,7 @@
           - NetworkManager-openvpn-gnome
           - fedpkg
           - fpaste
-          - bluejeans-v2
-          - bluejeans-events
+          - ack
 
     - name: Package Install - CSB RHEL8
       yum:
@@ -94,6 +93,8 @@
           - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
+          - bluejeans-v2
+          - bluejeans-events
 
     - name: Ensure SELinux Enforcing
       selinux:
