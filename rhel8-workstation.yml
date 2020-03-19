@@ -63,6 +63,7 @@
           - hplip-libs
           - hplip-common
           - toolbox
+          - gimp
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
