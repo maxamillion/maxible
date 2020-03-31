@@ -64,6 +64,11 @@
           - hplip-common
           - toolbox
           - gimp
+          - libreoffice-base
+          - libreoffice-writer
+          - libreoffice-impress
+          - libreoffice-draw
+          - libreoffice-calc
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
@@ -94,6 +99,7 @@
           - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
+          - redhat-internal-libreoffice-red-hat-brand-icons
           - bluejeans-v2
           - bluejeans-events
 
