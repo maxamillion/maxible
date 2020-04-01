@@ -100,8 +100,6 @@
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
           - redhat-internal-libreoffice-red-hat-brand-icons
-          - bluejeans-v2
-          - bluejeans-events
 
     - name: Ensure SELinux Enforcing
       selinux:
