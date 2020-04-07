@@ -63,6 +63,7 @@
           - hplip-libs
           - hplip-common
           - toolbox
+          - nmap
           - gimp
           - libreoffice-base
           - libreoffice-writer
