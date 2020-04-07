@@ -162,11 +162,15 @@
         src: files/etc_gdm_custom.conf
         dest: /etc/gdm/custom.conf
 
-    - name: Disable ssh because reasons
-      service:
-        name: sshd
+    - name: Disable ssh and rpcbind because reasons
+      systemd:
+        name: "{{ item }}"
         state: stopped
+        masked: true
         enabled: false
+      loop:
+        - sshd
+        - rpcbind
 
     - name: Ensure various ports are not open
       firewalld:
