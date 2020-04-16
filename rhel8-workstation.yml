@@ -64,6 +64,7 @@
           - hplip-common
           - toolbox
           - nmap
+          - gnome-shell-extension-windowsNavigator
           - gimp
           - libreoffice-base
           - libreoffice-writer
@@ -82,6 +83,7 @@
           - htop
           - mosh
           - tig
+          - gnome-shell-extension-system-monitor-applet
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
           - fedpkg
