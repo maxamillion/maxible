@@ -64,6 +64,7 @@
           - hplip-common
           - toolbox
           - nmap
+          - gnome-shell-extension-alternate-tab
           - gnome-shell-extension-windowsNavigator
           - gimp
           - libreoffice-base
