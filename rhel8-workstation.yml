@@ -95,6 +95,7 @@
       yum:
         state: installed
         name:
+          - zoom
           - oneplay-gstreamer-codecs-pack
           - ffmpeg-libs
           - redhat-internal-flash-plugin
