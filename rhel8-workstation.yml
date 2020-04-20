@@ -4,16 +4,6 @@
   vars:
     non_root_user: admiller
   tasks:
-    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
-    - name: Install EPEL8
-      import_role:
-        name: 'geerlingguy.repo-epel'
-
-    - name: Setup CSB Repo
-      copy:
-        src: files/rhel8-csb.repo
-        dest: /etc/yum.repos.d/rhel8-csb.repo
-
     - name: Package Install - RHEL8
       yum:
         state: installed
@@ -64,6 +54,7 @@
           - hplip-common
           - toolbox
           - nmap
+          - flatpak
           - gnome-shell-extension-alternate-tab
           - gnome-shell-extension-windowsNavigator
           - gimp
@@ -75,6 +66,17 @@
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
+
+#    - name: Enable flathub
+#      flatpak_remote:
+#        name: flathub
+#        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+#        state: present
+
+    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
+    - name: Install EPEL8
+      import_role:
+        name: 'geerlingguy.repo-epel'
 
     - name: Package Install - EPEL8
       yum:
@@ -90,6 +92,11 @@
           - fedpkg
           - fpaste
           - ack
+
+    - name: Setup CSB Repo
+      copy:
+        src: files/rhel8-csb.repo
+        dest: /etc/yum.repos.d/rhel8-csb.repo
 
     - name: Package Install - CSB RHEL8
       yum:
@@ -211,6 +218,7 @@
       file:
         path: /var/log/journal
         state: directory
+
 
   handlers:
     - name: reload udev

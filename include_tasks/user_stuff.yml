@@ -25,3 +25,13 @@
     state: present
     name: tmuxinator
     user_install: yes
+
+#- name: install flatpaks
+#  flatpak:
+#    name: '{{ item }}'
+#    state: present
+#  loop:
+#    - 'com.discordapp.Discord'
+#    - 'com.github.johnfactotum.Foliate'
+#    - 'org.videolan.VLC'
+
