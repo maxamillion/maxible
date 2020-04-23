@@ -26,13 +26,21 @@
     name: tmuxinator
     user_install: yes
 
-#- name: install flatpaks
-#  flatpak:
-#    name: '{{ item }}'
-#    state: present
-#  loop:
-#    - 'com.discordapp.Discord'
-#    - 'com.github.johnfactotum.Foliate'
-#    - 'org.videolan.VLC'
-#    - 'org.fedoraproject.MediaWriter'
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+
+- name: install flatpaks
+  flatpak:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - 'com.discordapp.Discord'
+    - 'com.github.johnfactotum.Foliate'
+    - 'org.videolan.VLC'
+    - 'org.fedoraproject.MediaWriter'
 
