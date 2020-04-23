@@ -38,6 +38,7 @@
   flatpak:
     name: '{{ item }}'
     state: present
+    method: user
   loop:
     - 'com.discordapp.Discord'
     - 'com.github.johnfactotum.Foliate'
