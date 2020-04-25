@@ -28,6 +28,7 @@
           - automake
           - autoconf
           - make
+          - cmake
           - libtool
           - setools-console
           - policycoreutils-python-utils
