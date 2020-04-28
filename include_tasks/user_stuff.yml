@@ -44,4 +44,5 @@
     - 'com.github.johnfactotum.Foliate'
     - 'org.videolan.VLC'
     - 'org.fedoraproject.MediaWriter'
+    - 'org.telegram.desktop'
 
