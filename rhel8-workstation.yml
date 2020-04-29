@@ -56,7 +56,6 @@
           - toolbox
           - nmap
           - flatpak
-          - gnome-shell-extension-alternate-tab
           - gnome-shell-extension-windowsNavigator
           - gimp
           - libreoffice-base
@@ -67,12 +66,6 @@
           - '@rpm-development-tools'
           - '@go-toolset:rhel8'
           - '@container-tools:rhel8'
-
-#    - name: Enable flathub
-#      flatpak_remote:
-#        name: flathub
-#        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-#        state: present
 
     # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8
@@ -236,4 +229,10 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
+    - name: unset GNOME Shell app switching
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
+      changed_when: no
+    - name: change GNOME Shell window switching to alt+tab
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
+      changed_when: no
 
