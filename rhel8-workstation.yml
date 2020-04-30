@@ -16,11 +16,12 @@
           - jq
           - python36
           - python3-virtualenv
+          - python3-bcc
+          - python3-firewall
           - bpftrace
           - bpftool
           - bcc
           - bcc-tools
-          - python3-bcc
           - ruby
           - nodejs
           - gcc
@@ -44,7 +45,6 @@
           - procps-ng
           - crypto-policies
           - firewalld
-          - python3-firewall
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
@@ -213,6 +213,10 @@
         path: /var/log/journal
         state: directory
 
+    - name: Set /usr/bin/python to /usr/bin/python3 via alternatives
+      alternatives:
+        name: python
+        path: /usr/bin/python3
 
   handlers:
     - name: reload udev
