@@ -47,7 +47,6 @@
     - 'org.telegram.desktop'
     - 'info.mumble.Mumble'
     - 'com.slack.Slack'
-    - 'org.gnome.Evolution'
     - 'org.libreoffice.LibreOffice'
     - 'org.gimp.GIMP'
 
