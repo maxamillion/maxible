@@ -96,7 +96,6 @@
           - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
-          - redhat-internal-libreoffice-red-hat-brand-icons
 
     - name: Ensure SELinux Enforcing
       selinux:
