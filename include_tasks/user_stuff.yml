@@ -16,6 +16,8 @@
       - black
       - q
       - sncli
+      - pipenv
+      - poetry
     executable: 'pip3'
     extra_args: '--user'
 
