@@ -77,6 +77,7 @@
           - fedpkg
           - fpaste
           - ack
+          - earlyoom
 
     - name: Setup CSB Repo
       copy:
@@ -207,6 +208,12 @@
       alternatives:
         name: python
         path: /usr/bin/python3
+
+    - name: Start/enable earlyoom
+      service:
+        name: earlyoom
+        state: started
+        enabled: yes
 
   handlers:
     - name: reload udev

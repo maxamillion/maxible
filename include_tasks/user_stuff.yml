@@ -16,7 +16,6 @@
       - black
       - q
       - sncli
-      - ipython
     executable: 'pip3'
     extra_args: '--user'
 
