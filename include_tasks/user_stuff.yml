@@ -18,6 +18,7 @@
       - sncli
       - pipenv
       - poetry
+      - podman-compose
     executable: 'pip3'
     extra_args: '--user'
 
