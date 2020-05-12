@@ -14,7 +14,9 @@
           - git
           - vim-enhanced
           - jq
+          - python27
           - python36
+          - python38
           - python3-virtualenv
           - python3-bcc
           - python3-firewall
