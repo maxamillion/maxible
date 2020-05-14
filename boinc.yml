@@ -1,0 +1,9 @@
+---
+- name: Setup BOINC World Community Grid Compute node
+  hosts: boinc
+  tasks:
+    - name: run the boinc role
+      import_role:
+        name: worldcommunitygrid
+
+
