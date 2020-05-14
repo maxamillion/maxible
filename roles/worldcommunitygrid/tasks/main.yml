@@ -1,27 +1,22 @@
 ---
 # tasks file for worldcommunitygrid
-    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
-    - name: Install EPEL
-      import_role:
-        name: 'geerlingguy.repo-epel'
+- name: Package Install - EPEL8
+  yum:
+    state: installed
+    name: boinc-client
 
-    - name: Package Install - EPEL8
-      yum:
-        state: installed
-        name: boinc-client
+- name: enable and start boinc-client
+  service:
+    name: boinc-client
+    state: started
+    enabled: true
 
-    - name: enable and start boinc-client
-      service:
-        name: boinc-client
-        state: started
-        enabled: true
-
-    - name: World Community Grid
-      vars:
-        boinc_auth: "1105851_324c1ee9055a45c035c857bfa15db0dc"
-        boinc_url: "www.worldcommunitygrid.org"
-      command:
-        cmd: "boinccmd --project_attach {{boinc_url}} {{boinc_auth}}"
-        chdir: /var/lib/boinc/
-        creates: "/var/lib/boinc/account_{{ boinc_url }}.xml"
+- name: World Community Grid
+  vars:
+    boinc_auth: "1105851_324c1ee9055a45c035c857bfa15db0dc"
+    boinc_url: "www.worldcommunitygrid.org"
+  command:
+    cmd: "boinccmd --project_attach {{boinc_url}} {{boinc_auth}}"
+    chdir: /var/lib/boinc/
+    creates: "/var/lib/boinc/account_{{ boinc_url }}.xml"
 

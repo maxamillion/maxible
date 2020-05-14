@@ -81,7 +81,6 @@
           - fpaste
           - ack
           - earlyoom
-          - boinc-client
 
     - name: Setup CSB Repo
       copy:
@@ -219,20 +218,10 @@
         state: started
         enabled: yes
 
-    - name: enable and start boinc-client
-      service:
-        name: boinc-client
-        state: started
-        enabled: true
-
-    - name: World Community Grid
-      vars:
-        boinc_auth: "1105851_324c1ee9055a45c035c857bfa15db0dc"
-        boinc_url: "www.worldcommunitygrid.org"
-      command:
-        cmd: "boinccmd --project_attach {{boinc_url}} {{boinc_auth}}"
-        chdir: /var/lib/boinc/
-        creates: "/var/lib/boinc/account_{{ boinc_url }}.xml"
+    - name: setup BOINC client for world community grid when it's not a laptop
+      import_role:
+        name: worldcommunitygrid
+      when: ansible_form_factor != 'Notebook'
 
   handlers:
     - name: reload udev
