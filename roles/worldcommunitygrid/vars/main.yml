@@ -1,12 +1,3 @@
 ---
 # vars file for worldcommunitygrid
-mobile_form_factors:
-  - 'Portable'
-  - 'Laptop'
-  - 'Notebook'
-  - 'Sub Notebook'
-  - 'Tablet'
-  - 'Convertible'
-  - 'Detachible'
-  - 'Hand Held'
 
