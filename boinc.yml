@@ -2,6 +2,41 @@
 - name: Setup BOINC World Community Grid Compute node
   hosts: boinc
   tasks:
+    - name: install some basic packages
+      yum:
+        name:
+          - tmux
+          - git
+          - vim-enhanced
+          - python3
+          - tuned
+          - tuned-utils
+          - setools-console
+          - policycoreutils-python-utils
+          - setroubleshoot-server
+
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+    - name: Get tuned profile
+      slurp:
+        src: /etc/tuned/active_profile
+      register: tuned_active_profile
+
+    - debug:
+        msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+    - name: tuned-adm set throughput-performance
+      shell: /usr/sbin/tuned-adm profile throughput-performance
+      when: "tuned_active_profile['content'] | b64decode | trim != 'throughput-performance'"
+
     - name: run the boinc role
       import_role:
         name: worldcommunitygrid
