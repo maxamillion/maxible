@@ -1,5 +1,11 @@
 ---
 # tasks file for worldcommunitygrid
+#
+# NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
+- name: Install EPEL
+  import_role:
+    name: 'geerlingguy.repo-epel'
+
 - name: Package Install - EPEL8
   yum:
     state: installed
