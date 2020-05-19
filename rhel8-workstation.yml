@@ -36,6 +36,8 @@
           - libtool
           - setools-console
           - policycoreutils-python-utils
+          - setroubleshoot
+          - setroubleshoot-plugins
           - setroubleshoot-server
           - gnome-tweaks
           - krb5-workstation
