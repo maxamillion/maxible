@@ -50,9 +50,28 @@
         line: HandleLidSwitch=ignore
         insertafter: '^\[Login\]'
       when: ansible_form_factor in mobile_form_factors
+      notify: restart logind
+
+    - name: don't allow password based ssh
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: "PasswordAuthentication no"
+      notify: restart sshd
 
     - name: run the boinc role
       import_role:
         name: worldcommunitygrid
+
+  handlers:
+    - name: restart logind
+      service:
+        name: systemd-logind
+        state: restarted
+
+    - name: restart sshd
+      service:
+        name: sshd
+        state: restarted
 
 
