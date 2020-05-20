@@ -15,6 +15,11 @@
           - policycoreutils-python-utils
           - setroubleshoot-server
           - pcp-system-tools
+          - wpa_supplicant
+          - NetworkManager
+          - NetworkManager-tui
+          - NetworkManager-wifi
+
 
     - name: Ensure SELinux Enforcing
       selinux:
@@ -37,6 +42,14 @@
     - name: tuned-adm set throughput-performance
       shell: /usr/sbin/tuned-adm profile throughput-performance
       when: "tuned_active_profile['content'] | b64decode | trim != 'throughput-performance'"
+
+    - name: ensure logind ignores lidswitch for laptops
+      lineinfile:
+        path: /etc/systemd/logind.conf
+        regexp: '^HandleLidSwitch='
+        line: HandleLidSwitch=ignore
+        insertafter: '^\[Login\]'
+      when: ansible_form_factor in mobile_form_factors
 
     - name: run the boinc role
       import_role:
