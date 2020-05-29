@@ -15,19 +15,9 @@ Install ``ansible`` and ``git``
 
     dnf -y install ansible git
 
-Clone this repo and run the ansible-playbook (run the ``bootstrap-fedora`` if
-running Fedora 23 or later).
 
-::
-
-    git clone https://github.com/maxamillion/ansible-maxamillion-workstation.git
-    cd ansible-maxamillion-workstation
-
-    # Run this if you have Fedora 23+ (Hope you do, but nobody is perfect)
-    ansible-playbook bootstrap-fedora.yml -i inventory.txt
-
-Usage - Desktop/Workstation/Laptop GNOME
-----------------------------------------
+Fedora - Desktop/Workstation/Laptop GNOME
+-----------------------------------------
 
 Run the following playbook:
 
@@ -35,7 +25,7 @@ Run the following playbook:
 
     ansible-playbook gnome.yml -i inventory.txt
 
-Usage - Desktop/Workstation/Laptop i3
+Fedora - Desktop/Workstation/Laptop i3
 -------------------------------------
 
 Run the following playbook:
@@ -44,7 +34,7 @@ Run the following playbook:
 
     ansible-playbook i3.yml -i inventory.txt
 
-Usage - https://maxamillion.sh
+Fedora - https://maxamillion.sh
 ------------------------------
 
 Run the following playbook:
@@ -52,6 +42,27 @@ Run the following playbook:
 ::
 
     ansible-playbook site.yml -i inventory.txt
+
+RHEL8 - Desktop/Workstation/Laptop GNOME
+----------------------------------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook rhel8-workstation.yml -i inventory.txt
+
+
+Fedora Rawhide ARM - Desktop XFCE
+---------------------------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook fedora-rawhide-arm-xfce.yml -i inventory.txt
+
+
 
 Notes
 -----
