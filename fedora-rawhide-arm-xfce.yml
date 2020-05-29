@@ -98,6 +98,13 @@
         policy: targeted
         state: enforcing
 
+    - name: Ensure slub_debug=- is set for GRUB_CMDLINE_LINUX
+      lineinfile:
+        path: /etc/sysconfig/grub
+        regexp: '^GRUB_CMDLINE_LINUX='
+        line: GRUB_CMDLINE_LINUX="slub_debug=-"
+        state: present
+
     - name: Enable container_manage_cgroup for running systemd in podman containers
       seboolean:
         name: container_manage_cgroup
