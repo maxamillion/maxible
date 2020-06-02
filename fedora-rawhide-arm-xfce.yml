@@ -75,6 +75,8 @@
           - ibm-plex-mono-fonts
           - xfce4-screensaver
           - xfce4-panel-profiles
+          - firefox
+          - chromium
           - '@rpm-development-tools'
 
     - name: Package Removal
