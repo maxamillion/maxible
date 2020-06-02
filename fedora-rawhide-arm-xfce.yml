@@ -51,11 +51,6 @@
           - procps-ng
           - firewalld
           - python3-firewall
-          - aide
-          - podman
-          - podman-docker
-          - buildah
-          - skopeo
           - virt-manager
           - virt-viewer
           - redshift
@@ -64,7 +59,9 @@
           - mock
           - htop
           - glances
+          - NetworkManager
           - NetworkManager-openvpn
+          - NetworkManager-wifi
           - fedpkg
           - fpaste
           - mosh
@@ -76,8 +73,6 @@
           - skopeo
           - fwupd
           - ibm-plex-mono-fonts
-          - f31-backgrounds-xfce
-          - f31-backgrounds-extras-xfce
           - xfce4-screensaver
           - xfce4-panel-profiles
           - '@rpm-development-tools'
@@ -117,11 +112,6 @@
         dest: /etc/udev/rules.d/70-u2f.rules
       notify:
         - reload udev
-
-    - name: Apply iwlwifi settings
-      copy:
-        src: files/iwlwifi.conf
-        dest: /etc/modprobe.d/iwlwifi.conf
 
     - name: Set container registry settings
       copy:
@@ -170,10 +160,11 @@
       notify:
         - reload polkit
 
-    - name: enable journald persistent storage
-      file:
-        path: /var/log/journal
-        state: directory
+#### This seems like a bad idea on a SBC with mmc storage
+#   - name: enable journald persistent storage
+#     file:
+#       path: /var/log/journal
+#       state: directory
 
   handlers:
     - name: reload udev
@@ -183,7 +174,7 @@
         name: polkit
         state: restarted
 
-- name: Fedora 31 XFCE Spin - User Stuff
+- name: Fedora Rawhide ARM XFCE Spin - User Stuff
   hosts: localhost
   become_user: admiller
   become: yes
