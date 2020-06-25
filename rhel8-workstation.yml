@@ -13,6 +13,8 @@
           - mutt
           - git
           - vim-enhanced
+          - aspell
+          - aspell-en
           - jq
           - python27
           - python36
