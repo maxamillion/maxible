@@ -161,11 +161,10 @@
         src: files/registries.conf
         dest: /etc/containers/registries.conf
 
-# Don't do this because RHEL8 GNOME doesn't do fractional scaling in Xorg :(
-#   - name: force Xorg, Wayland still has a ways to go :(
-#     copy:
-#       src: files/etc_gdm_custom.conf
-#       dest: /etc/gdm/custom.conf
+    - name: force Xorg, Wayland still has a ways to go :(
+      copy:
+        src: files/etc_gdm_custom.conf
+        dest: /etc/gdm/custom.conf
 
     - name: Disable ssh and rpcbind because reasons
       systemd:
