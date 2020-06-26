@@ -87,7 +87,6 @@
         name:
           - zoom
           - oneplay-gstreamer-codecs-pack
-          - ffmpeg-libs
           - redhat-internal-flash-plugin
           - redhat-internal-openvpn-profiles
           - redhat-internal-NetworkManager-openvpn-profiles
