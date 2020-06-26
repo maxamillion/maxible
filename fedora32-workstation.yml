@@ -55,7 +55,7 @@
           - toolbox
           - nmap
           - flatpak
-          - firefox
+          - firefox-wayland
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
           - gnome-shell-extension-windowsNavigator
