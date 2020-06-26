@@ -44,8 +44,7 @@
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
 
-
-- name: install flatpaks
+- name: RHEL | install flatpaks
   flatpak:
     name: '{{ item }}'
     state: present
@@ -58,6 +57,22 @@
     - 'org.telegram.desktop'
     - 'info.mumble.Mumble'
     - 'com.slack.Slack'
+    - 'org.gnome.SoundRecorder'
     - 'org.libreoffice.LibreOffice'
     - 'org.gimp.GIMP'
+  when: ansible_distribution == 'RedHat' 
 
+- name: Fedora | install flatpaks 
+  flatpak:
+    name: '{{ item }}'
+    state: present
+    method: user
+  loop:
+    - 'com.discordapp.Discord'
+    - 'com.github.johnfactotum.Foliate'
+    - 'org.videolan.VLC'
+    - 'org.telegram.desktop'
+    - 'info.mumble.Mumble'
+    - 'com.slack.Slack'
+    - 'org.gnome.SoundRecorder'
+  when: ansible_distribution == 'Fedora' 

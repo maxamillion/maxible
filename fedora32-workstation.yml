@@ -1,0 +1,210 @@
+---
+- name: Fedora 32 Workstation Edition
+  hosts: localhost
+  vars:
+    non_root_user: admiller
+  tasks:
+    - name: Package Install - RHEL8
+      yum:
+        state: installed
+        name:
+          - tmux
+          - irssi
+          - mutt
+          - git
+          - vim-enhanced
+          - aspell
+          - aspell-en
+          - jq
+          - python3-virtualenv
+          - python3-bcc
+          - python3-firewall
+          - bpftrace
+          - bpftool
+          - bcc
+          - bcc-tools
+          - ruby
+          - nodejs
+          - gcc
+          - gcc-c++
+          - automake
+          - autoconf
+          - make
+          - cmake
+          - libtool
+          - setools-console
+          - policycoreutils-python-utils
+          - setroubleshoot
+          - setroubleshoot-plugins
+          - setroubleshoot-server
+          - gnome-tweaks
+          - krb5-workstation
+          - pcp-system-tools
+          - lm_sensors
+          - tuned
+          - tuned-utils
+          - powertop
+          - iotop
+          - procps-ng
+          - crypto-policies
+          - firewalld
+          - virt-manager
+          - virt-viewer
+          - fuse-overlayfs
+          - vinagre
+          - toolbox
+          - nmap
+          - flatpak
+          - firefox
+          - NetworkManager-openvpn
+          - NetworkManager-openvpn-gnome
+          - gnome-shell-extension-windowsNavigator
+          - gnome-shell-extension-system-monitor-applet
+          - podman
+          - podman-docker
+          - podman-compose
+          - skopeo
+          - buildah
+          - htop
+          - mosh
+          - tig
+          - fedpkg
+          - fpaste
+          - ack
+          - earlyoom
+          - mediawriter
+          - gimp
+          - '@rpm-development-tools'
+
+    - name: Setup CSB Repo
+      copy:
+        src: files/rhel8-csb.repo
+        dest: /etc/yum.repos.d/rhel8-csb.repo
+
+    - name: Package Install - CSB RHEL8
+      yum:
+        state: installed
+        name:
+          - zoom
+          - oneplay-gstreamer-codecs-pack
+          - ffmpeg-libs
+          - redhat-internal-flash-plugin
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
+
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    - name: Create powertop2tuned tuned profile
+      shell: powertop2tuned --enable powertop2tuned
+      args:
+        creates: /etc/tuned/powertop2tuned/tuned.conf
+
+    - name: Get tuned profile
+      slurp:
+        src: /etc/tuned/active_profile
+      register: tuned_active_profile
+
+    - debug:
+        msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+    - name: tuned-adm set powertop2tuned
+      shell: /usr/sbin/tuned-adm profile powertop2tuned
+      when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
+
+    - name: Apply iwlwifi settings
+      copy:
+        src: files/iwlwifi.conf
+        dest: /etc/modprobe.d/iwlwifi.conf
+
+    - name: Set container registry settings
+      copy:
+        src: files/registries.conf
+        dest: /etc/containers/registries.conf
+
+    - name: Disable ssh and rpcbind because reasons
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - sshd
+        - rpcbind
+
+    - name: Ensure various ports are not open
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
+
+    - name: Make sure admiller user is in mock
+      user:
+        name: admiller
+        groups: mock
+        append: yes
+
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+    - name: setup BOINC client for world community grid when it's not a laptop
+      import_role:
+        name: worldcommunitygrid
+      when: ansible_form_factor not in mobile_form_factors
+
+  handlers:
+    - name: reload udev
+      shell: /usr/sbin/udevadm control --reload
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
+
+- name: User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: yes
+  tasks:
+    - name: import user dev stuff
+      import_tasks: include_tasks/user_stuff.yml
+    - name: unset GNOME Shell app switching
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
+      changed_when: no
+    - name: change GNOME Shell window switching to alt+tab
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
+      changed_when: no
+    - name: change GNOME Shell window reverse switching to shift+alt+tab
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt><Shift>Tab"]'
+      changed_when: no
+
