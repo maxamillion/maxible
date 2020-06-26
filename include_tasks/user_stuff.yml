@@ -28,7 +28,7 @@
   register: poetry_stat
 
 - name: generate local poetry bash completions if they aren't present
-  shell: poetry completions bash > ~/.local/poetry.bash-completion
+  shell: ~/.local/bin/poetry completions bash > ~/.local/poetry.bash-completion
   when: not poetry_stat.stat.exists
 
 - name: gem user install tmuxinator
