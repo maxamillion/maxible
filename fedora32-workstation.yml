@@ -9,6 +9,7 @@
         state: installed
         name:
           - tmux
+          - xsel
           - irssi
           - mutt
           - git
@@ -215,6 +216,6 @@
       shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
       changed_when: no
     - name: change GNOME Shell window reverse switching to shift+alt+tab
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt><Shift>Tab"]'
+      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Alt><Shift>Tab"]'
       changed_when: no
 
