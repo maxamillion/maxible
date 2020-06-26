@@ -4,7 +4,7 @@
   vars:
     non_root_user: admiller
   tasks:
-    - name: Package Install - RHEL8
+    - name: Package Install 
       yum:
         state: installed
         name:
@@ -81,7 +81,7 @@
         src: files/rhel8-csb.repo
         dest: /etc/yum.repos.d/rhel8-csb.repo
 
-    - name: Package Install - CSB RHEL8
+    - name: Package Install - CSB RHEL8 Repo
       yum:
         state: installed
         name:
