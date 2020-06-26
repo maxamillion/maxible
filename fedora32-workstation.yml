@@ -75,6 +75,7 @@
           - earlyoom
           - mediawriter
           - gimp
+          - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 
     - name: Setup CSB Repo
