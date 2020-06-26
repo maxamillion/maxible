@@ -81,6 +81,7 @@
         - 'com.slack.Slack'
         - 'org.gnome.SoundRecorder'
         - 'org.glimpse_editor.Glimpse'
+        - 'org.gnome.Epiphany'
 
     - name: Drop Chromium scaling config in homedir
       copy: 

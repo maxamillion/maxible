@@ -166,9 +166,9 @@
         - cockpit
         - ssh
 
-    - name: Make sure admiller user is in mock
+    - name: Make sure non_root_user user is in mock
       user:
-        name: admiller
+        name: "{{ non_root_user }}"
         groups: mock
         append: yes
 
