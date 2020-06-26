@@ -76,7 +76,6 @@
           - ack
           - earlyoom
           - mediawriter
-          - gimp
           - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 

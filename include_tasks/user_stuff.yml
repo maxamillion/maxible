@@ -62,7 +62,7 @@
         - 'com.slack.Slack'
         - 'org.gnome.SoundRecorder'
         - 'org.libreoffice.LibreOffice'
-        - 'org.gimp.GIMP'
+        - 'org.glimpse_editor.Glimpse'
 
 - name: Fedora Stuff
   when: ansible_distribution == 'Fedora' 
@@ -80,6 +80,7 @@
         - 'info.mumble.Mumble'
         - 'com.slack.Slack'
         - 'org.gnome.SoundRecorder'
+        - 'org.glimpse_editor.Glimpse'
 
     - name: Drop Chromium scaling config in homedir
       copy: 
