@@ -5,6 +5,7 @@
 - name: Install EPEL
   import_role:
     name: 'geerlingguy.repo-epel'
+  when: ansible_distribution == 'RedHat'
 
 - name: Package Install - EPEL8
   yum:
