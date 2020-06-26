@@ -44,35 +44,44 @@
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: RHEL | install flatpaks
-  flatpak:
-    name: '{{ item }}'
-    state: present
-    method: user
-  loop:
-    - 'com.discordapp.Discord'
-    - 'com.github.johnfactotum.Foliate'
-    - 'org.videolan.VLC'
-    - 'org.fedoraproject.MediaWriter'
-    - 'org.telegram.desktop'
-    - 'info.mumble.Mumble'
-    - 'com.slack.Slack'
-    - 'org.gnome.SoundRecorder'
-    - 'org.libreoffice.LibreOffice'
-    - 'org.gimp.GIMP'
+- name: RHEL Stuff
   when: ansible_distribution == 'RedHat' 
+  block:
+    - name: RHEL | install flatpaks
+      flatpak:
+        name: '{{ item }}'
+        state: present
+        method: user
+      loop:
+        - 'com.discordapp.Discord'
+        - 'com.github.johnfactotum.Foliate'
+        - 'org.videolan.VLC'
+        - 'org.fedoraproject.MediaWriter'
+        - 'org.telegram.desktop'
+        - 'info.mumble.Mumble'
+        - 'com.slack.Slack'
+        - 'org.gnome.SoundRecorder'
+        - 'org.libreoffice.LibreOffice'
+        - 'org.gimp.GIMP'
 
-- name: Fedora | install flatpaks 
-  flatpak:
-    name: '{{ item }}'
-    state: present
-    method: user
-  loop:
-    - 'com.discordapp.Discord'
-    - 'com.github.johnfactotum.Foliate'
-    - 'org.videolan.VLC'
-    - 'org.telegram.desktop'
-    - 'info.mumble.Mumble'
-    - 'com.slack.Slack'
-    - 'org.gnome.SoundRecorder'
+- name: Fedora Stuff
   when: ansible_distribution == 'Fedora' 
+  block:
+    - name: Fedora | install flatpaks 
+      flatpak:
+        name: '{{ item }}'
+        state: present
+        method: user
+      loop:
+        - 'com.discordapp.Discord'
+        - 'com.github.johnfactotum.Foliate'
+        - 'org.videolan.VLC'
+        - 'org.telegram.desktop'
+        - 'info.mumble.Mumble'
+        - 'com.slack.Slack'
+        - 'org.gnome.SoundRecorder'
+
+    - name: Drop Chromium scaling config in homedir
+      copy: 
+        src: files/chromium-flags.conf
+        dest: '~/.config/chromium-flags.conf'

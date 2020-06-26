@@ -57,6 +57,8 @@
           - nmap
           - flatpak
           - firefox-wayland
+          - chromium
+          - fedora-chromium-config
           - NetworkManager-openvpn
           - NetworkManager-openvpn-gnome
           - gnome-shell-extension-windowsNavigator
