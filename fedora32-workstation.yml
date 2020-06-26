@@ -105,22 +105,33 @@
         state: true
         persistent: true
 
-    - name: Create powertop2tuned tuned profile
-      shell: powertop2tuned --enable powertop2tuned
-      args:
-        creates: /etc/tuned/powertop2tuned/tuned.conf
+    - name: Set powersave when configuring a laptop
+      when: ansible_form_factor in mobile_form_factors
+      block:
 
-    - name: Get tuned profile
-      slurp:
-        src: /etc/tuned/active_profile
-      register: tuned_active_profile
+# FIXME - this is broken in Fedora 32 so just go powersave for now
+#       - name: Create powertop2tuned tuned profile
+#         shell: powertop2tuned --enable powertop2tuned
+#         args:
+#           creates: /etc/tuned/powertop2tuned/tuned.conf
 
-    - debug:
-        msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+        - name: Get tuned profile
+          slurp:
+            src: /etc/tuned/active_profile
+          register: tuned_active_profile
 
-    - name: tuned-adm set powertop2tuned
-      shell: /usr/sbin/tuned-adm profile powertop2tuned
-      when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
+        - debug:
+            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+# FIXME - this is broken in Fedora 32 so just go powersave for now
+#       - name: tuned-adm set powertop2tuned
+#         shell: /usr/sbin/tuned-adm profile powertop2tuned
+#         when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
+
+        - name: tuned-adm set powersave
+          shell: /usr/sbin/tuned-adm profile powersave
+          when: 
+            - "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
 
     - name: Apply iwlwifi settings
       copy:
