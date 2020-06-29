@@ -132,7 +132,7 @@
         - debug:
             msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
 
-# FIXME - this is broken in Fedora 32 so just go balanced for now
+# FIXME - this is broken in Fedora 32 so just go balanced + powertop service for now
 #       - name: tuned-adm set powertop2tuned
 #         shell: /usr/sbin/tuned-adm profile powertop2tuned
 #         when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
@@ -141,6 +141,12 @@
           shell: /usr/sbin/tuned-adm profile balanced
           when: 
             - "tuned_active_profile['content'] | b64decode | trim != 'balanced'"
+
+        - name: Start and enable powertop
+          service:
+            name: powertop
+            state: started
+            enabled: true
 
     - name: Apply iwlwifi settings
       copy:
