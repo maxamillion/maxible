@@ -108,6 +108,12 @@
         state: true
         persistent: true
 
+    - name: Start and enable tuned
+      service:
+        name: tuned
+        state: started
+        enabled: true
+
     - name: Set powersave when configuring a laptop
       when: ansible_form_factor in mobile_form_factors
       block:
@@ -126,15 +132,15 @@
         - debug:
             msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
 
-# FIXME - this is broken in Fedora 32 so just go powersave for now
+# FIXME - this is broken in Fedora 32 so just go balanced for now
 #       - name: tuned-adm set powertop2tuned
 #         shell: /usr/sbin/tuned-adm profile powertop2tuned
 #         when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
 
-        - name: tuned-adm set powersave
-          shell: /usr/sbin/tuned-adm profile powersave
+        - name: tuned-adm set balanced
+          shell: /usr/sbin/tuned-adm profile balanced
           when: 
-            - "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
+            - "tuned_active_profile['content'] | b64decode | trim != 'balanced'"
 
     - name: Apply iwlwifi settings
       copy:
