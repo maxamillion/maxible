@@ -42,8 +42,6 @@
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
-          - tuned
-          - tuned-utils
           - powertop
           - iotop
           - procps-ng
@@ -109,39 +107,10 @@
         state: true
         persistent: true
 
-    - name: Start and enable tuned
-      service:
-        name: tuned
-        state: started
-        enabled: true
-
+    # FIXME - powertop2tuned is broken in Fedora 32 so just use powertop service
     - name: Set powersave when configuring a laptop
       when: ansible_form_factor in mobile_form_factors
       block:
-
-# FIXME - this is broken in Fedora 32 so just go powersave for now
-#       - name: Create powertop2tuned tuned profile
-#         shell: powertop2tuned --enable powertop2tuned
-#         args:
-#           creates: /etc/tuned/powertop2tuned/tuned.conf
-
-        - name: Get tuned profile
-          slurp:
-            src: /etc/tuned/active_profile
-          register: tuned_active_profile
-
-        - debug:
-            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
-
-# FIXME - this is broken in Fedora 32 so just go balanced + powertop service for now
-#       - name: tuned-adm set powertop2tuned
-#         shell: /usr/sbin/tuned-adm profile powertop2tuned
-#         when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
-
-        - name: tuned-adm set balanced
-          shell: /usr/sbin/tuned-adm profile balanced
-          when: 
-            - "tuned_active_profile['content'] | b64decode | trim != 'balanced'"
 
         - name: Start and enable powertop
           service:
@@ -185,20 +154,6 @@
         groups: mock
         append: yes
 
-    - name: Allow non-root user access to libvirt via polkit
-      template:
-        src: templates/non_root_user_libvirt_polkit.j2
-        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
-      notify:
-        - reload polkit
-
-    - name: Allow non-root user access to NetworkManager
-      template:
-        src: templates/network_manager_polkit.j2
-        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
-      notify:
-        - reload polkit
-
     - name: enable journald persistent storage
       file:
         path: /var/log/journal
@@ -208,14 +163,6 @@
       import_role:
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
-
-  handlers:
-    - name: reload udev
-      shell: /usr/sbin/udevadm control --reload
-    - name: reload polkit
-      service:
-        name: polkit
-        state: restarted
 
 - name: User Stuff
   hosts: localhost
