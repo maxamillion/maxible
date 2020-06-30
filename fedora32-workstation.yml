@@ -76,6 +76,7 @@
           - ack
           - earlyoom
           - mediawriter
+          - smartmontools
           - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 
