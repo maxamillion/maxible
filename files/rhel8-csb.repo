@@ -5,3 +5,4 @@ enabled=1
 gpgcheck=1
 gpgkey=http://hdn.corp.redhat.com/rhel8-csb/RPM-GPG-KEY-helpdesk
 skip_if_unavailable=yes
+includepkgs=redhat-internal-*,oneplay-gstreamer-codecs-pack,zoom,ffmpeg-libs

@@ -180,4 +180,7 @@
     - name: change GNOME Shell window reverse switching to shift+alt+tab
       shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Alt><Shift>Tab"]'
       changed_when: no
+    - name: enable GNOME fractional scaling 
+      shell: gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+      changed_when: no
 
