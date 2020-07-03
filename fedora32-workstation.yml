@@ -73,6 +73,7 @@
           - earlyoom
           - mediawriter
           - smartmontools
+          - selinux-policy-doc
           - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 

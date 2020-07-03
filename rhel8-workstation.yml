@@ -55,6 +55,7 @@
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
+          - selinux-policy-doc
           - vinagre
           - toolbox
           - nmap
