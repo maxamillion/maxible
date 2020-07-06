@@ -63,6 +63,7 @@
         - 'org.gnome.SoundRecorder'
         - 'org.libreoffice.LibreOffice'
         - 'org.glimpse_editor.Glimpse'
+        - 'org.signal.Signal'
 
 - name: Fedora Stuff
   when: ansible_distribution == 'Fedora' 
@@ -82,6 +83,7 @@
         - 'org.gnome.SoundRecorder'
         - 'org.glimpse_editor.Glimpse'
         - 'org.gnome.Epiphany'
+        - 'org.signal.Signal'
 
     - name: Drop Chromium scaling config in homedir
       copy: 
