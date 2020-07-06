@@ -16,6 +16,14 @@ Install ``ansible`` and ``git``
 
     dnf -y install ansible git
 
+Clone this repo and install dependencies for the Playbooks
+
+::
+
+    git clone https://github.com/maxamillion/maxible.git
+    cd maxible/
+    ansible-galaxy install -r requirements.yml
+
 
 Fedora 32 Workstation 
 ---------------------
