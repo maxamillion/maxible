@@ -13,6 +13,7 @@
           - tmux
           - xsel
           - irssi
+          - weechat
           - mutt
           - git
           - vim-enhanced
