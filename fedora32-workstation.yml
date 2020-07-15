@@ -20,6 +20,7 @@
           - aspell
           - aspell-en
           - jq
+          - python3-devel
           - python3-virtualenv
           - python3-bcc
           - python3-firewall
