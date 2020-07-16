@@ -184,16 +184,4 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
-    - name: unset GNOME Shell app switching
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
-      changed_when: no
-    - name: change GNOME Shell window switching to alt+tab
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
-      changed_when: no
-    - name: change GNOME Shell window reverse switching to shift+alt+tab
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward '["<Alt><Shift>Tab"]'
-      changed_when: no
-    - name: enable GNOME fractional scaling 
-      shell: gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-      changed_when: no
 
