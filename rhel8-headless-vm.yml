@@ -74,6 +74,7 @@
           - fedpkg
           - fpaste
           - ack
+          - xsel
 
     - name: Ensure SELinux Enforcing
       selinux:

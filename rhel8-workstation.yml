@@ -86,6 +86,7 @@
           - fpaste
           - ack
           - earlyoom
+          - xsel
 
     - name: Setup CSB Repo
       copy:
