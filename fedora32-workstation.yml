@@ -75,6 +75,8 @@
           - tig
           - fedpkg
           - fpaste
+          - fedfind
+          - arm-image-installer
           - ack
           - earlyoom
           - mediawriter
