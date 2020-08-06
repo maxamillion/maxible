@@ -64,6 +64,7 @@
           - NetworkManager-wifi
           - fedpkg
           - fpaste
+          - fedfind
           - mosh
           - flamegraph
           - fuse-overlayfs
