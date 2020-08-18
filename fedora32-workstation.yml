@@ -28,6 +28,7 @@
           - golang
           - bpftrace
           - bpftool
+          - strace
           - bcc
           - bcc-tools
           - ruby
