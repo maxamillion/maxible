@@ -83,6 +83,7 @@
           - mediawriter
           - smartmontools
           - selinux-policy-doc
+          - ShellCheck
           - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 
