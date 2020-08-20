@@ -1,5 +1,5 @@
 ---
-- name: Fedora 32 Workstation Edition
+- name: Fedora 32 KDE Plasma Spin
   hosts: localhost
   vars:
     non_root_user: admiller
@@ -45,7 +45,6 @@
           - setroubleshoot
           - setroubleshoot-plugins
           - setroubleshoot-server
-          - gnome-tweaks
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
@@ -57,15 +56,10 @@
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
-          - vinagre
           - toolbox
           - nmap
           - flatpak
-          - firefox-wayland
           - NetworkManager-openvpn
-          - NetworkManager-openvpn-gnome
-          - gnome-shell-extension-windowsNavigator
-          - gnome-shell-extension-system-monitor-applet
           - podman
           - podman-docker
           - podman-compose
@@ -190,6 +184,6 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
-    - name: import gnome flatpak app install set
-      import_tasks: include_tasks/flatpak_gnome.yml 
+    - name: import kde flatpak app install set
+      import_tasks: include_tasks/flatpak_kde.yml 
 

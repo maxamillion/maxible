@@ -1,0 +1,15 @@
+- name: Fedora Stuff
+  when: ansible_distribution == 'Fedora' 
+  block:
+    - name: Fedora | install flatpaks 
+      flatpak:
+        name: '{{ item }}'
+        state: present
+        method: user
+      loop:
+        - 'com.discordapp.Discord'
+        - 'org.videolan.VLC'
+        - 'org.telegram.desktop'
+        - 'info.mumble.Mumble'
+        - 'com.slack.Slack'
+        - 'org.signal.Signal'
