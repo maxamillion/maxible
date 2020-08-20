@@ -18,7 +18,7 @@
       - sncli
       - pipenv
       - poetry
-      - podman-compose
+      - antsibull-changelog
     executable: 'pip3'
     extra_args: '--user'
 
