@@ -177,6 +177,20 @@
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
 
+    - name: workaround suspend issue on starlite mk3 laptop
+      block:
+        - name: install workaroundsuspend.service
+          copy:
+            src: files/starlite_mk3_suspendfix.service
+            dest: /etc/systemd/system/workaroundsuspend.service
+        - name: enable custom systemd unit
+          systemd:
+            name: workaroundsuspend.service
+            daemon_reload: true
+            enabled: true
+            state: started
+      when: ansible_hostname == 'starlite'
+
 - name: User Stuff
   hosts: localhost
   become_user: admiller
