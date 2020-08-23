@@ -53,6 +53,7 @@
           - procps-ng
           - crypto-policies
           - firewalld
+          - gnome-boxes
           - virt-manager
           - virt-viewer
           - fuse-overlayfs
