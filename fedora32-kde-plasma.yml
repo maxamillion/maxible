@@ -125,11 +125,17 @@
       when: ansible_form_factor in mobile_form_factors
       block:
 
-        - name: Start and enable powertop
+        - name: Ensure powertop service enabled
           service:
             name: powertop
             state: started
             enabled: true
+
+        - name: Ensure powertop service started (only when not plugged in)
+          service:
+            name: powertop
+            state: started
+          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')"
 
     - name: Apply iwlwifi settings
       copy:
