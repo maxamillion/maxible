@@ -128,7 +128,6 @@
         - name: Ensure powertop service enabled
           service:
             name: powertop
-            state: started
             enabled: true
 
         - name: Ensure powertop service started (only when not plugged in)
