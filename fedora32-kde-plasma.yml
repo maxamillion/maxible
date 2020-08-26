@@ -10,8 +10,6 @@
       yum:
         state: installed
         name:
-          - firefox-wayland
-          - plasma-workspace-wayland
           - tmux
           - xsel
           - irssi
