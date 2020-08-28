@@ -1,3 +1,4 @@
 # from galaxy
 - src: geerlingguy.repo-epel
 - src: robertdebock.rpmfusion
+- src: jaredhocutt.brave_browser
