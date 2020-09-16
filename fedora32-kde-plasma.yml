@@ -16,8 +16,6 @@
           - weechat
           - mutt
           - git
-          - gitk
-          - gitui
           - tig
           - vim-enhanced
           - aspell
