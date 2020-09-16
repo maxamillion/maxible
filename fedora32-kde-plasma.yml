@@ -68,6 +68,7 @@
           - htop
           - mosh
           - tig
+          - git-cola
           - fedpkg
           - fpaste
           - fedfind
