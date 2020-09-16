@@ -16,6 +16,8 @@
           - weechat
           - mutt
           - git
+          - gitk
+          - tig
           - vim-enhanced
           - aspell
           - aspell-en
@@ -67,8 +69,6 @@
           - buildah
           - htop
           - mosh
-          - tig
-          - git-cola
           - fedpkg
           - fpaste
           - fedfind
