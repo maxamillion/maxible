@@ -1,0 +1,103 @@
+---
+- name: RHEL7 Headless VM
+  hosts: rhel7headless
+  vars:
+    non_root_user: admiller
+  tasks:
+    - name: Package Install - RHEL8
+      yum:
+        state: installed
+        name:
+          - tmux
+          - irssi
+          - mutt
+          - git
+          - vim-enhanced
+          - aspell
+          - gcc
+          - gcc-c++
+          - automake
+          - autoconf
+          - make
+          - cmake
+          - libtool
+          - setools-console
+          - policycoreutils-python-utils
+          - setroubleshoot
+          - setroubleshoot-plugins
+          - setroubleshoot-server
+          - krb5-workstation
+          - pcp-system-tools
+          - lm_sensors
+          - tuned
+          - tuned-utils
+          - iotop
+          - procps-ng
+          - firewalld
+          - selinux-policy-doc
+          - nmap
+          - podman
+          - skopeo
+          - buildah
+          - '@base'
+
+    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
+    - name: Install EPEL8
+      import_role:
+        name: 'geerlingguy.repo-epel'
+
+    - name: Package Install - EPEL8
+      yum:
+        state: installed
+        name:
+          - mock
+          - htop
+          - mosh
+          - tig
+          - fedpkg
+          - fpaste
+          - ack
+          - xsel
+          - python2-pip
+          - python2-virtualenv
+
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    - name: Set container registry settings
+      copy:
+        src: files/registries.conf
+        dest: /etc/containers/registries.conf
+
+    - name: Make sure non_root_user user is in mock
+      user:
+        name: "{{ non_root_user }}" 
+        groups: mock
+        append: yes
+
+    - name: Allow non-root user access to NetworkManager
+      template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+  handlers:
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
+
