@@ -4,7 +4,7 @@
   vars:
     non_root_user: admiller
   tasks:
-    - name: Package Install - RHEL8
+    - name: Package Install - RHEL7
       yum:
         state: installed
         name:
@@ -22,7 +22,7 @@
           - cmake
           - libtool
           - setools-console
-          - policycoreutils-python-utils
+          - policycoreutils-python
           - setroubleshoot
           - setroubleshoot-plugins
           - setroubleshoot-server
@@ -60,6 +60,7 @@
           - xsel
           - python2-pip
           - python2-virtualenv
+          - python-virtualenvwrapper
 
     - name: Ensure SELinux Enforcing
       selinux:
