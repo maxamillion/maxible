@@ -5,7 +5,7 @@ Adam Miller (maxamillion) ansible playbooks for various silly things.
 
 In this repo you will find my laptop/workstation configs for both `Fedora 
 Workstation`_ and `Red Hat Enterprise Linux`_ along with other random items
-I configure on lab machines and such.
+I configure on my workstation, laptop, or homelab machines and such.
 
 Usage - General
 ---------------
@@ -33,6 +33,15 @@ Run the following playbook:
 ::
 
     ansible-playbook fedora32-workstation.yml
+
+Fedora 32 KDE Plasma Spin
+-------------------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook fedora32-kde-plasma.yml
 
 Red Hat Enterprise Linux 8 Workstation
 --------------------------------------
