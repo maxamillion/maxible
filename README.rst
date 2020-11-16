@@ -3,8 +3,9 @@ maxible
 
 Adam Miller (maxamillion) ansible playbooks for various silly things.
 
-In this repo you will find my laptop/workstation configs for both `Fedora 
-Workstation`_ and `Red Hat Enterprise Linux`_ along with other random items
+In this repo you will find my laptop/workstation configs for `Fedora 
+Workstation`_, `Fedora KDE Plasma`_, `Fedora XFCE Spin`_, and 
+`Red Hat Enterprise Linux`_ along with other random items
 I configure on my workstation, laptop, or homelab machines and such.
 
 Usage - General
@@ -25,23 +26,23 @@ Clone this repo and install dependencies for the Playbooks
     ansible-galaxy install -r requirements.yml
 
 
-Fedora 32 Workstation 
+Fedora 33 Workstation 
 ---------------------
 
 Run the following playbook:
 
 ::
 
-    ansible-playbook fedora32-workstation.yml
+    ansible-playbook fedora33-workstation.yml
 
-Fedora 32 KDE Plasma Spin
+Fedora 33 KDE Plasma Spin
 -------------------------
 
 Run the following playbook:
 
 ::
 
-    ansible-playbook fedora32-kde-plasma.yml
+    ansible-playbook fedora33-kde-plasma.yml
 
 Red Hat Enterprise Linux 8 Workstation
 --------------------------------------
@@ -80,4 +81,7 @@ References
 .. _Ansible: http://www.ansible.com/
 .. _Ansible Docs: http://docs.ansible.com/ansible/index.html
 .. _Fedora: https://getfedora.org/
+.. _Fedora Workstation: https://getfedora.org/en/workstation/
+.. _Fedora KDE Plasma: https://spins.fedoraproject.org/en/kde/
+.. _Fedora XFCE Spin: https://spins.fedoraproject.org/en/xfce/
 .. _Red Hat Enterprise Linux: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux

@@ -1,0 +1,195 @@
+---
+- name: Fedora 32 Workstation Edition
+  hosts: localhost
+  vars:
+    non_root_user: admiller
+    rpmfusion_free: yes
+    rpmfusion_nonfree: no
+  tasks:
+    - name: Package Install 
+      yum:
+        state: installed
+        name:
+          - tmux
+          - xsel
+          - irssi
+          - weechat
+          - mutt
+          - git
+          - vim-enhanced
+          - aspell
+          - aspell-en
+          - jq
+          - python3
+          - python3-devel
+          - python3-virtualenv
+          - python3-bcc
+          - python3-firewall
+          - golang
+          - bpftrace
+          - bpftool
+          - strace
+          - bcc
+          - bcc-tools
+          - ruby
+          - nodejs
+          - gcc
+          - gcc-c++
+          - automake
+          - autoconf
+          - make
+          - cmake
+          - libtool
+          - setools-console
+          - policycoreutils-python-utils
+          - setroubleshoot
+          - setroubleshoot-plugins
+          - setroubleshoot-server
+          - gnome-tweaks
+          - krb5-workstation
+          - pcp-system-tools
+          - lm_sensors
+          - powertop
+          - iotop
+          - procps-ng
+          - crypto-policies
+          - firewalld
+          - virt-manager
+          - virt-viewer
+          - fuse-overlayfs
+          - vinagre
+          - toolbox
+          - nmap
+          - flatpak
+          - firefox-wayland
+          - NetworkManager-openvpn
+          - NetworkManager-openvpn-gnome
+          - gnome-shell-extension-windowsNavigator
+          - gnome-shell-extension-system-monitor-applet
+          - podman
+          - podman-docker
+          - podman-compose
+          - skopeo
+          - buildah
+          - htop
+          - mosh
+          - tig
+          - fedpkg
+          - fpaste
+          - fedfind
+          - arm-image-installer
+          - ack
+          - earlyoom
+          - mediawriter
+          - smartmontools
+          - selinux-policy-doc
+          - ShellCheck
+          - ibm-plex-mono-fonts
+          - '@rpm-development-tools'
+
+    - name: Setup RPM Fusion Free
+      import_role:
+        name: robertdebock.rpmfusion
+
+    - name: Package Install | RPM Fusion Free
+      yum:
+        state: installed
+        name:
+          - ffmpeg
+          - ffmpeg-libs
+
+    - name: Setup CSB Repo
+      copy:
+        src: files/rhel8-csb.repo
+        dest: /etc/yum.repos.d/rhel8-csb.repo
+
+    - name: Package Install - CSB RHEL8 Repo
+      yum:
+        state: installed
+        name:
+          - zoom
+          - oneplay-gstreamer-codecs-pack
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
+
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    # FIXME - powertop2tuned is broken in Fedora 32 so just use powertop service
+    - name: Set powersave when configuring a laptop
+      when: ansible_form_factor in mobile_form_factors
+      block:
+
+        - name: Start and enable powertop
+          service:
+            name: powertop
+            state: started
+            enabled: true
+
+    - name: Apply iwlwifi settings
+      copy:
+        src: files/iwlwifi.conf
+        dest: /etc/modprobe.d/iwlwifi.conf
+
+    - name: Set container registry settings
+      copy:
+        src: files/registries.conf
+        dest: /etc/containers/registries.conf
+
+    - name: Disable ssh and rpcbind because reasons
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - sshd
+        - rpcbind
+
+    - name: Ensure various ports are not open
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
+
+    - name: Make sure non_root_user user is in mock
+      user:
+        name: "{{ non_root_user }}"
+        groups: mock
+        append: yes
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+    - name: setup BOINC client for world community grid when it's not a laptop
+      import_role:
+        name: worldcommunitygrid
+      when: ansible_form_factor not in mobile_form_factors
+
+- name: User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: yes
+  tasks:
+    - name: import user dev stuff
+      import_tasks: include_tasks/user_stuff.yml
+    - name: import gnome flatpak app install set
+      import_tasks: include_tasks/flatpak_gnome.yml 
+
