@@ -115,6 +115,10 @@
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
 
+    - name: Install Brave browser
+      import_role:
+        name: jaredhocutt.brave_browser
+
     - name: Ensure SELinux Enforcing
       selinux:
         policy: targeted
