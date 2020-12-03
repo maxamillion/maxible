@@ -26,6 +26,7 @@
           - python3-bcc
           - python3-firewall
           - golang
+          - golang-x-tools-gopls
           - bpftrace
           - bpftool
           - strace
