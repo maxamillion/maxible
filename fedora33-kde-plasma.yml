@@ -1,5 +1,5 @@
 ---
-- name: Fedora 32 KDE Plasma Spin
+- name: Fedora 33 KDE Plasma Spin
   hosts: localhost
   vars:
     non_root_user: admiller
@@ -94,8 +94,8 @@
           - ffmpeg-libs
 
     - name: Setup CSB Repo
-      copy:
-        src: files/rhel8-csb.repo
+      template:
+        src: templates/rhel8-csb.repo.j2
         dest: /etc/yum.repos.d/rhel8-csb.repo
 
     - name: Package Install - CSB RHEL8 Repo

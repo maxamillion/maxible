@@ -1,5 +1,5 @@
 ---
-- name: Fedora 32 Workstation Edition
+- name: Fedora 33 Workstation Edition
   hosts: localhost
   vars:
     non_root_user: admiller
@@ -100,8 +100,8 @@
           - ffmpeg-libs
 
     - name: Setup CSB Repo
-      copy:
-        src: files/rhel8-csb.repo
+      template:
+        src: template/rhel8-csb.repo.j2
         dest: /etc/yum.repos.d/rhel8-csb.repo
 
     - name: Package Install - CSB RHEL8 Repo
