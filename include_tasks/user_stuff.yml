@@ -31,12 +31,6 @@
   shell: ~/.local/bin/poetry completions bash > ~/.local/poetry.bash-completion
   when: not poetry_stat.stat.exists
 
-- name: gem user install tmuxinator
-  gem:
-    state: present
-    name: tmuxinator
-    user_install: yes
-
 - name: Add the flathub flatpak repository remote to the user installation
   flatpak_remote:
     name: flathub
@@ -44,3 +38,21 @@
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
 
+- block:
+  name: Fedora specific stuff
+  when: ansible_distribution == "Fedora"
+    - name: gem user install tmuxinator
+      gem:
+        state: present
+        name: tmuxinator
+        user_install: yes
+
+- block:
+  name: RHEL 8 specific stuff
+  when: (ansible_distribution == "RedHat") and (ansible_distribution_major_version|int == 8)
+    - name: gem user install tmuxinator
+      gem:
+        state: present
+        name: tmuxinator
+        version: 1.1.5
+        user_install: yes
