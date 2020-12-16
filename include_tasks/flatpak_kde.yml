@@ -8,8 +8,4 @@
         method: user
       loop:
         - 'com.discordapp.Discord'
-        - 'org.videolan.VLC'
-        - 'org.telegram.desktop'
-        - 'info.mumble.Mumble'
-        - 'com.slack.Slack'
-        - 'org.signal.Signal'
+        - 'org.libreoffice.LibreOffice'

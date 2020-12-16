@@ -102,7 +102,6 @@
       yum:
         state: installed
         name:
-          - zoom
           - oneplay-gstreamer-codecs-pack
           - redhat-internal-openvpn-profiles
           - redhat-internal-NetworkManager-openvpn-profiles
@@ -228,6 +227,8 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
+    - name: import common flatpak app install set
+      import_tasks: include_tasks/flatpak_common.yml 
     - name: import kde flatpak app install set
       import_tasks: include_tasks/flatpak_kde.yml 
 

@@ -1,45 +1,34 @@
-- name: RHEL Stuff
-  when: ansible_distribution == 'RedHat' 
+- name: GNOME Stuff
   block:
-    - name: RHEL | install flatpaks
+    - name: GNOME COMMON | install flatpaks
       flatpak:
         name: '{{ item }}'
         state: present
         method: user
       loop:
-        - 'com.discordapp.Discord'
         - 'com.github.johnfactotum.Foliate'
-        - 'org.videolan.VLC'
-        - 'org.fedoraproject.MediaWriter'
-        - 'org.telegram.desktop'
-        - 'info.mumble.Mumble'
-        - 'com.slack.Slack'
         - 'org.gnome.SoundRecorder'
         - 'org.libreoffice.LibreOffice'
         - 'org.glimpse_editor.Glimpse'
-        - 'org.signal.Signal'
+
+- name: RHEL Stuff
+  when: ansible_distribution == 'RedHat' 
+  block:
+    - name: RHEL GNOME | install flatpaks
+      flatpak:
+        name: '{{ item }}'
+        state: present
+        method: user
+      loop:
+        - 'org.libreoffice.LibreOffice'
 
 - name: Fedora Stuff
   when: ansible_distribution == 'Fedora' 
   block:
-    - name: Fedora | install flatpaks 
+    - name: Fedora GNOME | install flatpaks 
       flatpak:
         name: '{{ item }}'
         state: present
         method: user
       loop:
-        - 'com.discordapp.Discord'
-        - 'com.github.johnfactotum.Foliate'
-        - 'org.videolan.VLC'
-        - 'org.telegram.desktop'
-        - 'info.mumble.Mumble'
-        - 'com.slack.Slack'
-        - 'org.gnome.SoundRecorder'
-        - 'org.glimpse_editor.Glimpse'
         - 'org.gnome.Epiphany'
-        - 'org.signal.Signal'
-
-    - name: Drop Chromium scaling config in homedir
-      copy: 
-        src: files/chromium-flags.conf
-        dest: '~/.config/chromium-flags.conf'

@@ -1,0 +1,16 @@
+- name: Common Stuff
+  block:
+    - name: COMMON | install flatpaks
+      flatpak:
+        name: '{{ item }}'
+        state: present
+        method: user
+      loop:
+        - 'com.discordapp.Discord'
+        - 'org.videolan.VLC'
+        - 'org.fedoraproject.MediaWriter'
+        - 'org.telegram.desktop'
+        - 'info.mumble.Mumble'
+        - 'com.slack.Slack'
+        - 'org.signal.Signal'
+        - 'us.zoom.Zoom'
