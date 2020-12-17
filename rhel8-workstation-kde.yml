@@ -9,11 +9,6 @@
         state: installed
         name: "{{ rhel8_packages_common }}"
 
-    - name: Package Install - RHEL8 - GNOME
-      yum:
-        state: installed
-        name: "{{ rhel8_packages_gnome }}"
-
     # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8
       import_role:
@@ -24,7 +19,7 @@
         state: installed
         name: "{{ epel8_packages_common }}"
 
-    - name: Package Install - EPEL8 - GNOME
+    - name: Package Install - EPEL8 - KDE
       yum:
         state: installed
         name: "{{ epel8_packages_gnome }}"
