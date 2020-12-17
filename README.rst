@@ -53,6 +53,15 @@ Run the following playbook:
 
     ansible-playbook rhel8-workstation.yml
 
+Red Hat Enterprise Linux 8 Workstation - KDE Plasma (from EPEL)
+---------------------------------------------------------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook rhel8-workstation-kde.yml
+
 
 Fedora Rawhide ARM - Desktop XFCE
 ---------------------------------
