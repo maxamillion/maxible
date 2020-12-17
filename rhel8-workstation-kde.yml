@@ -22,7 +22,7 @@
     - name: Package Install - EPEL8 - KDE
       yum:
         state: installed
-        name: "{{ epel8_packages_gnome }}"
+        name: "{{ epel8_packages_kde }}"
 
     - name: Setup CSB Repo
       template:
