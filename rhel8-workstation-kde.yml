@@ -166,7 +166,7 @@
         - name: enable sddm
           systemd:
             name: sddm
-            enabled: false
+            enabled: true
 
   handlers:
     - name: reload polkit
