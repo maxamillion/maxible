@@ -66,6 +66,9 @@ rhel8_packages_common:
   - '@go-toolset:rhel8'
   - '@container-tools:rhel8'
 
+rhel8_packages_kde:
+  - "@base-x"
+
 rhel8_packages_gnome:
   - gnome-tweaks
   - gnome-shell-extension-windowsNavigator
@@ -98,3 +101,5 @@ epel8_packages_gnome:
 
 epel8_packages_kde:
   - "@kde-desktop-environment"
+  - sddm
+  - terminus-fonts

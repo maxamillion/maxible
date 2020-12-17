@@ -9,6 +9,11 @@
         state: installed
         name: "{{ rhel8_packages_common }}"
 
+    - name: Package Install - RHEL8 - KDE
+      yum:
+        state: installed
+        name: "{{ rhel8_packages_kde }}"
+
     # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8
       import_role:
@@ -151,6 +156,17 @@
       import_role:
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
+
+    - name: switch to SDDM
+      block:
+        - name: disable gdm
+          systemd:
+            name: gdm
+            enabled: false
+        - name: enable sddm
+          systemd:
+            name: sddm
+            enabled: false
 
   handlers:
     - name: reload polkit
