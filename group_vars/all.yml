@@ -102,5 +102,7 @@ epel8_packages_gnome:
 
 epel8_packages_kde:
   - "@kde-desktop-environment"
+  - okular
+  - ark
   - sddm
   - terminus-fonts
