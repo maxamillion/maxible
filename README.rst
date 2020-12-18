@@ -33,7 +33,7 @@ Run the following playbook:
 
 ::
 
-    ansible-playbook fedora33-workstation.yml
+    ansible-playbook fedora33-workstation.yml -e desktop_environment="gnome"
 
 Fedora 33 KDE Plasma Spin
 -------------------------
@@ -42,7 +42,7 @@ Run the following playbook:
 
 ::
 
-    ansible-playbook fedora33-kde-plasma.yml
+    ansible-playbook fedora33-workstation.yml -e desktop_environment="kde"
 
 Red Hat Enterprise Linux 8 Workstation
 --------------------------------------
@@ -51,7 +51,7 @@ Run the following playbook:
 
 ::
 
-    ansible-playbook rhel8-workstation.yml
+    ansible-playbook rhel8-workstation.yml -e desktop_environment="gnome"
 
 Red Hat Enterprise Linux 8 Workstation - KDE Plasma (from EPEL)
 ---------------------------------------------------------------
@@ -60,7 +60,7 @@ Run the following playbook:
 
 ::
 
-    ansible-playbook rhel8-workstation-kde.yml
+    ansible-playbook rhel8-workstation.yml -e desktop_environment="kde"
 
 
 Fedora Rawhide ARM - Desktop XFCE

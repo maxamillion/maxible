@@ -3,16 +3,82 @@
   hosts: localhost
   vars:
     non_root_user: admiller
+    desktop_environment: gnome
   tasks:
     - name: Package Install - RHEL8 - Common
       yum:
         state: installed
         name: "{{ rhel8_packages_common }}"
+          - tmux
+          - irssi
+          - mutt
+          - git
+          - vim-enhanced
+          - aspell
+          - aspell-en
+          - jq
+          - python27
+          - python36
+          - python38
+          - python2-virtualenv
+          - python3-virtualenv
+          - python3-bcc
+          - python3-firewall
+          - bpftrace
+          - bpftool
+          - bcc
+          - bcc-tools
+          - ruby
+          - nodejs
+          - gcc
+          - gcc-c++
+          - automake
+          - autoconf
+          - make
+          - cmake
+          - libtool
+          - setools-console
+          - policycoreutils-python-utils
+          - setroubleshoot
+          - setroubleshoot-plugins
+          - setroubleshoot-server
+          - krb5-workstation
+          - pcp-system-tools
+          - lm_sensors
+          - tuned
+          - tuned-utils
+          - powertop
+          - iotop
+          - procps-ng
+          - crypto-policies
+          - firewalld
+          - virt-manager
+          - virt-viewer
+          - fuse-overlayfs
+          - selinux-policy-doc
+          - vinagre
+          - toolbox
+          - nmap
+          - flatpak
+          - firefox
+          - '@rpm-development-tools'
+          - '@go-toolset:rhel8'
+          - '@container-tools:rhel8'
 
     - name: Package Install - RHEL8 - GNOME
       yum:
         state: installed
-        name: "{{ rhel8_packages_gnome }}"
+        name: 
+          - gnome-tweaks
+          - gnome-shell-extension-windowsNavigator
+      when: desktop_environment == "gnome"
+
+    - name: Package Install - RHEL8 - KDE
+      yum:
+        state: installed
+        name:
+          - "@base-x"
+      when: desktop_environment == "kde"
 
     # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8
@@ -22,12 +88,38 @@
     - name: Package Install - EPEL8 - Common
       yum:
         state: installed
-        name: "{{ epel8_packages_common }}"
+        name: 
+          - mock
+          - htop
+          - mosh
+          - tig
+          - NetworkManager-openvpn
+          - fedpkg
+          - fpaste
+          - ack
+          - earlyoom
+          - xsel
+          - terminus-fonts
+          - glances
 
     - name: Package Install - EPEL8 - GNOME
       yum:
         state: installed
-        name: "{{ epel8_packages_gnome }}"
+        name:
+          - gnome-shell-extension-system-monitor-applet
+          - NetworkManager-openvpn-gnome
+      when: desktop_environment == "gnome"
+
+    - name: Package Install - EPEL8 - KDE
+      yum:
+        state: installed
+        name:
+          - "@kde-desktop-environment"
+          - okular
+          - ark
+          - sddm
+          - terminus-fonts
+      when: desktop_environment == "kde"
 
     - name: Setup CSB Repo
       template:
@@ -37,7 +129,15 @@
     - name: Package Install - CSB RHEL8
       yum:
         state: installed
-        name: "{{ csb8_packages_common }}"
+        name:
+          - oneplay-gstreamer-codecs-pack
+          - ffmpeg-libs
+          - redhat-internal-flash-plugin
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
 
     - name: Ensure SELinux Enforcing
       selinux:
@@ -157,6 +257,18 @@
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
 
+    - name: switch to SDDM
+      when: desktop_environment == "kde"
+      block:
+        - name: disable gdm
+          systemd:
+            name: gdm
+            enabled: false
+        - name: enable sddm
+          systemd:
+            name: sddm
+            enabled: true
+
   handlers:
     - name: reload polkit
       service:
@@ -170,14 +282,24 @@
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
+
     - name: import common flatpak app install set
       import_tasks: include_tasks/flatpak_common.yml
-    - name: import gnome flatpak app install set
-      import_tasks: include_tasks/flatpak_gnome.yml
-    - name: unset GNOME Shell app switching
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
-      changed_when: no
-    - name: change GNOME Shell window switching to alt+tab
-      shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
-      changed_when: no
+
+    - name: GNOME user stuff
+      when: desktop_environment == "gnome"
+      block:
+        - name: import gnome flatpak app install set
+          import_tasks: include_tasks/flatpak_gnome.yml
+        - name: unset GNOME Shell app switching
+          shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
+          changed_when: no
+        - name: change GNOME Shell window switching to alt+tab
+          shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
+          changed_when: no
+
+    - name: import kde flatpak app install set
+      import_tasks: include_tasks/flatpak_kde.yml
+      when: desktop_environment == "kde"
+
 

@@ -1,15 +1,16 @@
 ---
-- name: Fedora 33 Workstation Edition
+- name: Fedora 33 Workstation / KDE Plasma 
   hosts: localhost
   vars:
     non_root_user: admiller
     rpmfusion_free: yes
     rpmfusion_nonfree: no
+    desktop_environment: gnome
   tasks:
-    - name: Package Install 
+    - name: Package Install - common
       yum:
         state: installed
-        name:
+        name: "{{ fedora33_packages_common }}"
           - tmux
           - xsel
           - irssi
@@ -46,7 +47,6 @@
           - setroubleshoot
           - setroubleshoot-plugins
           - setroubleshoot-server
-          - gnome-tweaks
           - krb5-workstation
           - pcp-system-tools
           - lm_sensors
@@ -64,9 +64,6 @@
           - flatpak
           - firefox-wayland
           - NetworkManager-openvpn
-          - NetworkManager-openvpn-gnome
-          - gnome-shell-extension-windowsNavigator
-          - gnome-shell-extension-system-monitor-applet
           - podman
           - podman-docker
           - podman-compose
@@ -88,6 +85,16 @@
           - ibm-plex-mono-fonts
           - '@rpm-development-tools'
 
+    - name: Package Install - gnome
+      yum:
+        state: installed
+        name: 
+          - gnome-tweaks
+          - NetworkManager-openvpn-gnome
+          - gnome-shell-extension-windowsNavigator
+          - gnome-shell-extension-system-monitor-applet
+      when: desktop_environment == 'gnome'
+
     - name: Setup RPM Fusion Free
       import_role:
         name: robertdebock.rpmfusion
@@ -95,7 +102,7 @@
     - name: Package Install | RPM Fusion Free
       yum:
         state: installed
-        name:
+        name: 
           - ffmpeg
           - ffmpeg-libs
 
@@ -107,7 +114,7 @@
     - name: Package Install - CSB RHEL8 Repo
       yum:
         state: installed
-        name:
+        name: 
           - oneplay-gstreamer-codecs-pack
           - redhat-internal-openvpn-profiles
           - redhat-internal-NetworkManager-openvpn-profiles
@@ -130,16 +137,20 @@
         state: true
         persistent: true
 
-    # FIXME - powertop2tuned is broken in Fedora 32 so just use powertop service
     - name: Set powersave when configuring a laptop
       when: ansible_form_factor in mobile_form_factors
       block:
 
-        - name: Start and enable powertop
+        - name: Ensure powertop service enabled
+          service:
+            name: powertop
+            enabled: true
+
+        - name: Ensure powertop service started (only when not plugged in)
           service:
             name: powertop
             state: started
-            enabled: true
+          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')"
 
     - name: Apply iwlwifi settings
       copy:
@@ -171,6 +182,20 @@
         - cockpit
         - ssh
 
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
     - name: Make sure non_root_user user is in mock
       user:
         name: "{{ non_root_user }}"
@@ -186,6 +211,26 @@
       import_role:
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
+
+    - name: workaround suspend issue on starlite mk3 laptop
+      block:
+        - name: install workaroundsuspend.service
+          copy:
+            src: files/starlite_mk3_suspendfix.service
+            dest: /etc/systemd/system/workaroundsuspend.service
+        - name: enable custom systemd unit
+          systemd:
+            name: workaroundsuspend.service
+            daemon_reload: true
+            enabled: true
+            state: started
+      when: ansible_hostname == 'starlite'
+
+  handlers:
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
 
 - name: User Stuff
   hosts: localhost
