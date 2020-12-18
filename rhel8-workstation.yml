@@ -8,7 +8,7 @@
     - name: Package Install - RHEL8 - Common
       yum:
         state: installed
-        name: "{{ rhel8_packages_common }}"
+        name: 
           - tmux
           - irssi
           - mutt
