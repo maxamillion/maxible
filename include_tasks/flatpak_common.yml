@@ -14,3 +14,4 @@
         - 'com.slack.Slack'
         - 'org.signal.Signal'
         - 'us.zoom.Zoom'
+        - 'org.remmina.Remmina'
