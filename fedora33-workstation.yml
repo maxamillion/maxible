@@ -7,61 +7,16 @@
     rpmfusion_nonfree: no
     desktop_environment: gnome
   tasks:
-    - name: Package Install - common
+    - name: Package Install - Fedora
       yum:
         state: installed
-        name: "{{ fedora33_packages_common }}"
-          - tmux
+        name: 
           - xsel
-          - irssi
           - weechat
-          - mutt
-          - git
-          - vim-enhanced
-          - aspell
-          - aspell-en
-          - jq
           - python3
           - python3-devel
-          - python3-virtualenv
-          - python3-bcc
-          - python3-firewall
           - golang
           - golang-x-tools-gopls
-          - bpftrace
-          - bpftool
-          - strace
-          - bcc
-          - bcc-tools
-          - ruby
-          - nodejs
-          - gcc
-          - gcc-c++
-          - automake
-          - autoconf
-          - make
-          - cmake
-          - libtool
-          - setools-console
-          - policycoreutils-python-utils
-          - setroubleshoot
-          - setroubleshoot-plugins
-          - setroubleshoot-server
-          - krb5-workstation
-          - pcp-system-tools
-          - lm_sensors
-          - powertop
-          - iotop
-          - procps-ng
-          - crypto-policies
-          - firewalld
-          - virt-manager
-          - virt-viewer
-          - fuse-overlayfs
-          - vinagre
-          - toolbox
-          - nmap
-          - flatpak
           - firefox-wayland
           - NetworkManager-openvpn
           - podman
@@ -83,12 +38,18 @@
           - selinux-policy-doc
           - ShellCheck
           - ibm-plex-mono-fonts
-          - '@rpm-development-tools'
+          - glances
+
+    - name: Package Install - Common
+      yum:
+        state: installed
+        name: "{{ packages_common }}"
 
     - name: Package Install - gnome
       yum:
         state: installed
         name: 
+          - vinagre
           - gnome-tweaks
           - NetworkManager-openvpn-gnome
           - gnome-shell-extension-windowsNavigator

@@ -9,3 +9,54 @@ mobile_form_factors:
   - 'Detachible'
   - 'Hand Held'
 
+
+packages_common:
+  - tmux
+  - irssi
+  - mutt
+  - git
+  - vim-enhanced
+  - aspell
+  - aspell-en
+  - jq
+  - python3-devel
+  - python3-bcc
+  - python3-firewall
+  - python3-virtualenv
+  - bpftrace
+  - bpftool
+  - bcc
+  - bcc-tools
+  - ruby
+  - nodejs
+  - gcc
+  - gcc-c++
+  - automake
+  - autoconf
+  - make
+  - cmake
+  - libtool
+  - setools-console
+  - policycoreutils-python-utils
+  - selinux-policy-doc
+  - setroubleshoot
+  - setroubleshoot-plugins
+  - setroubleshoot-server
+  - krb5-workstation
+  - pcp-system-tools
+  - lm_sensors
+  - tuned
+  - tuned-utils
+  - powertop
+  - iotop
+  - procps-ng
+  - crypto-policies
+  - firewalld
+  - virt-manager
+  - virt-viewer
+  - fuse-overlayfs
+  - strace
+  - toolbox
+  - nmap
+  - flatpak
+  - '@rpm-development-tools'
