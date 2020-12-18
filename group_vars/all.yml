@@ -95,6 +95,7 @@ epel8_packages_common:
   - earlyoom
   - xsel
   - terminus-fonts
+  - glances
 
 epel8_packages_gnome:
   - gnome-shell-extension-system-monitor-applet
