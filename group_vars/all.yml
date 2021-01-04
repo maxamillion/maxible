@@ -27,6 +27,8 @@ packages_common:
   - bpftool
   - bcc
   - bcc-tools
+  - perf
+  - iperf3
   - ruby
   - nodejs
   - gcc
