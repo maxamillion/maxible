@@ -4,59 +4,15 @@
   vars:
     non_root_user: admiller
   tasks:
+    - name: Package Install - Common
+      yum:
+        state: installed
+        name: "{{ packages_common }}"
+
     - name: Package Install - RHEL8
       yum:
         state: installed
-        name:
-          - tmux
-          - irssi
-          - mutt
-          - git
-          - vim-enhanced
-          - aspell
-          - aspell-en
-          - jq
-          - python27
-          - python36
-          - python38
-          - python2-virtualenv
-          - python3-virtualenv
-          - python3-bcc
-          - python3-firewall
-          - bpftrace
-          - bpftool
-          - bcc
-          - bcc-tools
-          - ruby
-          - nodejs
-          - gcc
-          - gcc-c++
-          - automake
-          - autoconf
-          - make
-          - cmake
-          - libtool
-          - setools-console
-          - policycoreutils-python-utils
-          - setroubleshoot
-          - setroubleshoot-plugins
-          - setroubleshoot-server
-          - krb5-workstation
-          - pcp-system-tools
-          - lm_sensors
-          - tuned
-          - tuned-utils
-          - iotop
-          - procps-ng
-          - crypto-policies
-          - firewalld
-          - fuse-overlayfs
-          - selinux-policy-doc
-          - toolbox
-          - nmap
-          - '@rpm-development-tools'
-          - '@go-toolset:rhel8'
-          - '@container-tools:rhel8'
+        name: "{{ packages_rhel8 }}"
 
     # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
     - name: Install EPEL8

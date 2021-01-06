@@ -62,3 +62,15 @@ packages_common:
   - nmap
   - flatpak
   - '@rpm-development-tools'
+
+packages_rhel8:
+  - python27
+  - python36
+  - python38
+  - python2-virtualenv
+  - python3-virtualenv
+  - python3-bcc
+  - python3-firewall
+  - firefox
+  - '@go-toolset:rhel8'
+  - '@container-tools:rhel8'

@@ -8,17 +8,7 @@
     - name: Package Install - RHEL8
       yum:
         state: installed
-        name: 
-          - python27
-          - python36
-          - python38
-          - python2-virtualenv
-          - python3-virtualenv
-          - python3-bcc
-          - python3-firewall
-          - firefox
-          - '@go-toolset:rhel8'
-          - '@container-tools:rhel8'
+        name: "{{ packages_rhel8 }}"
 
     - name: Package Install - Common
       yum:
