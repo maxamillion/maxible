@@ -62,6 +62,7 @@ packages_common:
   - nmap
   - flatpak
   - '@rpm-development-tools'
+  - rpm-ostree
 
 packages_rhel8:
   - python27
