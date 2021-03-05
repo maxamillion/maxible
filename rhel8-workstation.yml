@@ -39,19 +39,7 @@
     - name: Package Install - EPEL8 - Common
       yum:
         state: installed
-        name: 
-          - mock
-          - htop
-          - mosh
-          - tig
-          - NetworkManager-openvpn
-          - fedpkg
-          - fpaste
-          - ack
-          - earlyoom
-          - xsel
-          - terminus-fonts
-          - glances
+        name: "{{ packages_epel8_common }}"
 
     - name: Package Install - EPEL8 - GNOME
       yum:

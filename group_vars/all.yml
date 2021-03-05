@@ -75,3 +75,18 @@ packages_rhel8:
   - firefox
   - '@go-toolset:rhel8'
   - '@container-tools:rhel8'
+
+packages_epel8_common:
+  - mock
+  - htop
+  - mosh
+  - tig
+  - NetworkManager-openvpn
+  - fedpkg
+  - fpaste
+  - ack
+  - earlyoom
+  - xsel
+  - terminus-fonts
+  - glances
+  - python3-ipython
