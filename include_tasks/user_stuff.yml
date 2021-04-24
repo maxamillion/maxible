@@ -20,7 +20,7 @@
       - pipenv
       - poetry
       - antsibull-changelog
-      - tuxp
+      - tmuxp
     executable: 'pip3'
     extra_args: '--user'
 

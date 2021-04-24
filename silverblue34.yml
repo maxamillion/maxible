@@ -15,11 +15,11 @@
         policy: targeted
         state: enforcing
 
-    - name: Enable container_manage_cgroup for running systemd in podman containers
-      seboolean:
-        name: container_manage_cgroup
-        state: true
-        persistent: true
+#    - name: Enable container_manage_cgroup for running systemd in podman containers
+#      seboolean:
+#        name: container_manage_cgroup
+#        state: true
+#        persistent: true
 
     - name: Set powersave when configuring a laptop
       when: ansible_form_factor in mobile_form_factors
