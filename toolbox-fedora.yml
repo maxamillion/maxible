@@ -1,5 +1,6 @@
-- name: Fedora toolbox 34 
+- name: Fedora toolbox
   hosts: localhost
+  become: true
   tasks:
     - name: Package Install - Fedora
       yum:
