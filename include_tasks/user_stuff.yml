@@ -20,6 +20,7 @@
       - pipenv
       - poetry
       - antsibull-changelog
+      - tuxp
     executable: 'pip3'
     extra_args: '--user'
 
@@ -38,22 +39,3 @@
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
-
-- name: Fedora specific stuff
-  block:
-    - name: gem user install tmuxinator
-      gem:
-        state: present
-        name: tmuxinator
-        user_install: yes
-  when: ansible_distribution == "Fedora"
-
-- name: RHEL 8 specific stuff
-  block:
-    - name: gem user install tmuxinator
-      gem:
-        state: present
-        name: tmuxinator
-        version: 1.1.5
-        user_install: yes
-  when: (ansible_distribution == "RedHat") and (ansible_distribution_major_version|int == 8)
