@@ -15,4 +15,5 @@
         - 'org.signal.Signal'
         - 'us.zoom.Zoom'
         - 'org.remmina.Remmina'
-        - 'flathub com.jgraph.drawio.desktop'
+        - 'com.jgraph.drawio.desktop'
+        - 'org.chromium.Chromium'
