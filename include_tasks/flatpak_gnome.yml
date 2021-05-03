@@ -32,3 +32,4 @@
         method: user
       loop:
         - 'org.gnome.Epiphany'
+        - 'org.gnome.Boxes'
