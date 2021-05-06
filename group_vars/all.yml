@@ -90,3 +90,5 @@ packages_epel8_common:
   - terminus-fonts
   - glances
   - python3-ipython
+
+flatpak_method: user

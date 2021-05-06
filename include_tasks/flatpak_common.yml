@@ -4,7 +4,7 @@
       flatpak:
         name: '{{ item }}'
         state: present
-        method: user
+        method: '{{ flatpak_method }}'
       loop:
         - 'com.discordapp.Discord'
         - 'org.videolan.VLC'

@@ -79,6 +79,8 @@
   hosts: localhost
   become_user: admiller
   become: yes
+  vars:
+    flatpak_method: system
   tasks:
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
