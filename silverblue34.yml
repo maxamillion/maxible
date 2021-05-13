@@ -4,6 +4,7 @@
 # sudo rpm-ostree install tmux vim-enhanced ansible powertop xsel
 - name: Fedora 34 Silverblue
   hosts: localhost
+  become: true
   vars:
     non_root_user: admiller
     rpmfusion_free: yes
@@ -75,10 +76,17 @@
             state: started
       when: ansible_hostname == 'starlite'
 
+    - name: Add the flathub flatpak repository remote to the user installation
+      flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+        method: system
+
 - name: User Stuff
   hosts: localhost
   become_user: admiller
-  become: yes
+  become: true
   vars:
     flatpak_method: system
   tasks:
