@@ -22,6 +22,7 @@
           - selinux-policy-doc
           - ShellCheck
           - glances
+          - libvirt-client
 
     - name: Package Install - Common
       yum:
