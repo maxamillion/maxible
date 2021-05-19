@@ -2,6 +2,18 @@
   hosts: localhost
   become: true
   tasks:
+
+    - name: setup GH cli repo
+      shell: dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+      args:
+        creates: /etc/yum.repos.d/gh-cli.repo
+
+    - name: Package Install - GitHub
+      yum:
+        state: installed
+        name: 
+          - gh
+
     - name: Package Install - Fedora
       yum:
         state: installed

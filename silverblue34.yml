@@ -57,6 +57,13 @@
         - cockpit
         - ssh
 
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
     - name: enable journald persistent storage
       file:
         path: /var/log/journal
@@ -82,6 +89,12 @@
         state: present
         flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
         method: system
+
+  handlers:
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
 
 - name: User Stuff
   hosts: localhost
