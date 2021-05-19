@@ -35,9 +35,11 @@
           - ShellCheck
           - glances
           - libvirt-client
+          - tldr
 
     - name: Package Install - Common
       yum:
         state: installed
         name: "{{ packages_common }}"
+
 
