@@ -23,6 +23,7 @@
           - python3-devel
           - golang
           - golang-x-tools-gopls
+          - golang-x-tools-guru
           - htop
           - mosh
           - tig
