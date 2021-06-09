@@ -3,8 +3,8 @@ maxible
 
 Adam Miller (maxamillion) ansible playbooks for various silly things.
 
-In this repo you will find my laptop/workstation configs for `Fedora 
-Workstation`_, `Fedora KDE Plasma`_, `Fedora XFCE Spin`_, and 
+In this repo you will find my laptop/workstation configs for `Fedora Silverblue`_,
+`Fedora Workstation`_, `Fedora KDE Plasma`_, `Fedora XFCE Spin`_, and 
 `Red Hat Enterprise Linux`_ along with other random items
 I configure on my workstation, laptop, or homelab machines and such.
 
@@ -106,6 +106,7 @@ References
 .. _Ansible Docs: http://docs.ansible.com/ansible/index.html
 .. _Fedora: https://getfedora.org/
 .. _Fedora Workstation: https://getfedora.org/en/workstation/
+.. _Fedora Silverblue: https://silverblue.fedoraproject.org/
 .. _Fedora KDE Plasma: https://spins.fedoraproject.org/en/kde/
 .. _Fedora XFCE Spin: https://spins.fedoraproject.org/en/xfce/
 .. _Red Hat Enterprise Linux: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
