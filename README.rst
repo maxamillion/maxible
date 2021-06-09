@@ -24,6 +24,21 @@ Clone this repo and install dependencies for the Playbooks
     git clone https://github.com/maxamillion/maxible.git
     cd maxible/
     ansible-galaxy install -r requirements.yml
+    
+Fedora Silverblue 34
+--------------------
+
+First need to install a few packages in the ``rpm-ostree`` overlay:
+
+::
+
+    sudo rpm-ostree install tmux vim-enhanced ansible powertop xsel virt-manager libvirt-client gnome-tweaks
+
+Run the following playbook and enter your sudo command when prompted (if you don't, then GNOME will pop up asking for your password multiple times):
+
+::
+
+    ansible-playbook silverblue34.yml -K
 
 
 Fedora 33 Workstation 
