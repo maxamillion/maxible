@@ -37,6 +37,7 @@
           - glances
           - libvirt-client
           - tldr
+          - asciinema
 
     - name: Package Install - Common
       yum:
