@@ -17,6 +17,8 @@
           - python3-devel
           - golang
           - golang-x-tools-gopls
+          - golang-x-tools-guru
+          - golang-x-tools-lint
           - firefox-wayland
           - NetworkManager-openvpn
           - podman
