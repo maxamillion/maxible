@@ -21,6 +21,7 @@
           - weechat
           - python3
           - python3-devel
+          - python3-jedi
           - golang
           - golang-x-tools-gopls
           - golang-x-tools-guru
