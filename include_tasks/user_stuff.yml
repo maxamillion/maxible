@@ -2,27 +2,22 @@
 # Meant to be used with import_tasks
 #
 - name: pip user install some stuff
-  pip:
-    state: present
-    name:
-      - ptpython
-      - bpytop
-      - virtualenvwrapper
-      - tox
-      - httpie
-      - flake8
-      - pep8
-      - pyflakes
-      - pylint
-      - black
-      - q
-      - sncli
-      - pipenv
-      - poetry
-      - antsibull-changelog
-      - tmuxp
-    executable: 'pip3'
-    extra_args: '--user'
+  shell: "python -mpip install --user {{item}}"
+  loop:
+    - ptpython
+    - virtualenvwrapper
+    - tox
+    - httpie
+    - flake8
+    - pep8
+    - pyflakes
+    - pylint
+    - black
+    - q
+    - pipenv
+    - poetry
+    - antsibull-changelog
+    - tmuxp
 
 - name: check for local poetry bash completions
   stat:
@@ -38,4 +33,4 @@
     name: flathub
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    method: user
+    method: "{{ flatpak_method }}"

@@ -2,7 +2,7 @@
 # NOTE: This system must first be bootstrapped with the following:
 # 
 # sudo rpm-ostree install tmux vim-enhanced ansible powertop xsel virt-manager libvirt-client gnome-tweaks
-- name: Fedora 34 Silverblue
+- name: Fedora 35 Silverblue
   hosts: localhost
   become: true
   vars:
