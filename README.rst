@@ -25,7 +25,7 @@ Clone this repo and install dependencies for the Playbooks
     cd maxible/
     ansible-galaxy install -r requirements.yml
     
-Fedora Silverblue 34
+Fedora Silverblue 35
 --------------------
 
 First need to install a few packages in the ``rpm-ostree`` overlay:
@@ -38,26 +38,8 @@ Run the following playbook and enter your sudo command when prompted (if you don
 
 ::
 
-    ansible-playbook silverblue34.yml -K
+    ansible-playbook silverblue35.yml -K
 
-
-Fedora 33 Workstation 
----------------------
-
-Run the following playbook:
-
-::
-
-    ansible-playbook fedora33-workstation.yml -e desktop_environment="gnome"
-
-Fedora 33 KDE Plasma Spin
--------------------------
-
-Run the following playbook:
-
-::
-
-    ansible-playbook fedora33-workstation.yml -e desktop_environment="kde"
 
 Red Hat Enterprise Linux 8 Workstation
 --------------------------------------
@@ -76,17 +58,6 @@ Run the following playbook:
 ::
 
     ansible-playbook rhel8-workstation.yml -e desktop_environment="kde"
-
-
-Fedora Rawhide ARM - Desktop XFCE
----------------------------------
-
-Run the following playbook:
-
-::
-
-    ansible-playbook fedora-rawhide-arm-xfce.yml -i inventory.txt
-
 
 
 Notes
