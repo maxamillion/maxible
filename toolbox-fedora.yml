@@ -24,7 +24,7 @@
           - golang
           - golang-x-tools-gopls
           - golang-x-tools-guru
-          - golang-x-tools-lint
+          - golang-x-lint
           - htop
           - mosh
           - tig
