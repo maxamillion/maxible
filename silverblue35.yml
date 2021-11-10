@@ -1,7 +1,7 @@
 ---
 # NOTE: This system must first be bootstrapped with the following:
 # 
-# sudo rpm-ostree install tmux vim-enhanced ansible powertop xsel virt-manager libvirt-client gnome-tweaks
+# sudo rpm-ostree install tmux vim-enhanced ansible xsel virt-manager libvirt-client gnome-tweaks
 - name: Fedora 35 Silverblue
   hosts: localhost
   become: true
@@ -21,21 +21,6 @@
 #        name: container_manage_cgroup
 #        state: true
 #        persistent: true
-
-    - name: Set powersave when configuring a laptop
-      when: ansible_form_factor in mobile_form_factors
-      block:
-
-        - name: Ensure powertop service enabled
-          service:
-            name: powertop
-            enabled: true
-
-        - name: Ensure powertop service started (only when not plugged in)
-          service:
-            name: powertop
-            state: started
-          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')"
 
     - name: Disable ssh and rpcbind because reasons
       systemd:
