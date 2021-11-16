@@ -68,6 +68,20 @@ Data retention is handled outside the scope of this playbook
 Some of my dotfiles related to vim, tmux, and some others are available `here
 <https://github.com/maxamillion/dotfiles>`_.
 
+Initial VPN Setup on Silverblue
+-------------------------------
+This is admittedly a little hacky, but it gets all the configs and the cert
+from the official repos without needing to script keeping up. I typically
+download these from another machine and keep them in my home office on a LUKS
+encrypted usb thumb drive as a backup in case I get locked out.
+
+::
+
+    cd /
+    rpm2cpio redhat-internal-NetworkManager-openvpn-profiles-0.1-49.el7.csb.noarch.rpm | sudo cpio --extract
+    rpm2cpio redhat-internal-cert-install-0.1-23.el7.csb.noarch.rpm | sudo cpio --extract
+
+
 References
 ----------
 `Ansible`_
