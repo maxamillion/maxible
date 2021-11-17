@@ -7,8 +7,9 @@
   become: true
   vars:
     non_root_user: admiller
-    rpmfusion_free: yes
+    rpmfusion_free: no
     rpmfusion_nonfree: no
+    silverblue: yes
     desktop_environment: gnome
   tasks:
     - name: Ensure SELinux Enforcing
@@ -88,6 +89,8 @@
   vars:
     flatpak_method: system
   tasks:
+    - name: ensure pip
+      shell: "python -m ensurepip --default-pip"
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
     - name: import common flatpak app install set
