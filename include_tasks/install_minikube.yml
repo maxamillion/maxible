@@ -1,0 +1,16 @@
+- name: Install minikube
+  block:
+    - name: Make sure ~/bin/ exists
+      file:
+        path: '{{ ansible_user_dir }}/bin'
+        state: directory
+
+    - name: Download latest minikube
+      get_url:
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+        dest: '{{ ansible_user_dir }}/bin/minikube'
+
+    - name: make it executable
+      file:
+        path: '{{ ansible_user_dir }}/bin/minikube'
+        mode: u+x
