@@ -105,5 +105,11 @@
       get_url:
         url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
         dest: "{{ ansible_user_dir}}/bin/minikube"
+        mode: "755"
+    - name: install docker -> podman override
+      copy:
+        src: files/docker_podman.sh
+        dest: "{{ ansible_user_dir}}/bin/docker"
+        mode: "755"
 
 
