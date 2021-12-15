@@ -36,7 +36,7 @@
           service:
             name: powertop
             state: started
-          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')"
+          when: "('discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')) or ('discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1'))"
 
     - name: Disable ssh and rpcbind because reasons
       systemd:

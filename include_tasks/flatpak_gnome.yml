@@ -1,7 +1,7 @@
 - name: GNOME Stuff
   block:
     - name: GNOME COMMON | install flatpaks
-      flatpak:
+      community.general.flatpak:
         name: '{{ item }}'
         state: present
         method: '{{ flatpak_method }}'
@@ -10,26 +10,4 @@
         - 'org.gnome.SoundRecorder'
         - 'org.libreoffice.LibreOffice'
         - 'org.glimpse_editor.Glimpse'
-
-- name: RHEL Stuff
-  when: ansible_distribution == 'RedHat' 
-  block:
-    - name: RHEL GNOME | install flatpaks
-      flatpak:
-        name: '{{ item }}'
-        state: present
-        method: '{{ flatpak_method }}'
-      loop:
-        - 'org.libreoffice.LibreOffice'
-
-- name: Fedora Stuff
-  when: ansible_distribution == 'Fedora' 
-  block:
-    - name: Fedora GNOME | install flatpaks 
-      flatpak:
-        name: '{{ item }}'
-        state: present
-        method: '{{ flatpak_method }}'
-      loop:
         - 'org.gnome.Epiphany'
-        - 'org.gnome.Boxes'

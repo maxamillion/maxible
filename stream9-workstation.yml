@@ -1,0 +1,187 @@
+---
+- name: CentOS Stream 9 Workstation / Server w/ GUI Setup / Laptop / Whatever
+  hosts: localhost 
+  vars:
+    non_root_user: admiller
+  tasks:
+    - name: Enable my epel9 copr until we get everything in epel9 proper
+      community.general.copr:
+        host: copr.fedorainfracloud.org
+        state: enabled
+        name: maxamillion/epel9
+        chroot: centos-stream-9-x86_64 
+
+    - name: Package Install - CentOS Stream 9
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_stream9 }}"
+
+    - name: Package Install - Common
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_common }}"
+
+    - name: Package Install - Desktop
+      ansible.builtin.yum:
+        state: installed
+        name: 
+          - gnome-tweaks
+          - gnome-shell-extension-windowsNavigator
+
+    - name: Package Install - EPEL9 
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_epel9 }}"
+
+    - name: Setup CSB Repo
+      template:
+        src: templates/rhel8-csb.repo.j2
+        dest: /etc/yum.repos.d/rhel8-csb.repo
+
+    - name: Package Install - CSB RHEL8
+      ansible.builtin.yum:
+        state: installed
+        name:
+          #- oneplay-gstreamer-codecs-pack
+          #- ffmpeg-libs
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
+      ignore_errors: yes
+
+    - name: Ensure SELinux Enforcing
+      ansible.posix.selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      ansible.posix.seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    - name: Check crypto policies
+      ansible.builtin.shell: update-crypto-policies --show
+      changed_when: false
+      register: crypto_policies
+
+    # should upgrade to FUTURE, but then RHN doesn't work because metadata
+    # checksum is too weak
+    - name: Set crypto policies to DEFAULT
+      ansible.builtin.shell: update-crypto-policies --set DEFAULT
+      when: "crypto_policies['stdout'] != 'DEFAULT'"
+
+    - name: Set powersave when configuring a laptop
+      when: ansible_form_factor in mobile_form_factors
+      block:
+        - name: Create powertop2tuned tuned profile
+          ansible.builtin.shell: powertop2tuned --enable powertop2tuned
+          args:
+            creates: /etc/tuned/powertop2tuned/tuned.conf
+
+        - name: Get tuned profile
+          ansible.builtin.slurp:
+            src: /etc/tuned/active_profile
+          register: tuned_active_profile
+
+        - ansible.builtin.debug:
+            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+        - name: tuned-adm set powertop2tuned
+          ansible.builtin.shell: /usr/sbin/tuned-adm profile powertop2tuned
+          when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
+
+    - name: Apply iwlwifi settings
+      ansible.builtin.copy:
+        src: files/iwlwifi.conf
+        dest: /etc/modprobe.d/iwlwifi.conf
+
+    - name: Set container registry settings
+      ansible.builtin.copy:
+        src: files/registries.conf
+        dest: /etc/containers/registries.conf
+
+# FIXME - seems not necessary for Stream9, will delete later after further testing
+#    - name: force Xorg, Wayland still has a ways to go :(
+#      ansible.builtin.copy:
+#        src: files/etc_gdm_custom.conf
+#        dest: /etc/gdm/custom.conf
+
+    - name: Disable ssh and rpcbind because reasons
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - rpcbind
+        - sshd
+
+    - name: Ensure various ports are not open
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
+
+# FIXME - mock isn't in epel9 yet
+#    - name: Make sure non_root_user user is in mock
+#      ansible.builtin.user:
+#        name: "{{ non_root_user }}" 
+#        groups: mock
+#        append: yes
+
+    - name: Allow non-root user access to libvirt via polkit
+      ansible.builtin.template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      ansible.builtin.template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
+    - name: enable journald persistent storage
+      ansible.builtin.file:
+        path: /var/log/journal
+        state: directory
+
+# FIXME - boinc-client isn't in epel9 yet
+#    - name: setup BOINC client for world community grid when it's not a laptop
+#      ansible.builtin.import_role:
+#        name: worldcommunitygrid
+#      when: ansible_form_factor not in mobile_form_factors
+
+  handlers:
+    - name: reload polkit
+      ansible.builtin.service:
+        name: polkit
+        state: restarted
+
+- name: CentOS Stream 9 Workstation / Server w/ GUI Setup / Laptop / Whatever - User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: yes
+  vars:
+    flatpak_method: user
+  tasks:
+    - name: import user dev stuff
+      ansible.builtin.import_tasks: include_tasks/user_stuff.yml
+
+    - name: import common flatpak app install set
+      ansible.builtin.import_tasks: include_tasks/flatpak_common.yml
+
+    - name: GNOME user stuff
+      block:
+        - name: import gnome flatpak app install set
+          ansible.builtin.import_tasks: include_tasks/flatpak_gnome.yml
+

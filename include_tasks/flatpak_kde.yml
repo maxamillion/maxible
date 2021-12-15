@@ -2,7 +2,7 @@
   when: ansible_distribution == 'Fedora' 
   block:
     - name: Fedora | install flatpaks 
-      flatpak:
+      community.general.flatpak:
         name: '{{ item }}'
         state: present
         method: '{{ flatpak_method }}'

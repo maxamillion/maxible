@@ -1,4 +1,14 @@
-# from galaxy
-- src: geerlingguy.repo-epel
-- src: robertdebock.rpmfusion
-- src: jaredhocutt.brave_browser
+---
+
+roles:
+  # Install a role from Ansible Galaxy
+  - name: geerlingguy.repo-epel
+  - name: robertdebock.rpmfusion
+  - name: jaredhocutt.brave_browser
+
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: community.general
+    source: https://galaxy.ansible.com
+  - name: ansible.posix
+    source: https://galaxy.ansible.com

@@ -1,7 +1,7 @@
 - name: Common Stuff
   block:
     - name: COMMON | install flatpaks
-      flatpak:
+      community.general.flatpak:
         name: '{{ item }}'
         state: present
         method: '{{ flatpak_method }}'

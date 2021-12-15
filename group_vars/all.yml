@@ -17,12 +17,10 @@ packages_common:
   - git
   - vim-enhanced
   - aspell
-  - aspell-en
   - jq
   - python3-devel
   - python3-bcc
   - python3-firewall
-  - python3-virtualenv
   - bpftrace
   - bpftool
   - bcc
@@ -91,4 +89,26 @@ packages_epel8_common:
   - glances
   - python3-ipython
 
-flatpak_method: user
+packages_stream9:
+  - python3-bcc
+  - python3-firewall
+  - firefox
+  - golang
+  - '@container-management'
+
+packages_epel9:
+  - '@fedora-packager'
+  - htop
+  - tig
+  - xsel
+  - NetworkManager-openvpn
+  #- mock
+  #- mosh
+  #- fedpkg
+  #- ack
+  #- terminus-fonts
+  #- glances
+  #- python3-ipython
+
+
+flatpak_method: system
