@@ -98,11 +98,6 @@
         src: files/iwlwifi.conf
         dest: /etc/modprobe.d/iwlwifi.conf
 
-    - name: Set container registry settings
-      ansible.builtin.copy:
-        src: files/registries.conf
-        dest: /etc/containers/registries.conf
-
 # FIXME - seems not necessary for Stream9, will delete later after further testing
 #    - name: force Xorg, Wayland still has a ways to go :(
 #      ansible.builtin.copy:
