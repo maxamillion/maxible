@@ -9,6 +9,36 @@ mobile_form_factors:
   - 'Detachible'
   - 'Hand Held'
 
+packages_fedora:
+  - xsel
+  - python3
+  - python3-devel
+  - golang
+  - golang-x-tools-gopls
+  - golang-x-tools-guru
+  - golang-x-tools-lint
+  - firefox-wayland
+  - NetworkManager-openvpn
+  - podman
+  - podman-docker
+  - podman-compose
+  - skopeo
+  - buildah
+  - htop
+  - mosh
+  - tig
+  - fedpkg
+  - fpaste
+  - fedfind
+  - arm-image-installer
+  - ack
+  - earlyoom
+  - mediawriter
+  - smartmontools
+  - selinux-policy-doc
+  - ShellCheck
+  - ibm-plex-mono-fonts
+  - glances
 
 packages_common:
   - tmux
@@ -94,7 +124,8 @@ packages_stream9:
   - python3-firewall
   - firefox
   - golang
-  - '@container-management'
+  - container-tools
+  - toolbox
 
 packages_epel9:
   - '@fedora-packager'

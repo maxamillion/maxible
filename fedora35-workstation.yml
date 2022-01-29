@@ -1,0 +1,186 @@
+---
+- name: Fedora 35 Workstation 
+  hosts: localhost
+  vars:
+    non_root_user: admiller
+    rpmfusion_free: yes
+    rpmfusion_nonfree: no
+  tasks:
+    - name: Package Install - Fedora
+      yum:
+        state: installed
+        name: "{{ packages_fedora }}"
+
+    - name: Package Install - Common
+      yum:
+        state: installed
+        name: "{{ packages_common }}"
+
+    - name: Package Install - gnome
+      yum:
+        state: installed
+        name: 
+          - vinagre
+          - gnome-tweaks
+          - NetworkManager-openvpn-gnome
+          - gnome-shell-extension-windowsNavigator
+          - gnome-shell-extension-system-monitor-applet
+      when: desktop_environment == 'gnome'
+
+    - name: Setup RPM Fusion Free
+      import_role:
+        name: robertdebock.rpmfusion
+
+    - name: Package Install | RPM Fusion Free
+      yum:
+        state: installed
+        name: 
+          - ffmpeg
+          - ffmpeg-libs
+
+    - name: Setup CSB Repo
+      template:
+        src: template/rhel8-csb.repo.j2
+        dest: /etc/yum.repos.d/rhel8-csb.repo
+
+    - name: Package Install - CSB RHEL8 Repo
+      yum:
+        state: installed
+        name: 
+          - oneplay-gstreamer-codecs-pack
+          - redhat-internal-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles
+          - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
+          - redhat-internal-wireless-config
+          - redhat-internal-cert-install
+
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    - name: Set laptop specific configurations
+      when: ansible_form_factor in mobile_form_factors
+      block:
+
+        - name: Ensure powertop service enabled
+          service:
+            name: powertop
+            enabled: true
+
+        - name: Ensure powertop service started (only when not plugged in)
+          service:
+            name: powertop
+            state: started
+          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT0')"
+
+        - name: Apply iwlwifi settings
+          copy:
+            src: files/iwlwifi.conf
+            dest: /etc/modprobe.d/iwlwifi.conf
+
+    - name: Disable ssh and rpcbind because reasons
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - sshd
+        - rpcbind
+
+    - name: Ensure various ports are not open
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
+
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
+    - name: Make sure non_root_user user is in mock
+      user:
+        name: "{{ non_root_user }}"
+        groups: mock
+        append: yes
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+    - name: setup BOINC client for world community grid when it's not a laptop
+      import_role:
+        name: worldcommunitygrid
+      when: ansible_form_factor not in mobile_form_factors
+
+    - name: workaround suspend issue on starlite mk3 laptop
+      block:
+        - name: install workaroundsuspend.service
+          copy:
+            src: files/starlite_mk3_suspendfix.service
+            dest: /etc/systemd/system/workaroundsuspend.service
+        - name: enable custom systemd unit
+          systemd:
+            name: workaroundsuspend.service
+            daemon_reload: true
+            enabled: true
+            state: started
+      when: ansible_hostname == 'starlite'
+
+  handlers:
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
+
+- name: User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: true
+  vars:
+    flatpak_method: system
+  tasks:
+    - name: ensure pip
+      shell: "python -m ensurepip --default-pip"
+    - name: import user dev stuff
+      import_tasks: include_tasks/user_stuff.yml
+    - name: import common flatpak app install set
+      import_tasks: include_tasks/flatpak_common.yml
+    - name: import gnome flatpak app install set
+      import_tasks: include_tasks/flatpak_gnome.yml
+    - name: ensure ~/bin exists
+      file:
+        path: "{{ ansible_user_dir }}/bin"
+        state: directory
+    - name: install minikube to ~/bin
+      get_url:
+        url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        dest: "{{ ansible_user_dir}}/bin/minikube"
+        mode: "755"
+    - name: install docker -> podman override
+      copy:
+        src: files/docker_podman.sh
+        dest: "{{ ansible_user_dir}}/bin/docker"
+        mode: "755"
