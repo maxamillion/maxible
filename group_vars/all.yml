@@ -16,7 +16,7 @@ packages_fedora:
   - golang
   - golang-x-tools-gopls
   - golang-x-tools-guru
-  - golang-x-tools-lint
+  - golang-x-lint
   - firefox-wayland
   - NetworkManager-openvpn
   - podman
