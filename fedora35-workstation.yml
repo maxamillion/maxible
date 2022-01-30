@@ -39,7 +39,7 @@
 
     - name: Setup CSB Repo
       template:
-        src: template/rhel8-csb.repo.j2
+        src: templates/rhel8-csb.repo.j2
         dest: /etc/yum.repos.d/rhel8-csb.repo
 
     - name: Package Install - CSB RHEL8 Repo
