@@ -24,6 +24,16 @@ Clone this repo and install dependencies for the Playbooks
     git clone https://github.com/maxamillion/maxible.git
     cd maxible/
     ansible-galaxy install -r requirements.yml
+
+Fedora Workstation 35
+---------------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook fedora35-workstation.yml
+
     
 Fedora Silverblue 35
 --------------------
