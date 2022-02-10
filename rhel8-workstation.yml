@@ -207,6 +207,17 @@
             name: sddm
             enabled: true
 
+    - name: import common flatpak app install set
+      import_tasks: include_tasks/flatpak_common.yml
+
+    - name: GNOME Flatpaks
+      import_tasks: include_tasks/flatpak_gnome.yml
+      when: desktop_environment == "gnome"
+
+    - name: import kde flatpak app install set
+      import_tasks: include_tasks/flatpak_kde.yml
+      when: desktop_environment == "kde"
+
   handlers:
     - name: reload polkit
       service:
@@ -221,23 +232,12 @@
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
 
-    - name: import common flatpak app install set
-      import_tasks: include_tasks/flatpak_common.yml
-
     - name: GNOME user stuff
       when: desktop_environment == "gnome"
       block:
-        - name: import gnome flatpak app install set
-          import_tasks: include_tasks/flatpak_gnome.yml
         - name: unset GNOME Shell app switching
           shell: gsettings set org.gnome.desktop.wm.keybindings switch-applications '[]'
           changed_when: no
         - name: change GNOME Shell window switching to alt+tab
           shell: gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
           changed_when: no
-
-    - name: import kde flatpak app install set
-      import_tasks: include_tasks/flatpak_kde.yml
-      when: desktop_environment == "kde"
-
-
