@@ -190,10 +190,10 @@
         state: started
         enabled: yes
 
-    - name: setup BOINC client for world community grid when it's not a laptop
-      import_role:
-        name: worldcommunitygrid
-      when: ansible_form_factor not in mobile_form_factors
+#   - name: setup BOINC client for world community grid when it's not a laptop
+#     import_role:
+#       name: worldcommunitygrid
+#     when: ansible_form_factor not in mobile_form_factors
 
     - name: switch to SDDM
       when: desktop_environment == "kde"
