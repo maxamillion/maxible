@@ -2,6 +2,7 @@
 - name: Fedora 35 Workstation 
   hosts: localhost
   vars:
+    flatpak_method: system
     non_root_user: admiller
     rpmfusion_free: yes
     rpmfusion_nonfree: no
@@ -36,6 +37,11 @@
         name: 
           - ffmpeg
           - ffmpeg-libs
+            
+    - name: import common flatpak app install set
+      import_tasks: include_tasks/flatpak_common.yml
+    - name: import gnome flatpak app install set
+      import_tasks: include_tasks/flatpak_gnome.yml
 
     - name: Setup CSB Repo
       template:
@@ -158,17 +164,11 @@
   hosts: localhost
   become_user: admiller
   become: true
-  vars:
-    flatpak_method: system
   tasks:
     - name: ensure pip
       shell: "python -m ensurepip --default-pip"
     - name: import user dev stuff
       import_tasks: include_tasks/user_stuff.yml
-    - name: import common flatpak app install set
-      import_tasks: include_tasks/flatpak_common.yml
-    - name: import gnome flatpak app install set
-      import_tasks: include_tasks/flatpak_gnome.yml
     - name: ensure ~/bin exists
       file:
         path: "{{ ansible_user_dir }}/bin"
