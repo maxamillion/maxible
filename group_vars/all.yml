@@ -38,6 +38,7 @@ packages_fedora:
   - ShellCheck
   - ibm-plex-mono-fonts
   - glances
+  - wireguard-tools
 
 packages_common:
   - tmux
