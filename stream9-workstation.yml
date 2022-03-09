@@ -166,3 +166,5 @@
   tasks:
     - name: import user dev stuff
       ansible.builtin.import_tasks: include_tasks/user_stuff.yml
+    - name: import install minikube task set
+      ansible.builtin.import_tasks: include_tasks/install_minikube.yml

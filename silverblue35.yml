@@ -112,15 +112,8 @@
       import_tasks: include_tasks/flatpak_common.yml
     - name: import gnome flatpak app install set
       import_tasks: include_tasks/flatpak_gnome.yml 
-    - name: ensure ~/bin exists
-      file:
-        path: "{{ ansible_user_dir }}/bin"
-        state: directory
-    - name: install minikube to ~/bin
-      get_url:
-        url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-        dest: "{{ ansible_user_dir}}/bin/minikube"
-        mode: "755"
+    - name: import install minikube task set
+      import_tasks: include_tasks/install_minikube.yml
     - name: install docker -> podman override
       copy:
         src: files/docker_podman.sh
