@@ -136,10 +136,6 @@ packages_epel9:
   #- mock
   #- mosh
   #- fedpkg
-  #- ack
-  #- terminus-fonts
-  #- glances
   #- python3-ipython
-
 
 flatpak_method: system
