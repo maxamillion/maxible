@@ -3,6 +3,7 @@
   hosts: localhost 
   vars:
     non_root_user: admiller
+    flatpak_method: system
   tasks:
 
     - name: Package Install - CentOS Stream 9
@@ -44,6 +45,12 @@
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
       ignore_errors: yes
+
+    - name: import common flatpak app install set
+      import_tasks: include_tasks/flatpak_common.yml
+
+    - name: import gnome flatpak app install set
+      import_tasks: include_tasks/flatpak_gnome.yml
 
     - name: Ensure SELinux Enforcing
       ansible.posix.selinux:
@@ -159,17 +166,6 @@
   hosts: localhost
   become_user: admiller
   become: yes
-  vars:
-    flatpak_method: user
   tasks:
     - name: import user dev stuff
       ansible.builtin.import_tasks: include_tasks/user_stuff.yml
-
-    - name: import common flatpak app install set
-      ansible.builtin.import_tasks: include_tasks/flatpak_common.yml
-
-    - name: GNOME user stuff
-      block:
-        - name: import gnome flatpak app install set
-          ansible.builtin.import_tasks: include_tasks/flatpak_gnome.yml
-
