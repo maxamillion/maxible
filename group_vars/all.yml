@@ -46,7 +46,8 @@ packages_common:
   - mutt
   - git
   - vim-enhanced
-  - aspell
+  - hunspell
+  - hunspell-en-US
   - jq
   - python3-devel
   - python3-bcc
