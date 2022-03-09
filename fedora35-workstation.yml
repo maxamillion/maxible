@@ -38,10 +38,8 @@
           - ffmpeg
           - ffmpeg-libs
             
-    - name: import common flatpak app install set
-      import_tasks: include_tasks/flatpak_common.yml
-    - name: import gnome flatpak app install set
-      import_tasks: include_tasks/flatpak_gnome.yml
+    - name: import flatpak app task set
+      import_tasks: include_tasks/flatpak_install.yml
 
     - name: Setup CSB Repo
       template:

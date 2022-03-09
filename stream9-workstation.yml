@@ -46,11 +46,8 @@
           - redhat-internal-cert-install
       ignore_errors: yes
 
-    - name: import common flatpak app install set
-      import_tasks: include_tasks/flatpak_common.yml
-
-    - name: import gnome flatpak app install set
-      import_tasks: include_tasks/flatpak_gnome.yml
+    - name: import flatpak app install tasks
+      import_tasks: include_tasks/flatpak_install.yml
 
     - name: Ensure SELinux Enforcing
       ansible.posix.selinux:

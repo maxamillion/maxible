@@ -28,9 +28,3 @@
   shell: ~/.local/bin/poetry completions bash > ~/.local/poetry.bash-completion
   when: not poetry_stat.stat.exists
 
-- name: Add the flathub flatpak repository remote to the user installation
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    method: "{{ flatpak_method }}"
