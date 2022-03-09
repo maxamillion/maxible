@@ -129,14 +129,9 @@ packages_stream9:
   - toolbox
 
 packages_epel9:
-  - '@fedora-packager'
-  - htop
-  - tig
-  - xsel
   - NetworkManager-openvpn
-  #- mock
-  #- mosh
-  #- fedpkg
-  #- python3-ipython
+  #- htop
+  #- tig
+  #- xsel
 
 flatpak_method: system
