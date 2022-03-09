@@ -4,12 +4,6 @@
   vars:
     non_root_user: admiller
   tasks:
-    - name: Enable my epel9 copr until we get everything in epel9 proper
-      community.general.copr:
-        host: copr.fedorainfracloud.org
-        state: enabled
-        name: maxamillion/epel9
-        chroot: centos-stream-9-x86_64 
 
     - name: Package Install - CentOS Stream 9
       ansible.builtin.yum:

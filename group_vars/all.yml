@@ -121,6 +121,8 @@ packages_epel8_common:
   - python3-ipython
 
 packages_stream9:
+  - epel-release
+  - epel-next-release
   - python3-bcc
   - python3-firewall
   - firefox
