@@ -91,10 +91,10 @@
             src: files/iwlwifi.conf
             dest: /etc/modprobe.d/iwlwifi.conf
 
-    - name: force Xorg, Wayland still has a ways to go :(
-      ansible.builtin.copy:
-        src: files/etc_gdm_custom.conf
-        dest: /etc/gdm/custom.conf
+#   - name: force Xorg, Wayland still has a ways to go :(
+#     ansible.builtin.copy:
+#       src: files/etc_gdm_custom.conf
+#       dest: /etc/gdm/custom.conf
 
     - name: Disable ssh and rpcbind because reasons
       ansible.builtin.systemd:
