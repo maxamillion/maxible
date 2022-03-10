@@ -18,6 +18,7 @@
     - poetry
     - antsibull-changelog
     - tmuxp
+    - bpytop
 
 - name: check for local poetry bash completions
   stat:
