@@ -71,30 +71,25 @@
       ansible.builtin.shell: update-crypto-policies --set DEFAULT
       when: "crypto_policies['stdout'] != 'DEFAULT'"
 
-    - name: Set powersave when configuring a laptop
+    - name: Set laptop specific configurations
       when: ansible_form_factor in mobile_form_factors
       block:
-        - name: Create powertop2tuned tuned profile
-          ansible.builtin.shell: powertop2tuned --enable powertop2tuned
-          args:
-            creates: /etc/tuned/powertop2tuned/tuned.conf
 
-        - name: Get tuned profile
-          ansible.builtin.slurp:
-            src: /etc/tuned/active_profile
-          register: tuned_active_profile
+        - name: Ensure powertop service enabled
+          service:
+            name: powertop
+            enabled: true
 
-        - ansible.builtin.debug:
-            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+        - name: Ensure powertop service started (only when not plugged in)
+          service:
+            name: powertop
+            state: started
+          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1')"
 
-        - name: tuned-adm set powertop2tuned
-          ansible.builtin.shell: /usr/sbin/tuned-adm profile powertop2tuned
-          when: "tuned_active_profile['content'] | b64decode | trim != 'powertop2tuned'"
-
-    - name: Apply iwlwifi settings
-      ansible.builtin.copy:
-        src: files/iwlwifi.conf
-        dest: /etc/modprobe.d/iwlwifi.conf
+        - name: Apply iwlwifi settings
+          copy:
+            src: files/iwlwifi.conf
+            dest: /etc/modprobe.d/iwlwifi.conf
 
     - name: force Xorg, Wayland still has a ways to go :(
       ansible.builtin.copy:
