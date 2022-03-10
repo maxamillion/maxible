@@ -29,16 +29,15 @@ packages_fedora:
   - fedpkg
   - fpaste
   - fedfind
-  - arm-image-installer
   - ack
-  - earlyoom
-  - mediawriter
   - smartmontools
   - selinux-policy-doc
   - ShellCheck
-  - ibm-plex-mono-fonts
   - glances
   - wireguard-tools
+  - asciinema
+  - plantuml
+  - packit
 
 packages_common:
   - tmux
