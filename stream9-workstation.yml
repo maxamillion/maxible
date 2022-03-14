@@ -75,6 +75,24 @@
       when: ansible_form_factor in mobile_form_factors
       block:
 
+        - name: Ensure tuned service started and enabled
+          service:
+            name: tuned
+            enabled: true
+            started: true
+
+        - name: Get tuned profile
+          slurp:
+            src: /etc/tuned/active_profile
+          register: tuned_active_profile
+
+        - debug:
+            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
+
+        - name: tuned-adm set powersave
+          shell: /usr/sbin/tuned-adm profile powersave
+          when: "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
+
         - name: Ensure powertop service enabled
           service:
             name: powertop
