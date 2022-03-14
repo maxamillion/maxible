@@ -19,6 +19,20 @@
     - antsibull-changelog
     - tmuxp
     - bpytop
+  args:
+    creates: ~/.local/bin/{{item}}
+
+- name: pip user install virtualenvwrapper (it's special)
+  shell: python -mpip install --user virtualenvwrapper
+  args:
+    creates: ~/.local/bin/virtualenvwrapper.sh
+
+- name: pip user install q (it's special)
+  shell: python -mpip install --user q
+  args:
+    creates: ~/.local/lib/python{{ansible_python["version"]["major"]}}.{{ansible_python["version"]["minor"]}}/site-packages/q.py
+  tags:
+    - pipq
 
 - name: check for local poetry bash completions
   stat:
