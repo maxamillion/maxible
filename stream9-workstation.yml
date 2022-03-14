@@ -79,7 +79,7 @@
           service:
             name: tuned
             enabled: true
-            started: true
+            state: started
 
         - name: Get tuned profile
           slurp:
