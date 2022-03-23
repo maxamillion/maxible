@@ -27,6 +27,8 @@ packages_fedora:
   - mosh
   - tig
   - fedpkg
+  - centpkg
+    centpkg-sig
   - fpaste
   - fedfind
   - ack
