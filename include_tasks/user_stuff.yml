@@ -19,6 +19,7 @@
     - antsibull-changelog
     - tmuxp
     - bpytop
+    - ansible-navigator
   args:
     creates: ~/.local/bin/{{item}}
 
