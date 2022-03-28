@@ -8,7 +8,6 @@
       loop:
         - 'com.github.johnfactotum.Foliate'
         - 'org.gnome.SoundRecorder'
-        - 'org.libreoffice.LibreOffice'
         - 'org.glimpse_editor.Glimpse'
         - 'org.gnome.Epiphany'
         - 'org.gnome.DejaDup'

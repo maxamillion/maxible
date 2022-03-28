@@ -8,4 +8,3 @@
         method: '{{ flatpak_method }}'
       loop:
         - 'com.discordapp.Discord'
-        - 'org.libreoffice.LibreOffice'
