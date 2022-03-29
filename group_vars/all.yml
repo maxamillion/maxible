@@ -61,6 +61,8 @@ packages_common:
   - iperf3
   - ruby
   - nodejs
+  - cargo
+  - rust
   - gcc
   - gcc-c++
   - automake
