@@ -135,8 +135,8 @@ packages_stream9:
 
 packages_epel9:
   - NetworkManager-openvpn
-  #- htop
-  #- tig
+  - tig
+  - htop
   #- xsel
 
 flatpak_method: system
