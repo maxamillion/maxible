@@ -68,26 +68,28 @@
         state: true
         persistent: true
 
-    - name: Set laptop specific configurations
-      when: ansible_form_factor in mobile_form_factors
-      block:
-
-        - name: Ensure powertop service enabled
-          service:
-            name: powertop
-            enabled: true
-
-        - name: Ensure powertop service started (only when not plugged in)
-          service:
-            name: powertop
-            state: started
-          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1')"
-
-        - name: Apply iwlwifi settings
-          copy:
-            src: files/iwlwifi.conf
-            dest: /etc/modprobe.d/iwlwifi.conf
-
+# don't do this anymore, no longer needed
+#    - name: Set laptop specific configurations
+#      when: ansible_form_factor in mobile_form_factors
+#      block:
+#
+#        - name: Ensure powertop service enabled
+#          service:
+#            name: powertop
+#            enabled: true
+#
+#        - name: Ensure powertop service started (only when not plugged in)
+#          service:
+#            name: powertop
+#            state: started
+#          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1')"
+#
+#        - name: Apply iwlwifi settings
+#          copy:
+#            src: files/iwlwifi.conf
+#            dest: /etc/modprobe.d/iwlwifi.conf
+#
+#
     - name: Disable ssh and rpcbind because reasons
       systemd:
         name: "{{ item }}"

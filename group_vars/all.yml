@@ -28,7 +28,7 @@ packages_fedora:
   - tig
   - fedpkg
   - centpkg
-    centpkg-sig
+  - centpkg-sig
   - fpaste
   - fedfind
   - ack
