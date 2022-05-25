@@ -40,6 +40,7 @@ packages_fedora:
   - asciinema
   - plantuml
   - packit
+  - adapta-backgrounds
 
 packages_common:
   - tmux
