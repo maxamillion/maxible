@@ -25,17 +25,17 @@ Clone this repo and install dependencies for the Playbooks
     cd maxible/
     ansible-galaxy install -r requirements.yml
 
-Fedora Workstation 35
+Fedora Workstation 36
 ---------------------
 
 Run the following playbook:
 
 ::
 
-    ansible-playbook fedora35-workstation.yml
+    ansible-playbook fedora36-workstation.yml
 
     
-Fedora Silverblue 35
+Fedora Silverblue 36
 --------------------
 
 First need to install a few packages in the ``rpm-ostree`` overlay:
@@ -48,7 +48,7 @@ Run the following playbook and enter your sudo command when prompted (if you don
 
 ::
 
-    ansible-playbook silverblue35.yml -K
+    ansible-playbook silverblue36.yml -K
 
 
 Red Hat Enterprise Linux 8 Workstation
