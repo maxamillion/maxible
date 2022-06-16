@@ -40,6 +40,8 @@ packages_fedora:
   - asciinema
   - plantuml
   - packit
+  - standard-test-roles-inventory-qemu
+  - ibm-plex-fonts-all
 
 packages_common:
   - tmux
