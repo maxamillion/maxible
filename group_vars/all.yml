@@ -41,7 +41,7 @@ packages_fedora:
   - plantuml
   - packit
   - standard-test-roles-inventory-qemu
-  - ibm-plex-fonts-all
+  - python3-ipython
 
 packages_common:
   - tmux
