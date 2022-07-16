@@ -42,6 +42,9 @@ packages_fedora:
   - packit
   - standard-test-roles-inventory-qemu
   - python3-ipython
+  - neovim
+  - python3-neovim
+  - python3-lsp-server
 
 packages_common:
   - tmux
