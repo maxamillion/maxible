@@ -8,17 +8,17 @@
     rpmfusion_nonfree: no
   tasks:
     - name: Package Install - Fedora
-      yum:
+      ansible.builtin.yum:
         state: installed
         name: "{{ packages_fedora }}"
 
     - name: Package Install - Common
-      yum:
+      ansible.builtin.yum:
         state: installed
         name: "{{ packages_common }}"
 
     - name: Package Install - gnome
-      yum:
+      ansible.builtin.yum:
         state: installed
         name: 
           - vinagre
@@ -28,26 +28,29 @@
           - gnome-shell-extension-system-monitor-applet
 
     - name: Setup RPM Fusion Free
-      import_role:
+      ansible.builtin.import_role:
         name: robertdebock.rpmfusion
 
     - name: Package Install | RPM Fusion Free
-      yum:
+      ansible.builtin.yum:
         state: installed
         name: 
           - ffmpeg
           - ffmpeg-libs
             
     - name: import flatpak app task set
-      import_tasks: include_tasks/flatpak_install.yml
+      ansible.builtin.import_tasks: include_tasks/flatpak_install.yml
+
+    - name: install SourceCode Pro patched Nerd Fonts
+      ansible.builtin.import_tasks: include_tasks/nerdfonts.yml
 
     - name: Setup CSB Repo
-      template:
+      ansible.builtin.template:
         src: templates/rhel8-csb.repo.j2
         dest: /etc/yum.repos.d/rhel8-csb.repo
 
     - name: Package Install - CSB RHEL8 Repo
-      yum:
+      ansible.builtin.yum:
         state: installed
         name: 
           - oneplay-gstreamer-codecs-pack
@@ -58,12 +61,12 @@
           - redhat-internal-cert-install
 
     - name: Ensure SELinux Enforcing
-      selinux:
+      ansible.posix.selinux:
         policy: targeted
         state: enforcing
 
     - name: Enable container_manage_cgroup for running systemd in podman containers
-      seboolean:
+      ansible.posix.seboolean:
         name: container_manage_cgroup
         state: true
         persistent: true
@@ -91,7 +94,7 @@
 #
 #
     - name: Disable ssh and rpcbind because reasons
-      systemd:
+      ansible.builtin.systemd:
         name: "{{ item }}"
         state: stopped
         masked: true
@@ -101,7 +104,7 @@
         - rpcbind
 
     - name: Ensure various ports are not open
-      firewalld:
+      ansible.posix.firewalld:
         service: "{{ item }}"
         permanent: yes
         immediate: yes
@@ -111,43 +114,43 @@
         - ssh
 
     - name: Allow non-root user access to libvirt via polkit
-      template:
+      ansible.builtin.template:
         src: templates/non_root_user_libvirt_polkit.j2
         dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
       notify:
         - reload polkit
 
     - name: Allow non-root user access to NetworkManager
-      template:
+      ansible.builtin.template:
         src: templates/network_manager_polkit.j2
         dest: /etc/polkit-1/rules.d/10-network-manager.pkla
       notify:
         - reload polkit
 
     - name: Make sure non_root_user user is in mock
-      user:
+      ansible.builtin.user:
         name: "{{ non_root_user }}"
         groups: mock
         append: yes
 
     - name: enable journald persistent storage
-      file:
+      ansible.builtin.file:
         path: /var/log/journal
         state: directory
 
     - name: setup BOINC client for world community grid when it's not a laptop
-      import_role:
+      ansible.builtin.import_role:
         name: worldcommunitygrid
       when: ansible_form_factor not in mobile_form_factors
 
     - name: workaround suspend issue on starlite mk3 laptop
       block:
         - name: install workaroundsuspend.service
-          copy:
+          ansible.builtin.copy:
             src: files/starlite_mk3_suspendfix.service
             dest: /etc/systemd/system/workaroundsuspend.service
         - name: enable custom systemd unit
-          systemd:
+          ansible.builtin.systemd:
             name: workaroundsuspend.service
             daemon_reload: true
             enabled: true
@@ -156,7 +159,7 @@
 
   handlers:
     - name: reload polkit
-      service:
+      ansible.builtin.service:
         name: polkit
         state: restarted
 
@@ -166,13 +169,13 @@
   become: true
   tasks:
     - name: ensure pip
-      shell: "python -m ensurepip --default-pip"
+      ansible.builtin.shell: "python -m ensurepip --default-pip"
     - name: import user dev stuff
-      import_tasks: include_tasks/user_stuff.yml
+      ansible.builtin.import_tasks: include_tasks/user_stuff.yml
     - name: install minikube
-      import_tasks: include_tasks/install_minikube.yml
+      ansible.builtin.import_tasks: include_tasks/install_minikube.yml
     - name: install docker -> podman override
-      copy:
+      ansible.builtin.copy:
         src: files/docker_podman.sh
         dest: "{{ ansible_user_dir}}/bin/docker"
         mode: "755"

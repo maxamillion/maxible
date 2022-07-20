@@ -1,0 +1,13 @@
+---
+
+- name: make sure nerdfonts fontdir exists
+  ansible.builtin.file:
+    path: /usr/share/fonts/nerdfonts/
+    state: directory
+    
+- name: unzip the fonts
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.zip
+    dest: /usr/share/fonts/nerdfonts/
+  
+
