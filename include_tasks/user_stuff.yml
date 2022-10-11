@@ -16,10 +16,9 @@
     - q
     - pipenv
     - poetry
-    - antsibull-changelog
     - tmuxp
     - bpytop
-    - ansible-navigator
+    - python-lsp-server
   args:
     creates: ~/.local/bin/{{item}}
 
