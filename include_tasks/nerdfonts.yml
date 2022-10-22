@@ -9,5 +9,6 @@
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.zip
     dest: /usr/share/fonts/nerdfonts/
+    remote_src: yes
   
 
