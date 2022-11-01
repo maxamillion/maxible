@@ -99,6 +99,7 @@ packages_common:
   - flatpak
   - '@rpm-development-tools'
   - rpm-ostree
+  - pipx
 
 packages_rhel8:
   - python27
