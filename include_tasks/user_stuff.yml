@@ -2,19 +2,21 @@
 # Meant to be used with import_tasks
 #
 - name: pip user install some stuff
-  shell: "python -mpip install --user {{item}}"
+  shell: "python -mpip install --user pipx"
+  args:
+    creates: ~/.local/bin/{{item}}
+#
+- name: pipx user install some stuff
+  shell: "pipx install --user {{item}}"
   loop:
     - ptpython
-    - virtualenvwrapper
     - tox
-    - pipx
     - httpie
     - flake8
     - pep8
     - pyflakes
     - pylint
     - black
-    - q
     - pipenv
     - poetry
     - tmuxp
@@ -23,8 +25,8 @@
   args:
     creates: ~/.local/bin/{{item}}
 
-- name: pip user install virtualenvwrapper (it's special)
-  shell: python -mpip install --user virtualenvwrapper
+- name: pipx user install virtualenvwrapper (it's special)
+  shell: pipx install --user virtualenvwrapper
   args:
     creates: ~/.local/bin/virtualenvwrapper.sh
 
