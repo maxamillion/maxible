@@ -4,7 +4,6 @@ roles:
   # Install a role from Ansible Galaxy
   - name: geerlingguy.repo-epel
   - name: robertdebock.rpmfusion
-  - name: jaredhocutt.brave_browser
 
 collections:
   # Install a collection from Ansible Galaxy.
