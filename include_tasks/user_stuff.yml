@@ -4,7 +4,7 @@
 - name: pip user install some stuff
   shell: "python -mpip install --user pipx"
   args:
-    creates: ~/.local/bin/{{item}}
+    creates: ~/.local/bin/pipx
 #
 - name: pipx user install some stuff
   shell: "pipx install --user {{item}}"
@@ -25,8 +25,8 @@
   args:
     creates: ~/.local/bin/{{item}}
 
-- name: pipx user install virtualenvwrapper (it's special)
-  shell: pipx install --user virtualenvwrapper
+- name: pip user install virtualenvwrapper (it's special)
+  shell: python -mpip install --user virtualenvwrapper
   args:
     creates: ~/.local/bin/virtualenvwrapper.sh
 
