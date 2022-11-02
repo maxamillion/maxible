@@ -7,7 +7,7 @@
     creates: ~/.local/bin/pipx
 #
 - name: pipx user install some stuff
-  shell: "pipx install --user {{item}}"
+  shell: "pipx install {{item}}"
   loop:
     - ptpython
     - tox
