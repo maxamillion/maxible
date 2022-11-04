@@ -6,13 +6,10 @@
         state: present
         method: '{{ flatpak_method }}'
       loop:
-        - 'com.discordapp.Discord'
         - 'org.videolan.VLC'
         - 'org.fedoraproject.MediaWriter'
-        - 'org.telegram.desktop'
         - 'info.mumble.Mumble'
         - 'com.slack.Slack'
-        - 'org.signal.Signal'
         - 'us.zoom.Zoom'
         - 'org.remmina.Remmina'
         - 'com.jgraph.drawio.desktop'
