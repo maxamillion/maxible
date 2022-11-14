@@ -138,10 +138,12 @@
         path: /var/log/journal
         state: directory
 
-    - name: setup BOINC client for world community grid when it's not a laptop
-      ansible.builtin.import_role:
-        name: worldcommunitygrid
-      when: ansible_form_factor not in mobile_form_factors
+# I moved to all fanless desktop/workstation machines, they are not fast so don't
+# bother
+#    - name: setup BOINC client for world community grid when it's not a laptop
+#      ansible.builtin.import_role:
+#        name: worldcommunitygrid
+#      when: ansible_form_factor not in mobile_form_factors
 
     - name: workaround suspend issue on starlite mk3 laptop
       block:
