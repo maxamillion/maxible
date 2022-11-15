@@ -60,6 +60,17 @@
           - redhat-internal-wireless-config
           - redhat-internal-cert-install
 
+    - name: Add GitHub CLI Repo
+      ansible.builtin.shell: dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+      args:
+        creates: /etc/yum.repos.d/gh-cli.repo
+
+    - name: Package Install - GitHub CLI
+      ansible.builtin.yum:
+        state: installed
+        name: 
+          - gh
+
     - name: Ensure SELinux Enforcing
       ansible.posix.selinux:
         policy: targeted
@@ -75,18 +86,6 @@
 #    - name: Set laptop specific configurations
 #      when: ansible_form_factor in mobile_form_factors
 #      block:
-#
-#        - name: Ensure powertop service enabled
-#          service:
-#            name: powertop
-#            enabled: true
-#
-#        - name: Ensure powertop service started (only when not plugged in)
-#          service:
-#            name: powertop
-#            state: started
-#          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1')"
-#
 #        - name: Apply iwlwifi settings
 #          copy:
 #            src: files/iwlwifi.conf
@@ -137,13 +136,6 @@
       ansible.builtin.file:
         path: /var/log/journal
         state: directory
-
-# I moved to all fanless desktop/workstation machines, they are not fast so don't
-# bother
-#    - name: setup BOINC client for world community grid when it's not a laptop
-#      ansible.builtin.import_role:
-#        name: worldcommunitygrid
-#      when: ansible_form_factor not in mobile_form_factors
 
     - name: workaround suspend issue on starlite mk3 laptop
       block:
