@@ -1,5 +1,5 @@
 ---
-- name: Fedora 36 Workstation 
+- name: Fedora 37 Workstation 
   hosts: localhost
   vars:
     flatpak_method: system

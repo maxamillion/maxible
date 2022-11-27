@@ -25,14 +25,14 @@ Clone this repo and install dependencies for the Playbooks
     cd maxible/
     ansible-galaxy install -r requirements.yml
 
-Fedora Workstation 36
+Fedora Workstation 37
 ---------------------
 
 Run the following playbook:
 
 ::
 
-    ansible-playbook fedora36-workstation.yml
+    ansible-playbook fedora37-workstation.yml
 
     
 Fedora Silverblue 36
