@@ -44,6 +44,7 @@ packages_fedora:
   - python3-ipython
   - python3-lsp-server
   - ripgrep
+  - ranger
 
 packages_common:
   - tmux
@@ -142,6 +143,7 @@ packages_epel9:
   - NetworkManager-openvpn
   - tig
   - htop
+  - ranger
   #- xsel
 
 flatpak_method: system
