@@ -21,4 +21,4 @@
     - import_role:
         name: fail2ban
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:

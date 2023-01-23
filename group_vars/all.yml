@@ -139,11 +139,21 @@ packages_stream9:
   - container-tools
   - toolbox
 
+packages_stream9_headless:
+  - cockpit
+  - cockpit-ws
+  - cockpit-podman
+  - cockpit-pcp
+  - cockpit-storaged
+  - cockpit-navigator
+  - cockpit-machines
+
 packages_epel9:
   - NetworkManager-openvpn
   - tig
   - htop
   - ranger
-  #- xsel
+  - xsel
+  - mock
 
 flatpak_method: system

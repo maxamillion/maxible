@@ -9,6 +9,7 @@
           - git
           - vim-enhanced
           - python3
+          - python3-pip
           - tuned
           - tuned-utils
           - setools-console
@@ -19,7 +20,7 @@
           - NetworkManager
           - NetworkManager-tui
           - NetworkManager-wifi
-
+          - nodejs
 
     - name: Ensure SELinux Enforcing
       selinux:
