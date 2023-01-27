@@ -22,6 +22,8 @@
     - tmuxp
     - bpytop
     - python-lsp-server
+    - tldr
+    - ddgr
   args:
     creates: ~/.local/bin/{{item}}
 
