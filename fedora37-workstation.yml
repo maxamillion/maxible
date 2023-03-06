@@ -102,15 +102,15 @@
         - sshd
         - rpcbind
 
-    - name: Ensure various ports are not open
-      ansible.posix.firewalld:
-        service: "{{ item }}"
-        permanent: yes
-        immediate: yes
-        state: disabled
-      loop:
-        - cockpit
-        - ssh
+#   - name: Ensure various ports are not open
+#     ansible.posix.firewalld:
+#       service: "{{ item }}"
+#       permanent: yes
+#       immediate: yes
+#       state: disabled
+#     loop:
+#       - cockpit
+#       - ssh
 
     - name: Allow non-root user access to libvirt via polkit
       ansible.builtin.template:

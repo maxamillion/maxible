@@ -45,6 +45,7 @@ packages_fedora:
   - python3-lsp-server
   - ripgrep
   - ranger
+  - pipx
 
 packages_common:
   - tmux
@@ -100,7 +101,7 @@ packages_common:
   - flatpak
   - '@rpm-development-tools'
   - rpm-ostree
-  - pipx
+  - maven
 
 packages_rhel8:
   - python27
