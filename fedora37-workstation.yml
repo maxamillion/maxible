@@ -162,14 +162,5 @@
   become_user: admiller
   become: true
   tasks:
-    - name: ensure pip
-      ansible.builtin.shell: "python -m ensurepip --default-pip"
     - name: import user dev stuff
       ansible.builtin.import_tasks: include_tasks/user_stuff.yml
-    - name: install minikube
-      ansible.builtin.import_tasks: include_tasks/install_minikube.yml
-    - name: install docker -> podman override
-      ansible.builtin.copy:
-        src: files/docker_podman.sh
-        dest: "{{ ansible_user_dir}}/bin/docker"
-        mode: "755"

@@ -1,0 +1,69 @@
+---
+# NOTE: This system must first be bootstrapped with the following:
+# 
+# sudo rpm-ostree install tmux vim-enhanced xsel virt-manager libvirt-client gnome-tweaks
+- name: Fedora 37 Silverblue
+  hosts: localhost
+  become: true
+  vars:
+    non_root_user: admiller
+    rpmfusion_free: no
+    rpmfusion_nonfree: no
+    silverblue: yes
+    flatpak_method: system
+  tasks:
+    - name: Ensure SELinux Enforcing
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Disable ssh and rpcbind because reasons
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - sshd
+        - rpcbind
+
+    - name: Ensure various ports are not open
+      firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: disabled
+      loop:
+        - cockpit
+        - ssh
+
+    - name: Allow non-root user access to libvirt via polkit
+      template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: enable journald persistent storage
+      file:
+        path: /var/log/journal
+        state: directory
+
+    - name: import flatpak app task set
+      ansible.builtin.import_tasks: include_tasks/flatpak_install.yml
+
+  handlers:
+    - name: reload polkit
+      service:
+        name: polkit
+        state: restarted
+
+- name: User Stuff
+  hosts: localhost
+  become_user: admiller
+  become: true
+  vars:
+    flatpak_method: system
+  tasks:
+    - name: import user stuff
+      import_tasks: include_tasks/user_stuff.yml

@@ -35,39 +35,23 @@ Run the following playbook:
     ansible-playbook fedora37-workstation.yml
 
     
-Fedora Silverblue 36
+Fedora Silverblue 37
 --------------------
 
 First need to install a few packages in the ``rpm-ostree`` overlay:
 
 ::
 
-    sudo rpm-ostree install tmux vim-enhanced ansible powertop xsel virt-manager libvirt-client gnome-tweaks
+    sudo rpm-ostree install tmux vim-enhanced xsel virt-manager libvirt-client gnome-tweaks
+    python3 -mvenv venv_ansible
+    . venv_ansible/bin/activate
+    pip install ansible
 
 Run the following playbook and enter your sudo command when prompted (if you don't, then GNOME will pop up asking for your password multiple times):
 
 ::
 
-    ansible-playbook silverblue36.yml -K
-
-
-Red Hat Enterprise Linux 8 Workstation
---------------------------------------
-
-Run the following playbook:
-
-::
-
-    ansible-playbook rhel8-workstation.yml -e desktop_environment="gnome"
-
-Red Hat Enterprise Linux 8 Workstation - KDE Plasma (from EPEL)
----------------------------------------------------------------
-
-Run the following playbook:
-
-::
-
-    ansible-playbook rhel8-workstation.yml -e desktop_environment="kde"
+    ansible-playbook silverblue37.yml -K
 
 
 Notes

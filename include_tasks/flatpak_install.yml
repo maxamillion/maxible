@@ -1,3 +1,10 @@
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: "{{ flatpak_method | default(system) }}"
+
 - name: import common flatpak app install set
   import_tasks: include_tasks/flatpak_common.yml
 
