@@ -46,6 +46,7 @@ packages_fedora:
   - ripgrep
   - ranger
   - pipx
+  - conserver-client
 
 packages_common:
   - tmux
