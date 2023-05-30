@@ -25,15 +25,23 @@ Clone this repo and install dependencies for the Playbooks
     cd maxible/
     ansible-galaxy install -r requirements.yml
 
-Fedora Workstation 37
+Fedora Workstation 38
 ---------------------
 
 Run the following playbook:
 
 ::
 
-    ansible-playbook fedora37-workstation.yml
+    ansible-playbook fedora38-workstation.yml
 
+CentOS Stream 9
+---------------
+
+Run the following playbook:
+
+::
+
+    ansible-playbook stream9-workstation.yml
     
 Fedora Silverblue 37
 --------------------
