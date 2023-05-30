@@ -1,6 +1,6 @@
 ---
 - name: CentOS Stream 9 Workstation / Server w/ GUI Setup / Laptop / Whatever
-  hosts: localhost 
+  hosts: localhost
   vars:
     non_root_user: admiller
     flatpak_method: system
@@ -21,7 +21,6 @@
         state: installed
         name: 
           - gnome-tweaks
-          - gnome-shell-extension-windowsNavigator
 
     - name: Package Install - EPEL9 
       ansible.builtin.yum:
@@ -37,8 +36,7 @@
       ansible.builtin.yum:
         state: installed
         name:
-          #- oneplay-gstreamer-codecs-pack
-          #- ffmpeg-libs
+          - oneplay-gstreamer-codecs-pack
           - redhat-internal-openvpn-profiles
           - redhat-internal-NetworkManager-openvpn-profiles
           - redhat-internal-NetworkManager-openvpn-profiles-non-gnome
@@ -60,60 +58,6 @@
         state: true
         persistent: true
 
-    - name: Check crypto policies
-      ansible.builtin.shell: update-crypto-policies --show
-      changed_when: false
-      register: crypto_policies
-
-    # should upgrade to FUTURE, but then RHN doesn't work because metadata
-    # checksum is too weak
-    - name: Set crypto policies to DEFAULT
-      ansible.builtin.shell: update-crypto-policies --set DEFAULT
-      when: "crypto_policies['stdout'] != 'DEFAULT'"
-
-    - name: Set laptop specific configurations
-      when: ansible_form_factor in mobile_form_factors
-      block:
-
-        - name: Ensure tuned service started and enabled
-          service:
-            name: tuned
-            enabled: true
-            state: started
-
-        - name: Get tuned profile
-          slurp:
-            src: /etc/tuned/active_profile
-          register: tuned_active_profile
-
-        - debug:
-            msg: "{{ tuned_active_profile['content'] | b64decode | trim }}"
-
-        - name: tuned-adm set powersave
-          shell: /usr/sbin/tuned-adm profile powersave
-          when: "tuned_active_profile['content'] | b64decode | trim != 'powersave'"
-
-        - name: Ensure powertop service enabled
-          service:
-            name: powertop
-            enabled: true
-
-        - name: Ensure powertop service started (only when not plugged in)
-          service:
-            name: powertop
-            state: started
-          when: "'discharging' in lookup('pipe', 'upower -i /org/freedesktop/UPower/devices/battery_BAT1')"
-
-        - name: Apply iwlwifi settings
-          copy:
-            src: files/iwlwifi.conf
-            dest: /etc/modprobe.d/iwlwifi.conf
-
-#   - name: force Xorg, Wayland still has a ways to go :(
-#     ansible.builtin.copy:
-#       src: files/etc_gdm_custom.conf
-#       dest: /etc/gdm/custom.conf
-
     - name: Disable ssh and rpcbind because reasons
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -134,12 +78,11 @@
         - cockpit
         - ssh
 
-# FIXME - mock isn't in epel9 yet
-#    - name: Make sure non_root_user user is in mock
-#      ansible.builtin.user:
-#        name: "{{ non_root_user }}" 
-#        groups: mock
-#        append: yes
+    - name: Make sure non_root_user user is in mock
+      ansible.builtin.user:
+        name: "{{ non_root_user }}" 
+        groups: mock
+        append: yes
 
     - name: Allow non-root user access to libvirt via polkit
       ansible.builtin.template:
@@ -159,12 +102,6 @@
       ansible.builtin.file:
         path: /var/log/journal
         state: directory
-
-# FIXME - boinc-client isn't in epel9 yet
-#    - name: setup BOINC client for world community grid when it's not a laptop
-#      ansible.builtin.import_role:
-#        name: worldcommunitygrid
-#      when: ansible_form_factor not in mobile_form_factors
 
   handlers:
     - name: reload polkit

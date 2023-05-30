@@ -157,5 +157,6 @@ packages_epel9:
   - ranger
   - xsel
   - mock
+  - centpkg
 
 flatpak_method: system
