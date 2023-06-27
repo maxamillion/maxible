@@ -10,7 +10,6 @@
         - 'org.fedoraproject.MediaWriter'
         - 'info.mumble.Mumble'
         - 'com.slack.Slack'
-        - 'us.zoom.Zoom'
         - 'org.remmina.Remmina'
         - 'com.jgraph.drawio.desktop'
         - 'org.chromium.Chromium'
