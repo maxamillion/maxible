@@ -1,0 +1,8 @@
+
+- name: Get github pubkeys
+  ansible.builtin.get_url:
+    url: "https://github.com/{{ non_root_user_github }}.keys"
+    dest: "{{ ansible_user_dir }}/.ssh/authorized_keys"
+    owner: "{{ ansible_user }}"
+    mode: 0600
+    group: "{{ non_root_user }}"

@@ -60,3 +60,4 @@
     dest: "{{ ansible_user_dir}}/bin/docker"
     mode: "755"
 
+# vim:ft=yaml.ansible
