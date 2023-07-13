@@ -12,4 +12,4 @@
   service: name=ntpd state=started enabled=yes
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

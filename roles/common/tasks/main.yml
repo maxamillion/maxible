@@ -10,4 +10,4 @@
   when: deployment_type != "workstation"
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

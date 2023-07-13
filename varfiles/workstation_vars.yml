@@ -1,4 +1,4 @@
-# vim:ft=ansible:
+# vim:ft=yaml.ansible
 non_root_user: admiller
 deployment_type: workstation
 

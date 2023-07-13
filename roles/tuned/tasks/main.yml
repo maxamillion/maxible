@@ -16,4 +16,4 @@
     enabled: yes
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

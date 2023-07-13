@@ -340,4 +340,4 @@
       - scl-utils-build
       - nodejs-packaging
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

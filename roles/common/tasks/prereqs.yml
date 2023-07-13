@@ -12,4 +12,4 @@
       - libselinux-python
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

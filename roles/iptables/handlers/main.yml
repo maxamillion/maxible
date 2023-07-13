@@ -4,4 +4,4 @@
   service: name=iptables state=restarted
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

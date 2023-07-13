@@ -19,4 +19,4 @@
   command: /usr/bin/timedatectl set-ntp true
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

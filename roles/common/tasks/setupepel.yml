@@ -23,4 +23,4 @@
   when: epel_check.rc != 0
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

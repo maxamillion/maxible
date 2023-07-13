@@ -36,4 +36,4 @@
   dnf: name="@mate-applications" state=installed
 
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible

@@ -17,4 +17,4 @@
       - gnome-shell-extension-system-monitor-applet
       - dconf-editor
 
-# vim:ft=ansible:
+# vim:ft=yaml.ansible
