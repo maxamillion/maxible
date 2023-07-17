@@ -37,6 +37,7 @@
         name: 
           - ffmpeg
           - ffmpeg-libs
+          - libavcodec-freeworld
             
     - name: import flatpak app task set
       ansible.builtin.import_tasks: include_tasks/flatpak_install.yml
