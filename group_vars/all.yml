@@ -103,6 +103,8 @@ packages_common:
   - '@rpm-development-tools'
   - rpm-ostree
   - maven
+  - checksec
+  - meson
 
 packages_rhel8:
   - python27
