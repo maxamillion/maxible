@@ -140,6 +140,7 @@ packages_stream9:
   - python3-firewall
   - firefox
   - golang
+  - nodejs
   - container-tools
   - toolbox
 
