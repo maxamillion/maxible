@@ -53,6 +53,13 @@
         state: started
         masked: false
         enabled: true
+          
+    - name: Start and enable firewalld
+      ansible.builtin.systemd:
+        name: "firewalld"
+        state: started
+        masked: false
+        enabled: true
 
     - name: Ensure various ports are open
       ansible.posix.firewalld:
