@@ -162,7 +162,6 @@
       - pcp
       - nodejs
       - nodejs-docs
-      - nodejs-grunt
       - npm
       - binutils
       - pkgconfig
