@@ -208,7 +208,6 @@
       - perl-macros
       - ocaml-srpm-macros
       - kf5-rpm-macros
-      - python3-macros
       - sip-macros
       - ghc-rpm-macros
       - ghc-srpm-macros
