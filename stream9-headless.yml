@@ -98,6 +98,8 @@
     - name: setup BOINC client for world community grid when it's not a laptop
       ansible.builtin.import_role:
         name: worldcommunitygrid
+      when:
+        - ansible_virtualization_role != "guest"
 
   handlers:
     - name: reload polkit
