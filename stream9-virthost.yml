@@ -1,0 +1,124 @@
+---
+- name: CentOS Stream 9 Virtualization Host
+  hosts: stream9virthost
+  vars:
+    non_root_user: admiller
+    flatpak_method: system
+  tasks:
+
+    - name: Package Install - CentOS Stream 9
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_stream9 }}"
+
+    - name: Package Install - CentOS Stream 9 Headless
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_stream9_headless }}"
+
+    - name: Package Install - CentOS Stream 9 Virt Host
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_stream9_virthost }}"
+
+    # - name: Package Install - Common
+    #   ansible.builtin.yum:
+    #     state: installed
+    #     name: "{{ packages_common }}"
+
+    - name: Package Install - EPEL9 
+      ansible.builtin.yum:
+        state: installed
+        name: "{{ packages_epel9 }}"
+
+    - name: Ensure SELinux Enforcing
+      ansible.posix.selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: Enable container_manage_cgroup for running systemd in podman containers
+      ansible.posix.seboolean:
+        name: container_manage_cgroup
+        state: true
+        persistent: true
+
+    - name: Disable rpcbind because reasons
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+        masked: true
+        enabled: false
+      loop:
+        - rpcbind
+
+    - name: Start and enable cockpit
+      ansible.builtin.systemd:
+        name: "cockpit"
+        state: started
+        masked: false
+        enabled: true
+          
+    - name: Start and enable firewalld
+      ansible.builtin.systemd:
+        name: "firewalld"
+        state: started
+        masked: false
+        enabled: true
+
+    - name: Ensure various ports are open
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+      loop:
+        - cockpit
+
+    - name: Make sure non_root_user user is in mock
+      ansible.builtin.user:
+        name: "{{ non_root_user }}" 
+        groups: mock
+        append: yes
+
+    - name: Allow non-root user access to libvirt via polkit
+      ansible.builtin.template:
+        src: templates/non_root_user_libvirt_polkit.j2
+        dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+      notify:
+        - reload polkit
+
+    - name: Allow non-root user access to NetworkManager
+      ansible.builtin.template:
+        src: templates/network_manager_polkit.j2
+        dest: /etc/polkit-1/rules.d/10-network-manager.pkla
+      notify:
+        - reload polkit
+
+    - name: enable journald persistent storage
+      ansible.builtin.file:
+        path: /var/log/journal
+        state: directory
+
+    - name: setup BOINC client for world community grid when it's not a laptop
+      ansible.builtin.import_role:
+        name: worldcommunitygrid
+      when:
+        - ansible_virtualization_role != "guest"
+
+  handlers:
+    - name: reload polkit
+      ansible.builtin.service:
+        name: polkit
+        state: restarted
+
+- name: CentOS Stream 9 Headless - User Stuff
+  hosts: stream9headless
+  become_user: admiller
+  become: yes
+  tasks:
+    - name: import user dev stuff
+      ansible.builtin.import_tasks: include_tasks/user_stuff.yml
+    - name: import install minikube task set
+      ansible.builtin.import_tasks: include_tasks/install_minikube.yml
+
+# vim:ft=yaml.ansible

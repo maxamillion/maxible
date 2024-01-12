@@ -153,6 +153,13 @@ packages_stream9_headless:
   - cockpit-navigator
   - cockpit-machines
 
+packages_stream9_virthost:
+  - "@virtualization-host-environment"
+  - tftp-server
+  - syslinux
+  - shim-x64
+  - grub2-efi-x64
+
 packages_epel9:
   - NetworkManager-openvpn
   - tig
