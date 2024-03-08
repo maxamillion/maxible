@@ -1,0 +1,17 @@
+---
+- name: Fan Out Demo
+  hosts: all
+  tasks:
+    - name: Test ping
+      ansible.builtin.ping:
+
+    - name: Ensure packages are installed
+      ansible.builtin.dnf:
+        name:
+          - bash
+          - coreutils
+          - bash-completion
+        state: present
+
+
+# vim: ft=yaml.ansible
