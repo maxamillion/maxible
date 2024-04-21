@@ -1,0 +1,48 @@
+---
+- name: RHEL nvidia cuda hosts
+  hosts: rhelcuda
+  tasks:
+
+    # NOTE: Requires `ansible-galaxy install geerlingguy.repo-epel
+    - name: Install EPEL
+      ansible.builtin.import_role:
+        name: 'geerlingguy.repo-epel'
+
+    - name: Add nvidia official repos
+      ansible.builtin.dnf:
+        name: "https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ansible_distribution_major_version}}/{{ansible_architecture}}/cuda-rhel{{ansible_distribution_major_version}}.repo"
+        state: installed
+
+    - name: Clear dnf cache
+      ansible.builtin.dnf:
+        update_cache: true
+
+    - name: Package Install nvidiia drivers
+      ansible.builtin.dnf:
+        state: installed
+        name:
+          - "@nvidia-driver:latest-dkms"
+      notify: reboot
+
+    - name: Blacklist nouveu
+      ansible.builtin.copy:
+        src: files/blacklist-nouveau.conf
+        dest: /etc/modprobe.d/blacklist-nouveau.conf
+        mode: 0644
+      notify: reboot
+
+    - name: Install cuda 
+      ansible.builtin.dnf:
+        state: installed
+        name:
+          - cuda-toolkit
+          - nvidia-gds
+          - nvtop
+          - libcudnn8
+          - libnccl
+
+  handlers:
+    - name: reboot
+      ansible.builtin.reboot:
+
+# vim: ft=yaml.ansible
