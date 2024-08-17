@@ -7,7 +7,7 @@
     name: 'geerlingguy.repo-epel'
   when: ansible_distribution == 'RedHat'
 
-- name: Package Install - EPEL8
+- name: Package Install - EPEL
   yum:
     state: installed
     name: boinc-client

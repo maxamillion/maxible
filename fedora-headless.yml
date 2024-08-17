@@ -1,34 +1,19 @@
 ---
-- name: EL 9 Headless
-  hosts: el9headless
+- name: Fedora Headless
+  hosts: fedoraheadless
   vars:
     non_root_user: admiller
-    flatpak_method: system
   tasks:
-    - name: Import geerlingguy repo-epel
-      ansible.builtin.import_role:
-        name: geerlingguy.repo-epel
 
-    - name: Package Install - EL 9
-      ansible.builtin.yum:
+    - name: Package Install - Fedora
+      ansible.builtin.dnf:
         state: installed
-        name: "{{ packages_el9 }}"
+        name: "{{ packages_fedora }}"
 
-    - name: Package Install - EL 9 Headless
-      ansible.builtin.yum:
+    - name: Package Install - Common
+      ansible.builtin.dnf:
         state: installed
-        name: "{{ packages_el9_headless }}"
-
-
-    # - name: Package Install - Common
-    #   ansible.builtin.yum:
-    #     state: installed
-    #     name: "{{ packages_common }}"
-
-    - name: Package Install - EPEL9 
-      ansible.builtin.yum:
-        state: installed
-        name: "{{ packages_epel9 }}"
+        name: "{{ packages_common }}"
 
     - name: Ensure SELinux Enforcing
       ansible.posix.selinux:
@@ -41,22 +26,6 @@
         state: true
         persistent: true
 
-    - name: Disable rpcbind because reasons
-      ansible.builtin.systemd:
-        name: "{{ item }}"
-        state: stopped
-        masked: true
-        enabled: false
-      loop:
-        - rpcbind
-
-    - name: Start and enable cockpit
-      ansible.builtin.systemd:
-        name: "cockpit"
-        state: started
-        masked: false
-        enabled: true
-          
     - name: Start and enable firewalld
       ansible.builtin.systemd:
         name: "firewalld"
