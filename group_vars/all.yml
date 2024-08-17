@@ -133,7 +133,7 @@ packages_epel8_common:
   - glances
   - python3-ipython
 
-packages_stream9:
+packages_el9:
   - epel-release
   - epel-next-release
   - python3-bcc
@@ -144,7 +144,7 @@ packages_stream9:
   - container-tools
   - toolbox
 
-packages_stream9_headless:
+packages_el9_headless:
   - cockpit
   - cockpit-ws
   - cockpit-podman
@@ -153,7 +153,7 @@ packages_stream9_headless:
   - cockpit-navigator
   - cockpit-machines
 
-packages_stream9_virthost:
+packages_el9_virthost:
   - "@virtualization-host-environment"
   - tftp-server
   - syslinux

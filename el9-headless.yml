@@ -1,20 +1,20 @@
 ---
-- name: CentOS Stream 9 Headless
-  hosts: stream9headless
+- name: EL 9 Headless
+  hosts: el9headless
   vars:
     non_root_user: admiller
     flatpak_method: system
   tasks:
 
-    - name: Package Install - CentOS Stream 9
+    - name: Package Install - EL 9
       ansible.builtin.yum:
         state: installed
-        name: "{{ packages_stream9 }}"
+        name: "{{ packages_el9 }}"
 
-    - name: Package Install - CentOS Stream 9 Headless
+    - name: Package Install - EL 9 Headless
       ansible.builtin.yum:
         state: installed
-        name: "{{ packages_stream9_headless }}"
+        name: "{{ packages_el9_headless }}"
 
 
     # - name: Package Install - Common
@@ -107,8 +107,8 @@
         name: polkit
         state: restarted
 
-- name: CentOS Stream 9 Headless - User Stuff
-  hosts: stream9headless
+- name: EL 9 Headless - User Stuff
+  hosts: el9headless
   become_user: admiller
   become: yes
   tasks:
