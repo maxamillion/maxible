@@ -1,0 +1,26 @@
+- name: Launch a new Lightsail instance
+  hosts: localhost
+  tasks:
+    - name: Create a new Lightsail instance
+      community.aws.lightsail:
+        state: present
+        name: stream9-testing
+        region: "us-east-2"
+        zone: "us-east-2a"
+        blueprint_id: "centos_stream_9"
+        bundle_id: "2xlarge_3_0"
+        key_pair_name: id_rsa
+        user_data: "curl -q https://github.com/maxamillion.keys >> ~/.ssh/authorized_keys"
+        public_ports:
+          - from_port: 22
+            to_port: 22
+            protocol: "tcp"
+            cidrs: ["0.0.0.0/0"]
+            ipv6_cidrs: ["::/0"]
+      register: my_instance
+
+    - name: Display created instance information
+      ansible.builtin.debug:
+        var: my_instance
+
+# vim:ft=yaml.ansible
