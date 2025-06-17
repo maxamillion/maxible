@@ -41,6 +41,10 @@
           - nvtop
           - libcudnn8
           - libnccl
+          - nvidia-container-toolkit
+
+    - name: CDI Generate
+      ansible.builtin.shell: nvidia-ctk cdi generate --output=/etc/cdi/nvidia.json
 
   handlers:
     - name: Reboot
